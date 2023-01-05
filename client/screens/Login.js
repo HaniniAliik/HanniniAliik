@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert } from "react-native";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { StyleSheet, Text,  View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert } from "react-native";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../config/firebase";
 
 export default function Login({ navigation }) {
@@ -16,43 +16,65 @@ export default function Login({ navigation }) {
         .catch((err) => Alert.alert("Login error", err.message));
     }
   };
- 
-  
+
+  const resetPassword =()=>{
+
+    if (email!=null)
+    {
+      sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert ("reset password has been sent successfully to your email")
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      alert(errorMessage);
+      });
+    }
+    else{
+    alert ("Invalid email")
+    }}
   return (
     <View style={styles.container}>
-    
+
       <View style={styles.whiteSheet} />
       <SafeAreaView style={styles.form}>
         <Text style={styles.title}>Log In</Text>
-         <TextInput
-        style={styles.input}
-        placeholder="Enter email"
-        autoCapitalize="none"
-        keyboardType="email-address"
-        textContentType="emailAddress"
-        autoFocus={true}
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Enter password"
-        autoCapitalize="none"
-        autoCorrect={false}
-        secureTextEntry={true}
-        textContentType="password"
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-      />
-      <TouchableOpacity style={styles.button} onPress={onHandleLogin}  >
-        <Text style={{fontWeight: 'bold', color: "black", fontSize: 18}}> Log In</Text>
-      </TouchableOpacity>
-      <View style={{marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center'}}>
-        <Text style={{color: 'gray', fontWeight: '600', fontSize: 14}}>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-          <Text style={{color: "black", fontWeight: '600', fontSize: 14}}> Sign Up</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter email"
+          autoCapitalize="none"
+          keyboardType="email-address"
+          textContentType="emailAddress"
+          autoFocus={true}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={true}
+          textContentType="password"
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+        />
+        <TouchableOpacity style={styles.button} onPress={onHandleLogin}  >
+          <Text style={{ fontWeight: 'bold', color: "black", fontSize: 18 }}> Log In</Text>
         </TouchableOpacity>
-      </View>
+        <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
+          <Text style={{ color: 'gray', fontWeight: '600', fontSize: 14 }}>Don't have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+            <Text style={{ color: "black", fontWeight: '600', fontSize: 14 }}> Sign Up</Text>
+          </TouchableOpacity>
+    
+        </View>
+        <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
+        <TouchableOpacity onPress={() => resetPassword()}>
+            <Text style={{ color: "black", fontWeight: '600', fontSize: 14 }}> Forget password ?</Text>
+          </TouchableOpacity>
+          </View>
       </SafeAreaView>
       <StatusBar barStyle="light-content" />
     </View>
