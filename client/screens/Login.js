@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+
+import * as React from "react";
+import { Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import GlobalStyles from "../GlobalStyles";
 import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 
 export default function Login({ navigation }) {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const onHandleLogin = () => {
     if (email !== "" && password !== "") {
       signInWithEmailAndPassword(auth, email, password)
+     
         .then(() => console.log("Login success"))
 
         .catch((err) => Alert.alert("Login error", err.message));
