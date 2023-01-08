@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, Touchab
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { createStackNavigator } from "@react-navigation/stack";
+// import BackgroundAnimation from "./Backround";
 //import Header from "../shared/header";
 
 export default function Login({ navigation }) {
@@ -25,9 +26,12 @@ export default function Login({ navigation }) {
    
 
 <View style={styles.container}>
-    <Image style={{ marginTop: -110 }} source={require("../images/kids.png")} />
+  {/* invoke the bachround image */}
+  {/* <BackgroundAnimation></BackgroundAnimation> */}
+  <Image style={{ marginTop: -70  }} source={require('../images/name.png') }/>
+     <Image style={{ marginTop: 5 }} source={require("../images/kids.png")} /> 
     {/* <Text style={{ fontWeight: "bold", fontSize: 26 }}>HANNINI </Text> */}
-    <View style={{ marginTop: -60 }}>
+    <View style={{ marginTop: 0 }}>
       
       <TextInput
         style={styles.TextInput}
@@ -71,6 +75,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 100,
   },
+
   TextInput: {
     paddingTop: 10,
     paddingBottom: 10,

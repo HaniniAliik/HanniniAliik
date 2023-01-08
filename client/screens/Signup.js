@@ -99,22 +99,24 @@ const onHandleSignup = () => {
         value={phone}
         onChangeText={(text) => setPhone(text)}
       />
+      </SafeAreaView>
       {/* <TouchableOpacity style={styles.button} onPress={onHandleSignup}>
         <Text style={{fontWeight: 'bold', color: 'black', fontSize: 18}}> Sign Up</Text>
       </TouchableOpacity> */}
+      <View style={{marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center'}}>
       <Pressable style={styles.button}>
       <Text style={styles.buttonText} onPress={onHandleSignup} >
         SignUp
       </Text>
     </Pressable>
-
+    </View>
       <View style={{marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center'}}>
-        <Text style={{color: 'gray', fontWeight: '600', fontSize: 14}}>Don't have an account? </Text>
+        <Text style={{color: 'gray', fontWeight: '600', fontSize: 14,marginTop:-20}}>Don't have an account? </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={{color: '#f57c00', fontWeight: '600', fontSize: 14}}> Log In</Text>
+          <Text style={{color: '#f57c00', fontWeight: '600', fontSize: 14,marginTop:-20}}> Log In</Text>
         </TouchableOpacity>
       </View>
-      </SafeAreaView>
+      
       <StatusBar barStyle="light-content" />
     </View>
   );
@@ -169,7 +171,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderWidth: 1,
     borderColor: "green",
-    width:127
+    width:127,
+    marginTop:-150
   
     
   },

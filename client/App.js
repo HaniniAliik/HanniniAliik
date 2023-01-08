@@ -8,6 +8,8 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Chat from './screens/Chat';
 import Home from './screens/Home';
+import Test from './screens/Test'
+import Backround from './screens/Backround.js'
 //import Header from './shared/header';
 
 const Stack = createStackNavigator();
@@ -36,7 +38,7 @@ function ChatStack() {
 function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='Login' component={Login} />
+      <Stack.Screen name='Login' component={Test} />
       <Stack.Screen name='Signup' component={Signup} />
     </Stack.Navigator>
   );
