@@ -25,7 +25,7 @@ export default function Login({ navigation }) {
    
 
 <View style={styles.container}>
-    <Image style={{ marginTop: -110 }} source={require("../screens/kids.png")} />
+    <Image style={{ marginTop: -110 }} source={require("../images/kids.png")} />
     {/* <Text style={{ fontWeight: "bold", fontSize: 26 }}>HANNINI </Text> */}
     <View style={{ marginTop: -60 }}>
       
