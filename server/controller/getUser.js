@@ -1,3 +1,7 @@
-const db = require("../database");
+const db = require("../database/index");
 
-const db = require("../db");
+
+// const getChild=(req,res)=>{
+//     const query = "INSERT INTO "
+//     db.query
+// }
