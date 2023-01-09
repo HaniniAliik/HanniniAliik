@@ -12,7 +12,9 @@ import { auth } from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
 import { signOut } from 'firebase/auth';
 
-const Home = () => {
+
+import Button from "../src/components/Button";
+const Home= () => {
   const navigation = useNavigation();
   const onSignOut = () => {
     signOut(auth).catch(error => console.log('Error logging out: ', error));
@@ -20,30 +22,46 @@ const Home = () => {
   //frameScreen2 : AddChild
   //frameScreen1 : UpdateChild
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        
-        <FontAwesome name="search" size={24} style={{ marginLeft: 15 }} />
-        
-      ),
-      headerRight: () => (
-        <TouchableOpacity
-          style={{
-            marginRight: 10
-          }}
-          onPress={onSignOut}
-        >
-          <AntDesign name="logout" size={24}  style={{marginRight: 10}}/>
-        </TouchableOpacity>
-      )
-    });
-  }, [navigation]);
+
+
+ useEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => (
+                <FontAwesome name="search" size={24}  style={{marginLeft: 15}}/>
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 10
+                }}
+                onPress={onSignOut}
+              >
+                <AntDesign name="logout" size={24}  style={{marginRight: 10}}/>
+              </TouchableOpacity>
+            )
+        });
+    }, [navigation]);
   return (
-
+    
     <View style={[styles.iconAddParent, styles.parentLayout]}>
+      <View style={styles.iconAdd}>
       
-
+        <Pressable
+          style={[styles.vector, styles.iconLayout1]}
+          onPress={() => navigation.navigate("AddChild")}
+        >
+          <View style={styles.Camera}>
+        
+        </View>
+        
+          <Image
+            style={[styles.iconLayout, styles.iconLayout1]}
+            resizeMode="cover"
+            source={require("../assets/vector.png")}
+          />
+        </Pressable>
+      </View>
+    
       <View style={[styles.vectorParent, styles.parentLayout]}>
         <Pressable
           style={[styles.wrapper, styles.wrapperLayout]}
@@ -84,8 +102,17 @@ const Home = () => {
 
         
       </View>
-      
-  
+      <View style={styles.container}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate("Chat")}
+                style={styles.chatButton}
+            >
+                <Entypo name="chat" size={24}  />
+            </TouchableOpacity>
+            <View style={styles.Cameraa}>
+            <Button title="Take a picture" onPress={() => navigation.navigate("Camera")} icon="camera" />
+            </View>
+        </View>
     </View>
 
   );
@@ -99,6 +126,14 @@ const styles = StyleSheet.create({
     
     width: '100%',
   },
+ Cameraa: {
+  backgroundColor: 'black',
+  top: 730,
+  justifyContent: 'center',
+  right: 145,
+  borderRadius: 100,
+  width: 170
+ },
   parentLayout: {
     overflow: "hidden",
     height: 844,

@@ -12,6 +12,7 @@
         "@expo/vector-icons": "^13.0.0",
         "@react-native-async-storage/async-storage": "^1.17.11",
         "@react-native-community/masked-view": "^0.1.11",
+
         "@react-navigation/bottom-tabs": "^6.5.2",
         "@react-navigation/native": "^6.1.1",
         "@react-navigation/stack": "^6.3.10",
@@ -19,6 +20,11 @@
         "dotenv": "^16.0.3",
         "expo": "~47.0.9",
         "expo-constants": "^14.0.2",
+
+        "expo-camera": "^13.1.0",
+        "expo-constants": "^14.0.2",
+        "expo-media-library": "^15.0.0",
+
         "expo-status-bar": "~1.4.2",
         "firebase": "^9.15.0",
         "react": "18.1.0",

@@ -14,6 +14,11 @@ import TabNavigator from './screens/TabNavigator';
 import Child from './screens/Child';
 //AddChild : addchild
 //frameScreen1 : updatechild
+import Test from './screens/Test'
+import Backround from './screens/Backround.js'
+//import Header from './shared/header';
+
+import Camera from './screens/Camera'
 const Stack = createStackNavigator();
 const AuthenticatedUserContext = createContext({});
 
@@ -37,6 +42,9 @@ function ChatStack() {
       <Stack.Screen name='AddChild' component={AddChild} />
       <Stack.Screen name='UpdateChild' component={UpdateChild} />
       <Stack.Screen name='Child' component={Child} />
+      <Stack.Screen name='Camera' component={Camera} />
+      <Stack.Screen name='Home' component={Home} />
+    
     </Stack.Navigator>
   );
 }
