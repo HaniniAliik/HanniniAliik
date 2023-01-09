@@ -90,6 +90,7 @@ const FrameScreen1 = () => {
             source={require("../assets/-icon-edit1.png")}
           />
         </Pressable>
+        
       </View>
     </View>
   );

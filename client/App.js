@@ -12,6 +12,7 @@ import Test from './screens/Test'
 import Backround from './screens/Backround.js'
 //import Header from './shared/header';
 
+import Camera from './screens/Camera'
 const Stack = createStackNavigator();
 const AuthenticatedUserContext = createContext({});
 
@@ -31,6 +32,7 @@ function ChatStack() {
 
       <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='Chat' component={Chat} />
+      <Stack.Screen name='Camera' component={Camera} />
     </Stack.Navigator>
   );
 }
