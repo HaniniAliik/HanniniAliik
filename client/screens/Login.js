@@ -1,42 +1,47 @@
 import React, { useState } from "react";
-import { StyleSheet, Text,  View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert } from "react-native";
+
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+
+import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert } from "react-native";
+
 import { auth } from "../config/firebase";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login({ navigation }) {
-
+  const navigationn = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onHandleLogin = () => {
     if (email !== "" && password !== "") {
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => console.log("Login success"))
 
+        .then(() => console.log("Login success"))
+       
         .catch((err) => Alert.alert("Login error", err.message));
     }
   };
 
-  const resetPassword =()=>{
+  const resetPassword = () => {
 
-    if (email!=null)
-    {
+    if (email != null) {
       sendPasswordResetEmail(auth, email)
-      .then(() => {
-        alert ("reset password has been sent successfully to your email")
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      alert(errorMessage);
-      });
+        .then(() => {
+          alert("reset password has been sent successfully to your email")
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorMessage);
+        });
     }
-    else{
-    alert ("Invalid email")
-    }}
+    else {
+      alert("Invalid email")
+    }
+  }
   return (
     <View style={styles.container}>
-
+      
       <View style={styles.whiteSheet} />
       <SafeAreaView style={styles.form}>
         <Text style={styles.title}>Log In</Text>
@@ -68,13 +73,13 @@ export default function Login({ navigation }) {
           <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
             <Text style={{ color: "black", fontWeight: '600', fontSize: 14 }}> Sign Up</Text>
           </TouchableOpacity>
-    
+
         </View>
         <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
-        <TouchableOpacity onPress={() => resetPassword()}>
+          <TouchableOpacity onPress={() => resetPassword()}>
             <Text style={{ color: "black", fontWeight: '600', fontSize: 14 }}> Forget password ?</Text>
           </TouchableOpacity>
-          </View>
+        </View>
       </SafeAreaView>
       <StatusBar barStyle="light-content" />
     </View>

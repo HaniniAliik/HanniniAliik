@@ -8,12 +8,18 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Chat from './screens/Chat';
 import Home from './screens/Home';
-
+import AddChild from './screens/AddChild';
+import UpdateChild from './screens/UpdateChild';
+import TabNavigator from './screens/TabNavigator';
+import Child from './screens/Child';
+//AddChild : addchild
+//frameScreen1 : updatechild
 const Stack = createStackNavigator();
 const AuthenticatedUserContext = createContext({});
 
 const AuthenticatedUserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [animating, setAnimating] = useState(true);
   return (
     <AuthenticatedUserContext.Provider value={{ user, setUser }}>
       {children}
@@ -23,9 +29,14 @@ const AuthenticatedUserProvider = ({ children }) => {
 
 function ChatStack() {
   return (
-    <Stack.Navigator defaultScreenOptions={Home}>
-      <Stack.Screen name='Home' component={Home} />
+    <Stack.Navigator screenOptions={{
+      headerShown: false
+    }} defaultScreenOptions={TabNavigator}>
+      <Stack.Screen name='TabNavigator' component={TabNavigator} />
       <Stack.Screen name='Chat' component={Chat} />
+      <Stack.Screen name='AddChild' component={AddChild} />
+      <Stack.Screen name='UpdateChild' component={UpdateChild} />
+      <Stack.Screen name='Child' component={Child} />
     </Stack.Navigator>
   );
 }
@@ -35,6 +46,7 @@ function AuthStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Login' component={Login} />
       <Stack.Screen name='Signup' component={Signup} />
+      <Stack.Screen name='TabNavigator' component={TabNavigator} />
     </Stack.Navigator>
   );
 }
@@ -73,6 +85,7 @@ export default function App() {
   return (
     <AuthenticatedUserProvider>
       <RootNavigator />
+      
     </AuthenticatedUserProvider>
   );
 }

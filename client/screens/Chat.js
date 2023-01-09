@@ -80,6 +80,7 @@ import React, {
       return (
       
         <GiftedChat
+        
           messages={messages}
           showAvatarForEveryMessage={false}
           showUserAvatar={false}
