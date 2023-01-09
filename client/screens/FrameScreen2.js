@@ -343,5 +343,4 @@ const styles = StyleSheet.create({
     height: 844,
   },
 });
-
 export default FrameScreen2;
