@@ -8,7 +8,7 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Chat from './screens/Chat';
 import Home from './screens/Home';
-
+import Camera from './screens/Camera'
 const Stack = createStackNavigator();
 const AuthenticatedUserContext = createContext({});
 
@@ -26,6 +26,7 @@ function ChatStack() {
     <Stack.Navigator defaultScreenOptions={Home}>
       <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='Chat' component={Chat} />
+      <Stack.Screen name='Camera' component={Camera} />
     </Stack.Navigator>
   );
 }
