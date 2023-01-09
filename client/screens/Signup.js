@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, Touchab
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 // const backImage = require("../assets/backImage.png");
-
+import axios from 'axios'
 
 export default function Signup({ navigation }) {
 
@@ -13,7 +13,23 @@ export default function Signup({ navigation }) {
 const onHandleSignup = () => {
     if (email !== '' && password !== '') {
   createUserWithEmailAndPassword(auth, email, password)
-        .then(() => console.log('Signup success'))
+        .then(() => {
+          console.log("user connected sucessfuly");
+        //   const parentId=auth.currentUser.uid;
+        //   axios.post("http://localhost:8000/parent",{
+        //     idParent:parentId,
+        //     name:name,
+        //     age:age,
+        //     adresse:adresse,
+        //     phone:phone,
+        //     image:image
+        //   }).then((res)=>{
+        //     res.data
+        //   }).catch((err)=>{
+        //     console.log("error");
+        //   })
+
+        })
         .catch((err) => Alert.alert("Login error", err.message));
     }
   };

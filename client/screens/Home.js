@@ -9,21 +9,27 @@ import { Pressable, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import GlobalStyles from "../GlobalStyles";
 
+import Ionicons from 'react-native-vector-icons/Ionicons'
 const Home= () => {
   const navigation = useNavigation();
 
-
+const handleNotificationPress = () =>{
+  navigation.navigate("Notifications");
+}
 
  useEffect(() => {
         navigation.setOptions({
             headerLeft: () => (
+              <>
                 <FontAwesome name="search" size={24}  style={{marginLeft: 15}}/>
-            ),
+                
+                </>
+            )
 
         });
     }, [navigation]);
   return (
-    
+     
     <View style={[styles.iconAddParent, styles.parentLayout]}>
       <View style={styles.iconAdd}>
         <Pressable
@@ -90,6 +96,15 @@ const Home= () => {
             source={require("../assets/image-12.png")}
           />
         </Pressable>
+        <Pressable 
+        onPress={handleNotificationPress}>
+        {/* <Image
+            style={styles.notification} 
+            resizeMode="cover"
+            source={require("../assets/notificationIcon-removebg-preview.png")}
+          /> */}
+          <Ionicons name="notifications" size={24}  color="9fd3c7"/>
+        </Pressable>
       </View>
       <View style={styles.container}>
             <TouchableOpacity
@@ -151,6 +166,7 @@ const styles = StyleSheet.create({
   },
   container: {
     left: 271,
+    top:740,
   },
   addChildIcon: {
     left: 46,
@@ -196,6 +212,13 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 844,
   },
+  notification:{
+    left: 2,
+    top:500,
+    right:100,
+    // marginHorizontal:50,
+    // marginTop:200,
+  }
 });
 
 export default Home;
