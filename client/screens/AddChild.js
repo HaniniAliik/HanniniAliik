@@ -91,22 +91,13 @@ const FrameScreen2 = () => {
           keyboardType="number-pad"
           autoCapitalize="words"
         />
-        <Pressable
-          style={styles.iconChevronLeft}
-          onPress={() => navigation.navigate("Frame1")}
-        >
-          <Image
-            style={styles.icon}
-            resizeMode="cover"
-            source={require("../assets/-icon-chevron-left.png")}
-          />
-        </Pressable>
+       
         <Image
           style={styles.ellipseIcon}
           resizeMode="cover"
           source={require("../assets/ellipse-43.png")}
         />
-        <Pressable style={styles.iconEdit} onPress={() => {}}>
+        <Pressable style={styles.iconEdit} onPress={() => { }}>
           <Image
             style={styles.icon}
             resizeMode="cover"
@@ -343,5 +334,4 @@ const styles = StyleSheet.create({
     height: 844,
   },
 });
-
 export default FrameScreen2;

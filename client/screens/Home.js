@@ -1,18 +1,31 @@
- import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import { TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 // import { useNavigation } from "@react-navigation/native";
- import { FontAwesome } from '@expo/vector-icons';
- import { Entypo } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 import Chat from "./Chat";
 // import * as React from "react";
 import { Pressable, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import GlobalStyles from "../GlobalStyles";
 
-import Ionicons from 'react-native-vector-icons/Ionicons'
+// import Ionicons from 'react-native-vector-icons/Ionicons'
+import { auth } from '../config/firebase';
+import { AntDesign } from '@expo/vector-icons';
+import { signOut } from 'firebase/auth';
+
+
 import Button from "../src/components/Button";
 const Home= () => {
   const navigation = useNavigation();
+  const onSignOut = () => {
+    signOut(auth).then(msg => console.log('logging out successfully', msg))
+    .catch(error => console.log('Error logging out: ', error));
+    navigation.navigate("Login")
+
+  };
+  //frameScreen2 : AddChild
+  //frameScreen1 : UpdateChild
 
 const handleNotificationPress = () =>{
   navigation.navigate("Notifications");
@@ -21,11 +34,9 @@ const handleNotificationPress = () =>{
  useEffect(() => {
         navigation.setOptions({
             headerLeft: () => (
-              <>
+            
                 <FontAwesome name="search" size={24}  style={{marginLeft: 15}}/>
-                
-                </>
-            )
+            ),
 
         });
     }, [navigation]);
@@ -36,9 +47,9 @@ const handleNotificationPress = () =>{
       
         <Pressable
           style={[styles.vector, styles.iconLayout1]}
-          onPress={() => navigation.navigate("Frame2")}
+          onPress={() => navigation.navigate("AddChild")}
         >
-          <View style={styles.Camera}>
+          <View style={styles.Cameraa}>
         
         </View>
         
@@ -53,54 +64,27 @@ const handleNotificationPress = () =>{
       <View style={[styles.vectorParent, styles.parentLayout]}>
         <Pressable
           style={[styles.wrapper, styles.wrapperLayout]}
-          onPress={() => navigation.navigate("Frame2")}
+          onPress={() => navigation.navigate("AddChild")}
+        //frameScreen2 : addchild
+        //frameScreen1 : updatechild
         >
           <Image
             style={styles.iconLayout1}
             resizeMode="cover"
             source={require("../assets/rectangle-23.png")}
           />
+          <Text style={{left:20}}>AddChild</Text>
         </Pressable>
-        <Pressable
-          style={[styles.container, styles.wrapperLayout]}
-          onLongPress={() => navigation.navigate("Frame3")}
-        >
-          <Image
-            style={styles.iconLayout1}
-            resizeMode="cover"
-            source={require("../assets/rectangle-61.png")}
-          />
-        </Pressable>
-        <Image
-          style={styles.addChildIcon}
-          resizeMode="cover"
-          source={require("../assets/add-child.png")}
-        />
-        <Image
-          style={[styles.aysoIcon, styles.aysoIconLayout]}
-          resizeMode="cover"
-          source={require("../assets/ayso.png")}
-        />
-       
-        <Image
-          style={styles.frameChild}
-          resizeMode="cover"
-          source={require("../assets/rectangle-175.png")}
-        />
-        <Image
-          style={[styles.iconEdit, styles.iconLayout]}
-          resizeMode="cover"
-          source={require("../assets/-icon-edit.png")}
-        />
         <Pressable
           style={[styles.image12, styles.wrapperLayout]}
-          onLongPress={() => navigation.navigate("Frame3")}
+          onLongPress={() => navigation.navigate("UpdateChild")}
         >
           <Image
             style={styles.iconLayout1}
             resizeMode="cover"
             source={require("../assets/image-12.png")}
           />
+          <Text style={{left:20}}>Ayso</Text>
         </Pressable>
         <Pressable 
         onPress={handleNotificationPress}>
@@ -111,6 +95,18 @@ const handleNotificationPress = () =>{
           /> */}
           <Ionicons name="notifications" size={24}  color="9fd3c7"/>
         </Pressable>
+        <Pressable
+          style={[styles.container, styles.wrapperLayout]}
+          onLongPress={() => navigation.navigate("UpdateChild")}
+        >
+          <Image
+            style={styles.iconLayout1}
+            resizeMode="cover"
+            source={require("../assets/rectangle-61.png")}
+          />
+          <Text style={{left:20}}>Lina</Text>
+        </Pressable>
+      
       </View>
       <View style={styles.container}>
             <TouchableOpacity
@@ -119,16 +115,23 @@ const handleNotificationPress = () =>{
             >
                 <Entypo name="chat" size={24}  />
             </TouchableOpacity>
-            <View style={styles.Cameraa}>
+            {/* <View style={styles.Cameraa}>
             <Button title="Take a picture" onPress={() => navigation.navigate("Camera")} icon="camera" />
-            </View>
+            </View> */}
         </View>
     </View>
-    
+
   );
 };
 
 const styles = StyleSheet.create({
+  container1: {
+    left: 271,
+    position: 'absolute',
+    top:0,
+    
+    width: '100%',
+  },
  Cameraa: {
   backgroundColor: 'black',
   top: 730,
