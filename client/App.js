@@ -11,7 +11,8 @@ import Home from './screens/Home';
 import AddChild from './screens/AddChild';
 import UpdateChild from './screens/UpdateChild';
 import TabNavigator from './screens/TabNavigator';
-import Child from './screens/Child';
+
+import HomeChild from './screens/HomeChild';
 //AddChild : addchild
 //frameScreen1 : updatechild
 import Test from './screens/Test'
@@ -42,7 +43,7 @@ function ChatStack() {
       <Stack.Screen name='Chat' component={Chat} />
       <Stack.Screen name='AddChild' component={AddChild} />
       <Stack.Screen name='UpdateChild' component={UpdateChild} />
-      <Stack.Screen name='Child' component={Child} />
+      <Stack.Screen name='HomeChild' component={HomeChild} />
       <Stack.Screen name='Camera' component={Camera} />
       <Stack.Screen name='Home' component={Home} />
     

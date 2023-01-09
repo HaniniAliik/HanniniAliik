@@ -11,7 +11,7 @@ import GlobalStyles from "../GlobalStyles";
 import { auth } from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
 import { signOut } from 'firebase/auth';
-
+import ChildTaBar from "./ChildTabBar";
 
 import Button from "../src/components/Button";
 const Home= () => {
@@ -81,15 +81,17 @@ const Home= () => {
         </Pressable>
         <Pressable
           style={[styles.image12, styles.wrapperLayout]}
-          onLongPress={() => navigation.navigate("UpdateChild")}
+          onPress={() => navigation.navigate("ChildTabBar")}
         >
           <Image
             style={styles.iconLayout1}
             resizeMode="cover"
             source={require("../assets/image-12.png")}
           />
+         
           <Text style={{left:20}}>Ayso</Text>
         </Pressable>
+        
         <Pressable
           style={[styles.container, styles.wrapperLayout]}
           onLongPress={() => navigation.navigate("UpdateChild")}

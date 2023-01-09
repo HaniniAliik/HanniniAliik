@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
   };
   
   export default function Games() {
+    const navigation = useNavigation();
     return (
       <View style={styles.app}>
        
