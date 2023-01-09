@@ -37,6 +37,7 @@ function ChatStack() {
     <Stack.Navigator screenOptions={{
       headerShown: false
     }} defaultScreenOptions={TabNavigator}>
+      
       <Stack.Screen name='TabNavigator' component={TabNavigator} />
       <Stack.Screen name='Chat' component={Chat} />
       <Stack.Screen name='AddChild' component={AddChild} />

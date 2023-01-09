@@ -19,7 +19,7 @@
         "bootstrap": "^5.2.3",
         "dotenv": "^16.0.3",
         "expo": "~47.0.9",
-        "expo-constants": "^14.0.2",
+      
 
         "expo-camera": "^13.1.0",
         "expo-constants": "^14.0.2",

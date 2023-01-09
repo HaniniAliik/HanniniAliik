@@ -17,6 +17,7 @@ import React, {
   import { auth, database } from '../config/firebase';
   import { useNavigation } from '@react-navigation/native';
   import { AntDesign } from '@expo/vector-icons';
+import { left } from '@popperjs/core';
   
 
 
@@ -34,13 +35,15 @@ import React, {
           headerRight: () => (
             <TouchableOpacity
               style={{
-                marginRight: 10
+                marginRight: 10,
+                
               }}
               onPress={onSignOut}
             >
               <AntDesign name="logout" size={24}  style={{marginRight: 10}}/>
             </TouchableOpacity>
           )
+          
         });
       }, [navigation]);
 
@@ -91,6 +94,7 @@ import React, {
           textInputStyle={{
             backgroundColor: '#fff',
             borderRadius: 20,
+            bottom:0,
            
           }}
           user={{

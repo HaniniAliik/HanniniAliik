@@ -8,6 +8,7 @@ import Chat from './Chat';
 
 import Child from './Child';
 import Games from './Games';
+import Camera from './Camera'
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
@@ -15,6 +16,7 @@ const TabNavigator = () => {
     return (
         
         <Tab.Navigator
+        
             initialRouteName="Home"
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, size, color, padding }) => {
@@ -29,13 +31,17 @@ const TabNavigator = () => {
                         size = focused ? size + 15 : size + 5;
                     }
                    
-                    else if (route.name === "Games") {
+                    else if (route.name === "Camera") {
                         Icon = focused ? "camera" : "camera-outline";
                         size = focused ? size + 15 : size + 5;
                     }
                     else if (route.name === "Chat") {
+                       
+                           
+                          
                         Icon = focused ? "message-reply-text" : "message-reply-text-outline";
                         size = focused ? size + 15 : size + 5;
+                       
                     }
                    
                     return (
@@ -50,7 +56,7 @@ const TabNavigator = () => {
                         </>
                     )
                 },
-                headerShown: false,
+                headerShown: true,
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'white',
                 tabBarShowLabel: false,
@@ -60,7 +66,7 @@ const TabNavigator = () => {
                     height: 50,
                     left:7,
                     right: 7,
-                    bottom: 675,
+                    bottom: 740,
                 
                     position: 'absolute',
                     borderRadius: 10,
@@ -78,8 +84,8 @@ const TabNavigator = () => {
                 component={Child}
             />
             <Tab.Screen
-                name="Games"
-                component={Games}
+                name="Camera"
+                component={Camera}
             />
             <Tab.Screen
                 name="Chat"

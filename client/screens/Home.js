@@ -17,7 +17,10 @@ import Button from "../src/components/Button";
 const Home= () => {
   const navigation = useNavigation();
   const onSignOut = () => {
-    signOut(auth).catch(error => console.log('Error logging out: ', error));
+    signOut(auth).then(msg => console.log('logging out successfully', msg))
+    .catch(error => console.log('Error logging out: ', error));
+    navigation.navigate("Login")
+
   };
   //frameScreen2 : AddChild
   //frameScreen1 : UpdateChild
@@ -50,7 +53,7 @@ const Home= () => {
           style={[styles.vector, styles.iconLayout1]}
           onPress={() => navigation.navigate("AddChild")}
         >
-          <View style={styles.Camera}>
+          <View style={styles.Cameraa}>
         
         </View>
         
@@ -99,8 +102,6 @@ const Home= () => {
           <Text style={{left:20}}>Lina</Text>
         </Pressable>
       
-
-        
       </View>
       <View style={styles.container}>
             <TouchableOpacity
@@ -109,9 +110,9 @@ const Home= () => {
             >
                 <Entypo name="chat" size={24}  />
             </TouchableOpacity>
-            <View style={styles.Cameraa}>
+            {/* <View style={styles.Cameraa}>
             <Button title="Take a picture" onPress={() => navigation.navigate("Camera")} icon="camera" />
-            </View>
+            </View> */}
         </View>
     </View>
 
