@@ -4,7 +4,7 @@ import { TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import GlobalStyles from "../GlobalStyles";
 import TabNavigator from './TabNavigator';
-function Child() {
+function HomeChild() {
     const navigation = useNavigation();
     return (
         <View style={[styles.iconAddParent, styles.parentLayout,styles.container]}>
@@ -49,7 +49,7 @@ function Child() {
     )
 }
 const styles = StyleSheet.create({
-    container1: {
+    container: {
         left: 271,
         position: 'absolute',
         top:100,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         left: 20,
     },
     container: {
-        top:80,
+        top:38,
     },
     game: {
         left: 86,
@@ -164,4 +164,4 @@ const styles = StyleSheet.create({
         height: 844,
     },
 });
-export default Child
+export default HomeChild
