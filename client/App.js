@@ -8,6 +8,12 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Chat from './screens/Chat';
 import Home from './screens/Home';
+import AddChild from './screens/AddChild';
+import UpdateChild from './screens/UpdateChild';
+import TabNavigator from './screens/TabNavigator';
+import Child from './screens/Child';
+//AddChild : addchild
+//frameScreen1 : updatechild
 import Test from './screens/Test'
 import Backround from './screens/Backround.js'
 //import Header from './shared/header';
@@ -18,7 +24,8 @@ const AuthenticatedUserContext = createContext({});
 
 const AuthenticatedUserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-return (
+  const [animating, setAnimating] = useState(true);
+  return (
     <AuthenticatedUserContext.Provider value={{ user, setUser }}>
       {children}
     </AuthenticatedUserContext.Provider>
@@ -27,12 +34,18 @@ return (
 
 function ChatStack() {
   return (
-    //ahlem
-    <Stack.Navigator defaultScreenOptions={Home}>
-
-      <Stack.Screen name='Home' component={Home} />
+    <Stack.Navigator screenOptions={{
+      headerShown: false
+    }} defaultScreenOptions={TabNavigator}>
+      
+      <Stack.Screen name='TabNavigator' component={TabNavigator} />
       <Stack.Screen name='Chat' component={Chat} />
+      <Stack.Screen name='AddChild' component={AddChild} />
+      <Stack.Screen name='UpdateChild' component={UpdateChild} />
+      <Stack.Screen name='Child' component={Child} />
       <Stack.Screen name='Camera' component={Camera} />
+      <Stack.Screen name='Home' component={Home} />
+    
     </Stack.Navigator>
   );
 }
@@ -42,6 +55,7 @@ function AuthStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Login' component={Login} />
       <Stack.Screen name='Signup' component={Signup} />
+      <Stack.Screen name='TabNavigator' component={TabNavigator} />
     </Stack.Navigator>
   );
 }
@@ -49,7 +63,7 @@ function AuthStack() {
 function RootNavigator() {
   const { user, setUser } = useContext(AuthenticatedUserContext);
   const [isLoading, setIsLoading] = useState(true);
-useEffect(() => {
+  useEffect(() => {
     // onAuthStateChanged returns an unsubscriber
     const unsubscribeAuth = onAuthStateChanged(
       auth,
@@ -58,10 +72,10 @@ useEffect(() => {
         setIsLoading(false);
       }
     );
-// unsubscribe auth listener on unmount
+    // unsubscribe auth listener on unmount
     return unsubscribeAuth;
   }, [user]);
-if (isLoading) {
+  if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size='large' />
@@ -69,7 +83,7 @@ if (isLoading) {
     );
   }
 
-return (
+  return (
     <NavigationContainer>
       {user ? <ChatStack /> : <AuthStack />}
     </NavigationContainer>
@@ -80,6 +94,7 @@ export default function App() {
   return (
     <AuthenticatedUserProvider>
       <RootNavigator />
+      
     </AuthenticatedUserProvider>
   );
 }

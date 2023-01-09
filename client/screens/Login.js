@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert,Pressable } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert,Pressable,KeyboardAvoidingView } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -20,7 +20,23 @@ export default function Login({ navigation }) {
     }
   };
  
-  
+  const resetPassword = () => {
+
+    if (email != null) {
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          alert("reset password has been sent successfully to your email")
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorMessage);
+        });
+    }
+    else {
+      alert("Invalid email")
+    }
+  }
  
   return (
    
@@ -66,7 +82,13 @@ export default function Login({ navigation }) {
     <TouchableOpacity onPress={() => navigation.navigate("Signup")}>  
             <Text style={{color: '#f57c00', fontWeight: '600', fontSize: 14}}> Sign Up</Text>
         </TouchableOpacity>
+        <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
+            <TouchableOpacity onPress={() => resetPassword()}>
+              <Text style={{ color: "black", fontWeight: '600', fontSize: 14 }}> Forget password ?</Text>
+            </TouchableOpacity>
+          </View>
   </View>
+ 
 );
     }
 const styles = StyleSheet.create({
