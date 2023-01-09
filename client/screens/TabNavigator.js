@@ -30,7 +30,7 @@ const TabNavigator = () => {
                     }
                    
                     else if (route.name === "Games") {
-                        Icon = focused ? "gamepad-variant" : "gamepad-variant-outline";
+                        Icon = focused ? "camera" : "camera-outline";
                         size = focused ? size + 15 : size + 5;
                     }
                     else if (route.name === "Chat") {

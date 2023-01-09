@@ -91,6 +91,7 @@ import React, {
           textInputStyle={{
             backgroundColor: '#fff',
             borderRadius: 20,
+           
           }}
           user={{
             _id: auth?.currentUser?.email,
