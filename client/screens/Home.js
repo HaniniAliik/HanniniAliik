@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import GlobalStyles from "../GlobalStyles";
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Button from "../src/components/Button";
 const Home= () => {
   const navigation = useNavigation();
 
@@ -32,10 +33,15 @@ const handleNotificationPress = () =>{
      
     <View style={[styles.iconAddParent, styles.parentLayout]}>
       <View style={styles.iconAdd}>
+      
         <Pressable
           style={[styles.vector, styles.iconLayout1]}
           onPress={() => navigation.navigate("Frame2")}
         >
+          <View style={styles.Camera}>
+        
+        </View>
+        
           <Image
             style={[styles.iconLayout, styles.iconLayout1]}
             resizeMode="cover"
@@ -113,6 +119,9 @@ const handleNotificationPress = () =>{
             >
                 <Entypo name="chat" size={24}  />
             </TouchableOpacity>
+            <View style={styles.Cameraa}>
+            <Button title="Take a picture" onPress={() => navigation.navigate("Camera")} icon="camera" />
+            </View>
         </View>
     </View>
     
@@ -120,6 +129,14 @@ const handleNotificationPress = () =>{
 };
 
 const styles = StyleSheet.create({
+ Cameraa: {
+  backgroundColor: 'black',
+  top: 730,
+  justifyContent: 'center',
+  right: 145,
+  borderRadius: 100,
+  width: 170
+ },
   parentLayout: {
     overflow: "hidden",
     height: 844,

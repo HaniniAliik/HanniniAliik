@@ -11,6 +11,7 @@ import Home from './screens/Home';
 import Notification from './screens/Notification';
 import {Permissions,Notifications} from 'expo'; 
 
+import Camera from './screens/Camera'
 const Stack = createStackNavigator();
 const AuthenticatedUserContext = createContext({});
 
@@ -37,6 +38,7 @@ function ChatStack() {
       <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='Chat' component={Chat} />
       <Stack.Screen name='Notifications' component={Notification}/>
+      <Stack.Screen name='Camera' component={Camera} />
     </Stack.Navigator>
   );
 }
