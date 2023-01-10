@@ -4,15 +4,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { View, ActivityIndicator } from 'react-native';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './config/firebase';
-import Login from './screens/Login';
+// import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Chat from './screens/Chat';
 import Home from './screens/Home';
 import AddChild from './screens/AddChild';
 import UpdateChild from './screens/UpdateChild';
 import TabNavigator from './screens/TabNavigator';
-
+import Login from "./screens/Login";
+import GetKid from "./screens/GetKid"
 import HomeChild from './screens/HomeChild';
+import Tasks from './screens/Tasks';
+
 //AddChild : addchild
 //frameScreen1 : updatechild
 import Test from './screens/Test'
@@ -46,7 +49,7 @@ function ChatStack() {
       <Stack.Screen name='HomeChild' component={HomeChild} />
       <Stack.Screen name='Camera' component={Camera} />
       <Stack.Screen name='Home' component={Home} />
-    
+      <Stack.Screen name='GetKid' component={GetKid} />
     </Stack.Navigator>
   );
 }
@@ -54,7 +57,7 @@ function ChatStack() {
 function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='Login' component={Login} />
+      <Stack.Screen name='Login' component={Tasks} />
       <Stack.Screen name='Signup' component={Signup} />
       <Stack.Screen name='TabNavigator' component={TabNavigator} />
     </Stack.Navigator>

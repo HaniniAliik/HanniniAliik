@@ -17,7 +17,7 @@ import React, {
   import { auth, database } from '../config/firebase';
   import { useNavigation } from '@react-navigation/native';
   import { AntDesign } from '@expo/vector-icons';
-import { left } from '@popperjs/core';
+// import { left } from '@popperjs/core';
   
 
 

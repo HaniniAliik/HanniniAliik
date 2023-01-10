@@ -4,16 +4,16 @@ const styles = StyleSheet.create({
     
     background: {
         position: 'absolute',
-        width: 1200,
-        height: 1200,
-        top: 0,
-        opacity: 0.9,
+        width: 800,
+        height: 800,
+        top: 300,
+        opacity: 0.2,
         transform: [
           {
             translateX: 0,
           },
           {
-            translateY: 0,
+            translateY:0,
           },
         ],      
       }, 

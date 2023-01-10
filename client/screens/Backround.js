@@ -1,7 +1,7 @@
 import React, { useEffect,useRef } from 'react';
 import { Animated, Easing, ImageBackground } from 'react-native';
 
-import backgroundImage from '../images/name.png';
+import backgroundImage from '../images/backk.jpg';
 import styles from '../screens/Styles.js';
 import {
   INPUT_RANGE_START,
