@@ -64,14 +64,14 @@ const TabNavigator = () => {
 
                 tabBarStyle: {
                     height: 50,
-                    left:7,
-                    right: 7,
-                    bottom: 620,
+                    left:0,
+                    right: 0,
+                    bottom: 0,
                 
                     position: 'absolute',
                     borderRadius: 10,
                     backgroundColor: '#00BFA6',
-                    paddingBottom: 15,
+                    paddingBottom: 0,
                 },
             })}
         >

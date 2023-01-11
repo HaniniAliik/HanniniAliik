@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         left: 20,
     },
     container: {
-        top:38,
+        top:0,
     },
     game: {
         left: 86,
