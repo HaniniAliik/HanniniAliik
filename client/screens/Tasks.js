@@ -8,7 +8,7 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
 
 const colors = {
-  themeColor: "#4263ec",
+  themeColor: "#00BFA6",
   white: "#fff",
   background: "#f4f6fc",
   greyish: "#a4a4a4",
@@ -50,7 +50,7 @@ export default function List(props) {
   const todoRef = firebase.firestore().collection("tasks");
   const [addData, setAddData] = useState("");
 
-  //fetch data from firestore
+  //Get data from firestore
   useEffect(() => {
     todoRef.orderBy("stamp", "desc").onSnapshot((QuerySnapshot) => {
       const todos = [];
@@ -67,45 +67,13 @@ export default function List(props) {
       setTodos(todos);
     });
   }, []);
-  // delete todo from firestore
 
-  const deleteTodo = (todos) => {
-    todoRef
-      .doc(todos.id)
-      .delete()
-      .then(() => {
-        // show alert
-        alert("Deleted successfully");
-      })
-      .catch((error) => {
-        !alert(error);
-      });
-  };
-  // add a tod
+  // function delete todo from firestore
+
+ 
+  // function add a tod
   // hou
-  const addTodo = () => {
-    // check if we have a todo
-    if (addData && addData.length > 0) {
-      // get the timestamp
-      const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-      const data = {
-        task: addData,
-        icon: "hiking",
-        theme: "#37003c",
-        stamp: timestamp,
-      };
-      todoRef
-        .add(data)
-        .then(() => {
-          setAddData("");
-          //  release keyboard
-          Keyboard.dismiss();
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    }
-  };
+ 
 
   return (
     <View
@@ -133,7 +101,9 @@ export default function List(props) {
         </View>
       </View>
       <View style={{ padding: 16 }}>
-        <Text style={{ color: "green", fontSize: 30 }}>{"Tasks"}</Text>
+        <Text style={{ color: "black", fontSize: 30 }}>{"Tasks"}</Text>
+
+        {/* Search for task to verify it */}
         {/* search */}
         {/* <View
           style={{
@@ -173,7 +143,7 @@ export default function List(props) {
         />
         <MaterialCommunityIcons
           name="plus"
-          onPress={addTodo}
+        //   onPress={addTodo}
           size={40}
           style={{
             color: colors.themeColor,
@@ -207,13 +177,13 @@ export default function List(props) {
               }}
             >
               <View style={{ flexDirection: "row" }}>
-                <MaterialCommunityIcons
+                {/* <MaterialCommunityIcons
                   name={task.icon}
                   size={30}
                   style={{ color: task.theme, marginRight: 5 }}
-                />
+                /> */}
                 <View>
-                  <Text style={{ fontSize: 16 }}>{task.task}</Text>
+                  <Text style={{ fontSize: 19 }}>{task.task}</Text>
                   <Text style={{ cololr: colors.greyish }}>
                     {task.stamp.toString()}
                   </Text>
@@ -223,13 +193,13 @@ export default function List(props) {
                 <MaterialCommunityIcons
                   name="pencil"
                   size={30}
-                  style={{ color: task.theme }}
+                  style={{ color: "#1f63d8"}}
                 />
                 <MaterialCommunityIcons
                   onPress={() => deleteTodo(task)}
                   name="trash-can"
                   size={30}
-                  style={{ color: task.theme, marginLeft: 5 }}
+                  style={{ color:"#d81f1f", marginLeft: 5 }}
                 />
               </View>
             </View>
