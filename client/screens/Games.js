@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text, Image, StyleSheet, SafeAreaView } from "react-native";
-import { Pressable, View, HStack } from "react-native";
+import { Pressable, View, HStack, Linking  } from "react-native";
 import { Color, Border } from "./gameStyles";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
@@ -23,7 +23,7 @@ export default function Games() {
   useEffect(() => {
 
     axios
-      .get("http://192.168.1.49:8000/api/allGames")
+      .get("http://192.168.11.212:8000/api/allGames")
 
       .then((response) => {
         setGames(response.data);
@@ -37,7 +37,7 @@ export default function Games() {
   }, []);
 
   return (
-    
+
     <View style={styles.home}>
 
       <Text
@@ -53,26 +53,27 @@ export default function Games() {
         Games
 
       </Text>
-      <SafeAreaView style={{flex:1}}>
-      <ScrollView
-       contentContainerStyle={{flexGrow: 1
-       }}
-        style={{
-          backgroundColor: colors.background, flex:1
-        }}
-        
-      >
-        
-        <View style={[styles.rowContainer]}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1
+          }}
+          style={{
+            backgroundColor: colors.background, flex: 1
+          }}
 
-          {games.map((e, i) => {
-            console.log("+++++++", e.image);
-            return (
-              <View
-                style={[styles.elKaba1, { width: "30%", height: "30%" }]} key={i}
-              >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  {/* <View style={{ flexDirection: "column", alignItems: "center" }}>
+        >
+
+          <View style={[styles.rowContainer]}>
+
+            {games.map((e, i) => {
+              console.log("+++++++", e.image);
+              return (
+                <View
+                  style={[styles.elKaba1, { width: "30%", height: "30%" }]} key={i}
+                >
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    {/* <View style={{ flexDirection: "column", alignItems: "center" }}>
                     <Image style={[styles.image123x1Icon,styles.groupChild,
                     styles.namePosition
                     ]} resizeMode="cover" source={{ uri: e.image }} />
@@ -83,24 +84,27 @@ export default function Games() {
                     >
                     </TouchableOpacity>
                   </View> */}
-                  <Pressable
-                    style={{ flexDirection: "column", alignItems: "center" }}
-                    onPress={() => { navigation.navigate(e.link, { id: e.id }) }}
-                  >
-                    <Image
-                      style={[styles.image123x1Icon, styles.groupChild, styles.namePosition]}
-                      resizeMode="cover"
-                      source={{ uri: e.image }}
-                    />
-                  </Pressable>
+                    <Pressable
+                      style={{ flexDirection: "column", alignItems: "center" }}
+                      
+                      onPress={() => Linking.openURL(e.link, { id: e.id })}
+                    >
+                      <Image
+                        style={[styles.image123x1Icon, styles.groupChild, styles.namePosition]}
+                        resizeMode="cover"
+                        source={{ uri: e.image }}
+                      />
+                    </Pressable>
+                  </View>
                 </View>
-              </View>
 
-            );
-          })}
-        </View>
-        
-      </ScrollView>
+              );
+            })}
+          </View>
+            <View style={{marginBottom:"100%"}}>
+              
+            </View>
+        </ScrollView>
       </SafeAreaView>
 
     </View>
@@ -111,7 +115,7 @@ const styles = {
 
 
   elKaba1: {
-    marginTop:10,
+    marginTop: 10,
     paddingLeft: 10,
     paddingRight: 100,
     paddingTop: 0,
@@ -122,7 +126,7 @@ const styles = {
 
   rowContainer: {
     paddingTop: 30,
-    
+
     padding: 5,
     flexDirection: "row",
     flexWrap: "wrap",
