@@ -28,6 +28,7 @@ import { left } from '@popperjs/core';
 
   const onSignOut = () => {
       signOut(auth).catch(error => console.log('Error logging out: ', error));
+    navigation.navigate("Login")
     };
 
     useLayoutEffect(() => {
