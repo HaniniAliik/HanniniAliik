@@ -9,6 +9,9 @@ function HomeChild() {
     return (
         <View style={[styles.iconAddParent, styles.parentLayout,styles.container]}>
             <View style={styles.iconAdd}>
+               <Pressable style={styles.back} onPress={() => navigation.goBack()}>
+          <Text style={[styles.back1, styles.done2Typo]}>Back</Text>
+        </Pressable>
 
                 <Pressable
                     style={[styles.wrapper, styles.wrapperLayoutc]}
@@ -17,7 +20,7 @@ function HomeChild() {
                     <Image
                         style={styles.iconLayout1}
                         resizeMode="cover"
-                        source={require("../assets/rectangle-23.png")}
+                        source={require("../assets/game1.png")}
                     />
                     
                     <Text style={styles.game}>Games</Text>
@@ -33,9 +36,9 @@ function HomeChild() {
                 >
                     
                     <Image
-                        style={styles.iconLayout1}
+                        style={[styles.iconLayout1,styles.todo1]}
                         resizeMode="cover"
-                        source={require("../assets/todoIcon.png")}
+                        source={require("../assets/todo1.png")}
                     />
                     <Text style={styles.todo}>Todo</Text>
 
@@ -62,6 +65,7 @@ const styles = StyleSheet.create({
     iconLayout1: {
         height: "100%",
         width: "100%",
+        borderRadius:20,
     },
     wrapperLayoutc: {
         height: 200,
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
         left: 20,
     },
     container: {
-        top:38,
+        top:0,
     },
     game: {
         left: 86,
@@ -131,7 +135,9 @@ const styles = StyleSheet.create({
         
         position: "absolute",
     },
-    
+    todo1:{
+        borderRadius:20
+    },
     frameChild: {
         top: 11,
         left: 328,
