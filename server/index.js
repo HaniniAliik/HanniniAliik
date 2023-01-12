@@ -17,7 +17,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/api/", require("./routes/parentsRouter"));
+app.use("/api/", require("./routes/parent/parentsRouter"));
+app.use("/api/", require("./routes/parent/childRouter"));
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

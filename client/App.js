@@ -8,7 +8,7 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Chat from './screens/Chat';
 import Home from './screens/Home';
-// import Notification from './screens/Notification';
+
 import {Permissions,Notifications} from 'expo'; 
 import AddChild from './screens/AddChild';
 import UpdateChild from './screens/UpdateChild';
@@ -44,7 +44,7 @@ function ChatStack() {
       
       <Stack.Screen name='TabNavigator' component={TabNavigator} />
       <Stack.Screen name='Chat' component={Chat} />
-      <Stack.Screen name='Notifications' component={Notification}/>
+      {/* <Stack.Screen name='Notifications' component={Notification}/> */}
       <Stack.Screen name='AddChild' component={AddChild} />
       <Stack.Screen name='UpdateChild' component={UpdateChild} />
       <Stack.Screen name='Child' component={Child} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert,Pressable,KeyboardAvoidingView } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { auth,sendPasswordResetEmail } from "../config/firebase";
 import { createStackNavigator } from "@react-navigation/stack";
 //  import BackgroundAnimation from "./Backround";
 //import Header from "../shared/header";
@@ -14,7 +14,7 @@ export default function Login({ navigation }) {
   const onHandleLogin = () => {
     if (email !== "" && password !== "") {
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => console.log("Login success"))
+        .then(() => console.log(auth,"Login success"))
 
         .catch((err) => Alert.alert("Login error", err.message));
     }

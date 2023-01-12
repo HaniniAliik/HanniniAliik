@@ -20,8 +20,8 @@ export default function Signup({ navigation }) {
         .then(() => {
           console.log("user connected sucessfuly");
         //   const parentId=auth.currentUser.uid;
-        //   axios.post("http://localhost:8000/parent",{
-        //     idParent:parentId,
+        //   axios.post("http://192.168.104.19:8000/api/parent",{
+        //     idparent:parentId,
         //     name:name,
         //     age:age,
         //     adresse:adresse,
@@ -90,7 +90,7 @@ export default function Signup({ navigation }) {
           placeholder="Enter your adress"
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
+          secureTextEntry={false}
           textContentType="adress"
           value={adress}
           onChangeText={(text) => setAdress(text)}
@@ -100,7 +100,7 @@ export default function Signup({ navigation }) {
           placeholder="Enter your age"
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
+          secureTextEntry={false}
           textContentType="age"
           value={age}
           onChangeText={(text) => setAge(text)}
@@ -110,15 +110,12 @@ export default function Signup({ navigation }) {
           placeholder="Enter your phone"
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
+          secureTextEntry={false}
           textContentType="phone"
           value={phone}
           onChangeText={(text) => setPhone(text)}
         />
       </SafeAreaView>
-      {/* <TouchableOpacity style={styles.button} onPress={onHandleSignup}>
-        <Text style={{fontWeight: 'bold', color: 'black', fontSize: 18}}> Sign Up</Text>
-      </TouchableOpacity> */}
       <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText} onPress={onHandleSignup} >

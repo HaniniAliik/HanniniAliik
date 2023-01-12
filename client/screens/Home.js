@@ -9,7 +9,7 @@ import { Pressable, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import GlobalStyles from "../GlobalStyles";
 
-// import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { auth } from '../config/firebase';
 import { AntDesign } from '@expo/vector-icons';
 import { signOut } from 'firebase/auth';
