@@ -48,6 +48,7 @@ export default function List(props) {
   //fetch data
   const [todos, setTodos] = useState([]);
   const todoRef = firebase.firestore().collection("tasks");
+ 
   const [addData, setAddData] = useState("");
 
   //Get data from firestore
@@ -55,7 +56,9 @@ export default function List(props) {
     todoRef.orderBy("stamp", "desc").onSnapshot((QuerySnapshot) => {
       const todos = [];
       QuerySnapshot.forEach((doc) => {
+        //  console.log(doc)
         const { task, icon, theme, stamp } = doc.data();
+        // console.log(doc.data())
         todos.push({
           id: doc.id,
           task,
@@ -67,12 +70,48 @@ export default function List(props) {
       setTodos(todos);
     });
   }, []);
-
-  // function delete todo from firestore
-
  
+
+  // function delete Tasks from firestore
+
+  const deleteTodo = (todos) => {
+    todoRef
+        .doc(todos.id)
+        .delete()
+        .then(() => {
+            // show alert
+            alert("Deleted successfully")
+        })
+        .catch(error => {
+            !
+            alert(error)
+        })
+    }
   // function add a tod
   // hou
+  const addTodo = () => {
+    // check if we have a todo
+    if (addData && addData.length > 0) {
+      // get the timestamp
+      const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+      const data = {
+        task: addData,
+        icon: "child",
+        theme: "#00BFA6",
+        stamp: timestamp,
+      };
+      todoRef
+        .add(data)
+        .then(() => {
+          setAddData("");
+          //  release keyboard
+          Keyboard.dismiss();
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+  };
  
 
   return (
@@ -92,11 +131,12 @@ export default function List(props) {
             justifyContent: "space-between",
           }}
         >
-          <MaterialCommunityIcons
+          {/* icon search */}
+          {/* <MaterialCommunityIcons
             name="bell-outline"
             size={30}
             style={{ color: colors.white }}
-          />
+          /> */}
           <AntDesign name="user" size={30} style={{ color: colors.white }} />
         </View>
       </View>
@@ -143,7 +183,7 @@ export default function List(props) {
         />
         <MaterialCommunityIcons
           name="plus"
-        //   onPress={addTodo}
+           onPress={addTodo}
           size={40}
           style={{
             color: colors.themeColor,

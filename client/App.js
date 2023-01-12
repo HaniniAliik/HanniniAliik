@@ -14,7 +14,8 @@ import TabNavigator from './screens/TabNavigator';
 import Login from "./screens/Login";
 import GetKid from "./screens/GetKid"
 import HomeChild from './screens/HomeChild';
-import Tasks from './screens/Tasks';
+// import TasksParent from './screens/ParentTasks';
+import TasksChild from './screens/ChildTasks';
 
 //AddChild : addchild
 //frameScreen1 : updatechild
@@ -57,7 +58,8 @@ function ChatStack() {
 function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='Login' component={Tasks} />
+      {/* <Stack.Screen name='Login' component={TasksParent} /> */}
+      <Stack.Screen name='Login' component={TasksChild} />
       <Stack.Screen name='Signup' component={Signup} />
       <Stack.Screen name='TabNavigator' component={TabNavigator} />
     </Stack.Navigator>
