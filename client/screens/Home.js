@@ -17,9 +17,10 @@ import Button from "../src/components/Button";
 const Home= () => {
   const navigation = useNavigation();
   const onSignOut = () => {
-    signOut(auth).then(msg => console.log('logging out successfully', msg))
+    signOut(auth).then(() => console.log('logging out successfully'))
+    .then(navigation.navigate("Login"))
     .catch(error => console.log('Error logging out: ', error));
-    navigation.navigate("Login")
+    
 
   };
   //frameScreen2 : AddChild
