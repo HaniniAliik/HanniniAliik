@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, StatusBar } from "react-native";
+import { View, Text, StatusBar,Keyboard } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
@@ -59,10 +59,10 @@ export default function List(props) {
       const todos = [];
       QuerySnapshot.forEach((doc) => {
         //  console.log(doc)
-        const { task, icon, theme, stamp, check } = doc.data();
+        const { task, icon, theme, stamp, check, idChild } = doc.data();
         // console.log(doc.data())
         // condition to verify the child id
-        if (idChild==="222"){
+        // if (idChild==="222"){
         todos.push({
           id: doc.id,
           task,
@@ -70,7 +70,8 @@ export default function List(props) {
           theme,
           stamp,
           check,
-        });}
+        });
+      // }
       });
       setTodos(todos);
     });
@@ -116,7 +117,7 @@ export default function List(props) {
         .then(() => {
           setAddData("");
           //  release keyboard
-          Keyboard.dismiss();
+           Keyboard.dismiss();
         })
         .catch((error) => {
           alert(error);
@@ -210,9 +211,9 @@ export default function List(props) {
         }}
       >
         {todos.map((task) => {
-          {
-            console.log(task);
-          }
+          // {
+          //   console.log(task);
+          // }
           return (
             <View
               style={{
@@ -244,8 +245,9 @@ export default function List(props) {
                 <MaterialCommunityIcons
                   name="pencil"
                   size={30}
-                  style={{ color: "#1f63d8"}}
+                  style={{ color: "rgba(0, 191, 166, 0.25)"}}
                 />
+                
                 <MaterialCommunityIcons
                   onPress={() =>{
                     return deleteTodo(task)}}

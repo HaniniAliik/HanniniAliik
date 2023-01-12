@@ -12,12 +12,13 @@ import AddChild from './screens/AddChild';
 import UpdateChild from './screens/UpdateChild';
 import TabNavigator from './screens/TabNavigator';
 import Login from "./screens/Login";
-import GetKid from "./screens/GetKid"
 import HomeChild from './screens/HomeChild';
+ 
+ // Ahlem
  import TasksParent from './screens/ParentTasks';
-  //import TasksChild from './screens/ChildTasks';
-  //import Congratulation from "./screens/Congratulation"
-
+import TasksChild from './screens/ChildTasks';
+//import Congratulation from "./screens/Congratulation"
+  import GetKid from "./screens/GetKid"
 //AddChild : addchild
 //frameScreen1 : updatechild
 import Test from './screens/Test'
@@ -59,8 +60,8 @@ function ChatStack() {
 function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name='Login' component={TasksParent} />  
-        {/* <Stack.Screen name='Login' component={Congratulation} />    */}
+          {/* <Stack.Screen name='Login' component={TasksParent} />   */}
+         <Stack.Screen name='Login' component={TasksChild} />    
       <Stack.Screen name='Signup' component={Signup} />
       <Stack.Screen name='TabNavigator' component={TabNavigator} />
     </Stack.Navigator>

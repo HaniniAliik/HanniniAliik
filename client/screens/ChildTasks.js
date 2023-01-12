@@ -62,7 +62,7 @@ export default function List(props) {
         //  console.log(doc)
         const { task, icon, theme, stamp,check,idChild,idParent} = doc.data();
         // console.log(doc.data())
-        if (idChild==="222"){
+        // if (idChild==="222"){
         todos.push({
           id: doc.id,
           task,
@@ -72,13 +72,30 @@ export default function List(props) {
           check,
           idChild,
           idParent,
-        });}
+        });
+    // }
       });
       setTodos(todos);
     });
   }, []);
   // function to check true or false
- 
+  const updateCheck = (task) => {
+    todoRef.doc(task.id).update({
+      check: !task.check,
+    }).then(()=>{
+    console.log(task)
+   })
+  
+    .catch(error=>alert('ee',error))
+  };
+
+  // function linefalse
+  const linefalse=(task)=>{
+    if (task.check===true){
+        return "line-through"
+    }
+    return "none"
+  }
 
   return (
     <View
@@ -159,12 +176,8 @@ export default function List(props) {
                 </View>
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Pressable  onPress={() => 
-
-{
-    console.log("helli")
-    
-    return updateCheck(task)}}>
+                {/* check icon */}
+                
                 <BouncyCheckbox
                   size={25}
                   fillColor="#00BFA6"
@@ -173,10 +186,10 @@ export default function List(props) {
                   iconStyle={{ borderColor: "red" }}
                   innerIconStyle={{ borderWidth: 1 }}
                   isChecked={task.check}
-                 onPress={()=>updateCheck(task)}
+                  onPress={()=>updateCheck(task)}
                   
                 />
-                </Pressable>
+                
               </View>
             </View>
           );
