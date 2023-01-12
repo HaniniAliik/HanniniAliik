@@ -42,6 +42,7 @@ const Lists = [
   },
 ];
 
+// fel props must add id parent: props.idP
 export default function List(props) {
   // Declaring const where to save data
   //Delete from firestore
@@ -53,19 +54,23 @@ export default function List(props) {
 
   //Get data from firestore
   useEffect(() => {
+    
     todoRef.orderBy("stamp", "desc").onSnapshot((QuerySnapshot) => {
       const todos = [];
       QuerySnapshot.forEach((doc) => {
         //  console.log(doc)
-        const { task, icon, theme, stamp } = doc.data();
+        const { task, icon, theme, stamp, check } = doc.data();
         // console.log(doc.data())
+        // condition to verify the child id
+        if (idChild==="222"){
         todos.push({
           id: doc.id,
           task,
           icon,
           theme,
           stamp,
-        });
+          check,
+        });}
       });
       setTodos(todos);
     });
@@ -79,6 +84,8 @@ export default function List(props) {
         .doc(todos.id)
         .delete()
         .then(() => {
+          alert('jawik a7la jaw')
+
             // show alert
             alert("Deleted successfully")
         })
@@ -99,6 +106,10 @@ export default function List(props) {
         icon: "child",
         theme: "#00BFA6",
         stamp: timestamp,
+        check:false,
+        // add id parent child
+        idParent:'111',
+        idChild:'222',
       };
       todoRef
         .add(data)
@@ -236,7 +247,8 @@ export default function List(props) {
                   style={{ color: "#1f63d8"}}
                 />
                 <MaterialCommunityIcons
-                  onPress={() => deleteTodo(task)}
+                  onPress={() =>{
+                    return deleteTodo(task)}}
                   name="trash-can"
                   size={30}
                   style={{ color:"#d81f1f", marginLeft: 5 }}

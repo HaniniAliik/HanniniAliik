@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, StatusBar,style } from "react-native";
+import { View, Text, StatusBar, style, Pressable } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
@@ -48,8 +48,10 @@ export default function List(props) {
   //Delete from firestore
   //fetch data
   const [todos, setTodos] = useState([]);
+
+  // collect collection tasks from firebase
   const todoRef = firebase.firestore().collection("tasks");
- 
+
   const [addData, setAddData] = useState("");
 
   //Get data from firestore
@@ -58,19 +60,24 @@ export default function List(props) {
       const todos = [];
       QuerySnapshot.forEach((doc) => {
         //  console.log(doc)
-        const { task, icon, theme, stamp } = doc.data();
+        const { task, icon, theme, stamp,check,idChild,idParent} = doc.data();
         // console.log(doc.data())
+        if (idChild==="222"){
         todos.push({
           id: doc.id,
           task,
           icon,
           theme,
           stamp,
-        });
+          check,
+          idChild,
+          idParent,
+        });}
       });
       setTodos(todos);
     });
   }, []);
+  // function to check true or false
  
 
   return (
@@ -100,13 +107,12 @@ export default function List(props) {
       </View>
       <View style={{ padding: 16 }}>
         <Text style={{ color: "black", fontSize: 30 }}>{"Tasks"}</Text>
-{/* icone search */}
-          {/* <MaterialCommunityIcons
+        {/* icone search */}
+        {/* <MaterialCommunityIcons
             name="magnify"
             size={30}
             style={{ color: colors.white }}
           />  */}
-        
       </View>
       <View
         style={{
@@ -117,9 +123,7 @@ export default function List(props) {
           alignItems: "center",
           borderTopLeftRadius: 20,
         }}
-      >
-      
-      </View>
+      ></View>
       <ScrollView
         style={{
           backgroundColor: colors.background,
@@ -141,29 +145,38 @@ export default function List(props) {
                 paddingHorizontal: 24,
                 alignItems: "center",
                 justifyContent: "space-between",
+                
               }}
+             
             >
+                
               <View style={{ flexDirection: "row" }}>
-               
                 <View>
-                  <Text style={{ fontSize: 19 }}>{task.task}</Text>
+                  <Text style={{ fontSize: 19, textDecorationLine:linefalse(task) }} >{task.task}</Text>
                   <Text style={{ cololr: colors.greyish }}>
                     {task.stamp.toString()}
                   </Text>
                 </View>
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                
-                <BouncyCheckbox
-  size={25}
-  fillColor="#00BFA6"
-  unfillColor="rgba(0, 191, 166, 0.15)"
-style={{marginLeft:30}}
-  iconStyle={{ borderColor: "red" }}
-  innerIconStyle={{ borderWidth: 1 }}
+                <Pressable  onPress={() => 
 
-//   onPress={(isChecked: boolean) => {}}
-/>
+{
+    console.log("helli")
+    
+    return updateCheck(task)}}>
+                <BouncyCheckbox
+                  size={25}
+                  fillColor="#00BFA6"
+                  unfillColor="rgba(0, 191, 166, 0.15)"
+                  style={{ marginLeft: 30 }}
+                  iconStyle={{ borderColor: "red" }}
+                  innerIconStyle={{ borderWidth: 1 }}
+                  isChecked={task.check}
+                 onPress={()=>updateCheck(task)}
+                  
+                />
+                </Pressable>
               </View>
             </View>
           );
