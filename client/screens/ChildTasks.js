@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, StatusBar } from "react-native";
+import { View, Text, StatusBar,style } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
@@ -156,15 +156,14 @@ export default function List(props) {
                 
                 <BouncyCheckbox
   size={25}
-  fillColor=" rgba(0, 191, 166, 0.15)"
-  unfillColor="#FFFFFF"
-//    text="Custom Checkbox"
+  fillColor="#00BFA6"
+  unfillColor="rgba(0, 191, 166, 0.15)"
+style={{marginLeft:30}}
   iconStyle={{ borderColor: "red" }}
-   innerIconStyle={{ borderWidth: 5 }}
-//   textStyle={{ fontFamily: "JosefinSans-Regular" }}
+  innerIconStyle={{ borderWidth: 1 }}
+
 //   onPress={(isChecked: boolean) => {}}
 />
-                <BouncyCheckbox />
               </View>
             </View>
           );
