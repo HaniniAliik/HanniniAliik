@@ -23,7 +23,7 @@ export default function Games() {
   useEffect(() => {
 
     axios
-      .get("http://192.168.11.212:8000/api/allGames")
+      .get("http://172.20.10.3:8000/api/allGames")
 
       .then((response) => {
         setGames(response.data);

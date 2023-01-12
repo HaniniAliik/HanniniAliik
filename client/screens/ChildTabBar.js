@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 
 import Icons from "react-native-vector-icons/MaterialCommunityIcons"
-import Home from './Home';
+// import Home from './Home';
 import Chat from './Chat';
 
 import HomeChild from './HomeChild';

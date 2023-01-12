@@ -41,9 +41,10 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const navigation = useNavigation();
 
-const onSignOut = () => {
-    signOut(auth).catch(error => console.log('Error logging out: ', error));
-  };
+  const onSignOut = () => {
+      signOut(auth).catch(error => console.log('Error logging out: ', error));
+      navigation.navigate("Login")
+    };
 
   useLayoutEffect(() => {
       navigation.setOptions({
