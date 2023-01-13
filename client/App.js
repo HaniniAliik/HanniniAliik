@@ -13,15 +13,18 @@ import {Permissions,Notifications} from 'expo';
 import AddChild from './screens/AddChild';
 import UpdateChild from './screens/UpdateChild';
 import TabNavigator from './screens/TabNavigator';
-import Child from './screens/Child';
-//AddChild : addchild
-//frameScreen1 : updatechild
+import HomeChild from './screens/HomeChild';
 import Test from './screens/Test'
-import Backround from './screens/Backround.js'
-//import Header from './shared/header';
+import Backround from './screens/Backround.js';
+import Camera from './screens/Camera';
 
-import Camera from './screens/Camera'
+import EditChild from "./screens/EditChild";
+import NewChild from "./screens/NewChild";
+import FrameScreen from "./screens/FrameScreen";
+
+
 const Stack = createStackNavigator();
+
 const AuthenticatedUserContext = createContext({});
 
 
@@ -47,10 +50,12 @@ function ChatStack() {
       {/* <Stack.Screen name='Notifications' component={Notification}/> */}
       <Stack.Screen name='AddChild' component={AddChild} />
       <Stack.Screen name='UpdateChild' component={UpdateChild} />
-      <Stack.Screen name='Child' component={Child} />
+      <Stack.Screen name='HomeChild' component={HomeChild} />
       <Stack.Screen name='Camera' component={Camera} />
       <Stack.Screen name='Home' component={Home} />
-    
+      <Stack.Screen name="EditChild" component={EditChild} options={{ headerShown: false }}/>
+      <Stack.Screen name="NewChild" component={NewChild} options={{ headerShown: false }}  />
+      <Stack.Screen name="Frame3" component={FrameScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
@@ -60,7 +65,11 @@ function AuthStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Login' component={Login} />
       <Stack.Screen name='Signup' component={Signup} />
+      <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='TabNavigator' component={TabNavigator} />
+      
+      <Stack.Screen name="NewChild" component={NewChild} options={{ headerShown: false }}  />
+      <Stack.Screen name="EditChild" component={EditChild} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }

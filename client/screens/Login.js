@@ -14,8 +14,8 @@ export default function Login({ navigation }) {
   const onHandleLogin = () => {
     if (email !== "" && password !== "") {
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => console.log(auth,"Login success"))
-
+        .then(() => console.log("Login success"))
+        .then(navigation.navigate("Home"))
         .catch((err) => Alert.alert("Login error", err.message));
     }
   };
@@ -68,13 +68,17 @@ export default function Login({ navigation }) {
         secureTextEntry={true}
       />
     </View>
-
-    <Pressable style={styles.button}>
+    <Pressable style={styles.button} onPress={() => (onHandleLogin())}>
+      <Text style={styles.buttonText}>
+        Login
+      </Text>
+    </Pressable>
+    {/* <Pressable style={styles.button}>
       <Text style={styles.buttonText} onPress={onHandleLogin} >
         Login
       </Text>
     </Pressable>
-   
+    */}
     <TouchableOpacity style={{ marginTop: 20 }}>
      
       <Text style={{ fontSize: 16 }}>Do you have an account ? Register Now</Text>
