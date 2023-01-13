@@ -8,9 +8,9 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import GlobalStyles from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Border } from "../HomeStyles";
 
-const FrameScreen1 = () => {
+const FrameScreen = () => {
   const navigation = useNavigation();
 
   return (
@@ -66,12 +66,12 @@ const FrameScreen1 = () => {
         />
         <Pressable
           style={[styles.rectanglePressable, styles.rectangleLayout]}
-          onPress={() => navigation.navigate("Frame1")}
+          onPress={() => navigation.navigate("Home")}
         />
         <View style={[styles.rectangleView, styles.rectangleLayout]} />
         <Pressable
           style={[styles.saveChanges, styles.deletePosition]}
-          onPress={() => navigation.navigate("Frame1")}
+          onPress={() => navigation.navigate("Home")}
         >
           <Text style={[styles.saveChanges1, styles.delete1Typo]}>
             save changes
@@ -79,7 +79,7 @@ const FrameScreen1 = () => {
         </Pressable>
         <Pressable
           style={[styles.delete, styles.deletePosition]}
-          onPress={() => navigation.navigate("Frame1")}
+          onPress={() => navigation.navigate("Home")}
         >
           <Text style={[styles.delete1, styles.delete1Typo]}>delete</Text>
         </Pressable>
@@ -87,7 +87,7 @@ const FrameScreen1 = () => {
           <Image
             style={styles.icon}
             resizeMode="cover"
-            source={require("../assets/-icon-edit1.png")}
+            source={require("../assets/-icon-edit.png")}
           />
         </Pressable>
       </View>
@@ -102,17 +102,17 @@ const styles = StyleSheet.create({
   },
   ageTypo: {
     textAlign: "left",
-    color: GlobalStyles.Color.black,
-    fontFamily: GlobalStyles.FontFamily.ruda,
-    fontSize: GlobalStyles.FontSize.size_base,
+    color: Color.black,
+    fontFamily: FontFamily.ruda,
+    fontSize: FontSize.size_base,
     left: 13,
     position: "absolute",
   },
   hobbiesTypo: {
-    color: GlobalStyles.Color.gray,
+    color: Color.gray_100,
     textAlign: "left",
-    fontFamily: GlobalStyles.FontFamily.ruda,
-    fontSize: GlobalStyles.FontSize.size_base,
+    fontFamily: FontFamily.ruda,
+    fontSize: FontSize.size_base,
     left: 13,
     position: "absolute",
   },
@@ -120,14 +120,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     height: 29,
     width: 163,
-    backgroundColor: GlobalStyles.Color.turquoise_200,
-    borderRadius: GlobalStyles.Border.br_md,
+    backgroundColor: Color.turquoise_300,
+    borderRadius: Border.br_md,
     left: 125,
     position: "absolute",
   },
   rectangleLayout: {
     height: 37,
-    borderRadius: GlobalStyles.Border.br_sm,
+    borderRadius: Border.br_xs,
     top: 681,
     position: "absolute",
   },
@@ -141,11 +141,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     textAlign: "center",
-    color: GlobalStyles.Color.white,
-    fontFamily: GlobalStyles.FontFamily.rubikOne,
+    color: Color.white,
+    fontFamily: FontFamily.rubikOne,
     textTransform: "uppercase",
     letterSpacing: 0.4,
-    fontSize: GlobalStyles.FontSize.size_sm,
+    fontSize: FontSize.size_sm,
   },
   phone: {
     top: 262,
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   },
   rectanglePressable: {
     left: 43,
-    backgroundColor: GlobalStyles.Color.turquoise_100,
+    backgroundColor: "#00bfa6",
     width: 135,
   },
   rectangleView: {
@@ -248,11 +248,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   frameParent: {
-    backgroundColor: GlobalStyles.Color.white,
+    backgroundColor: Color.white,
     flex: 1,
     overflow: "hidden",
     width: "100%",
   },
 });
 
-export default FrameScreen1;
+export default FrameScreen;

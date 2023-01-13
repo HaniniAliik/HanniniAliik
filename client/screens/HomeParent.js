@@ -1,17 +1,16 @@
 import React from 'react'
 import { Pressable, View } from "react-native";
-import { TouchableOpacity,  Text, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import {Color} from "../HomeStyles";
 import GlobalStyles from "../GlobalStyles";
 import TabNavigator from './TabNavigator';
-
-function HomeChild() {
+function HomeParent() {
+    
     const navigation = useNavigation();
     return (
         <View style={[styles.iconAddParent, styles.parentLayout,styles.container]}>
             <View style={styles.iconAdd}>
-            <Pressable style={[styles.back,{top:-150,left:-57}]} onPress={() => navigation.navigate("Home")}>
+               <Pressable style={styles.back} onPress={() => navigation.goBack()}>
           <Text style={[styles.back1, styles.done2Typo]}>Back</Text>
         </Pressable>
 
@@ -34,7 +33,7 @@ function HomeChild() {
 
                 <Pressable
                     style={[styles.wrapper, styles.wrapperLayoutt]}
-                    onPress={() => navigation.navigate("Backround")}
+                    onPress={() => navigation.navigate("ChildTasks")}
                 >
                     
                     <Image
@@ -156,16 +155,6 @@ const styles = StyleSheet.create({
         left: "86.67%",
         position: "absolute",
     },
-    back1: {
-        color: Color.turquoise_100,
-        width: 51,
-        height: 21,
-      },
-      back: {
-        left: 6,
-        top: 47,
-        position: "absolute",
-      },
     image12: {
         left: 144,
     },
@@ -182,4 +171,4 @@ const styles = StyleSheet.create({
         height: 844,
     },
 });
-export default HomeChild
+export default HomeParent
