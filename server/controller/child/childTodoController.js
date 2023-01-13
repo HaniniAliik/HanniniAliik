@@ -1,4 +1,4 @@
-var db = require("../database/index");
+var db = require("../../database/index");
 
 var selectAll = function (req, res) {
     db.query("SELECT * FROM todoList", (err, items, fields) => {

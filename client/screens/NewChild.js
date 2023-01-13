@@ -1,4 +1,4 @@
-import * as React from "react";
+import React,{useEffect,useState} from "react";
 import {
   Pressable,
   Text,
@@ -11,14 +11,20 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontSize, FontFamily, Border } from "../HomeStyles";
 import ImagePicker from 'react-native-image-picker';
-
+import axios from "axios";
 
 
 
 const NewChild = () => {
   const navigation = useNavigation();
-  
-  
+  const [name,setName]=useState("");
+  const [phone,setPhone]=useState(0);
+  const [age,setAge]=useState(0);
+  const [gendre,setGendre]=useState("");
+  const [educationLevel,setEducationLevel]=useState("");
+   const [hobbies,setHobbies]=useState("");
+ const [image,setImage]=useState("");
+ 
   const chooseImage = () => {
     const options = {
       title: 'Select Avatar',
@@ -46,15 +52,40 @@ const NewChild = () => {
       }
     });
   };
+  const childAdded =() => {
+
+    axios
+      .post("http://192.168.1.192:8000/api/children",{
+name:name,
+phone:phone,
+age:age,
+gendre:gendre,
+educationLevel:educationLevel,
+hobbies:hobbies,
+password:"1111",
+timetable:"image1.png"
+      })
+
+      .then((response) => {
+        setGames(response.data);
+
+      })
+      .catch((error) => {
+        console.log(error);
+
+      })
+
+  };
 
   return (
     <View style={[styles.newChild, styles.newChildLayout]}>
       <Pressable
         style={styles.done}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => {childAdded()
+          navigation.navigate("Home")}}
       >
-        <Text style={[styles.done1, styles.doneClr]}>done</Text>
-      </Pressable>
+        <Text style={[styles.done1, styles.doneClr] }>done</Text>
+      </Pressable >
       <View style={[styles.phoneParent, styles.newChildLayout]}>
         <Text style={[styles.phone, styles.ageTypo, styles.ageTypo1]}>
           Phone
@@ -78,6 +109,7 @@ const NewChild = () => {
         </Text>
         <Text style={[styles.name, styles.ageTypo, styles.ageTypo1]}>Name</Text>
         <TextInput
+        placeholder="Enter your Name"
           style={[
             styles.frameChild,
             styles.frameChildLayout,
@@ -85,22 +117,28 @@ const NewChild = () => {
           ]}
           keyboardType="default"
           autoCapitalize="words"
+          onChangeText={(text)=>{setName(text)}}
         />
         <TextInput
-          style={[
+          style={[ 
             styles.frameItem,
             styles.frameChildLayout,
             styles.frameChildLayout1,
           ]}
+         placeholder= "Enter your hobbies"
           keyboardType="default"
           autoCapitalize="words"
-        />
-        <TextInput
+          onChangeText={(text) => setHobbies(text)}
+        /> 
+         <TextInput educlevel
+         placeholder="Enter your eduction level"
           style={[styles.frameInner, styles.frameChildLayout]}
           keyboardType="default"
           autoCapitalize="words"
+          onChangeText={(text)=>{setEducationLevel(text)}}
+
         />
-        <TextInput
+         <TextInput
           style={[
             styles.rectangleTextinput,
             styles.frameChildLayout,
@@ -108,8 +146,11 @@ const NewChild = () => {
           ]}
           keyboardType="default"
           autoCapitalize="words"
-        />
-        <TextInput
+          placeholder="Enter your Gender"
+          onChangeText={(text)=>{setGendre(text)}}
+        /> 
+         <TextInput
+        placeholder="Enter your phone "
           style={[
             styles.frameChild1,
             styles.frameChildLayout,
@@ -117,8 +158,10 @@ const NewChild = () => {
           ]}
           keyboardType="number-pad"
           autoCapitalize="words"
+          onChangeText={(text)=>{setPhone(parseInt(text))}}
         />
         <TextInput
+        placeholder="Enter your Age"
           style={[
             styles.frameChild2,
             styles.frameChildLayout,
@@ -126,6 +169,7 @@ const NewChild = () => {
           ]}
           keyboardType="number-pad"
           autoCapitalize="words"
+          onChangeText={(text)=>setAge(parseInt(text))}
         />
         <TouchableOpacity
           style={styles.wrapper}

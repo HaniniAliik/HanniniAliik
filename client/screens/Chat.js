@@ -17,7 +17,7 @@ import { signOut } from 'firebase/auth';
 import { auth, database } from '../config/firebase';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
-import { bottom, left } from '@popperjs/core';
+// import { bottom, left } from '@popperjs/core';
 
 
 

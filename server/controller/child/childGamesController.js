@@ -1,4 +1,4 @@
-var db = require("../database/index");
+var db = require("../../database/index");
 
 var selectAll = function (req, res) {
   console.log("test selectAll");

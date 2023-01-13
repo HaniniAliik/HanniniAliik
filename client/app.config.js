@@ -12,7 +12,7 @@ export default{
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "updates": {
+       "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [

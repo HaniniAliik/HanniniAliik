@@ -3,21 +3,45 @@ import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, Touchab
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 // const backImage = require("../assets/backImage.png");
-
+import axios from 'axios'
 
 export default function Signup({ navigation }) {
+ 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confPwd, setConfPwd] = useState("");
   const [adress, setAdress] = useState("");
-  const [age, setAge] = useState("");
-  const [phone, setPhone] = useState("");
+  const [age, setAge] = useState(0);
+  const [phone, setPhone] = useState(0);
+  const[creditCart,setCreditCart]=useState(0);
 
   const onHandleSignup = () => {
     if (email !== '' && password !== '') {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => console.log('Signup success'))
+  createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          Alert.alert("user connected sucessfuly");
+          const parentId=auth.currentUser.uid;
+          console.log(parentId)
+          axios.post("http://192.168.1.192:8000/api/parent",{
+            idparent:parentId,
+            name:name,
+            email:email,
+            password:password,
+            age:age,
+            adresse:adress,
+            phone:phone,
+            creditCard:creditCart,
+            image:"image-1.png",
+            role:"parent"
+          }).then((res)=>{
+            res.data
+          }).then(navigation.navigate("Home")).catch((err)=>{
+            console.log("error");
+          })
+        
+
+        })
         .catch((err) => Alert.alert("Login error", err.message));
     }
   };
@@ -28,7 +52,7 @@ export default function Signup({ navigation }) {
       {/* <Image source={backImage} style={styles.backImage} /> */}
       <View style={styles.whiteSheet} />
       <SafeAreaView style={styles.form}>
-        <Text style={styles.title}>Register</Text>
+        <Text style={styles.title}>SignUp</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter your name"
@@ -74,35 +98,45 @@ export default function Signup({ navigation }) {
           placeholder="Enter your adress"
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
+          secureTextEntry={false}
           textContentType="adress"
           value={adress}
           onChangeText={(text) => setAdress(text)}
         />
         <TextInput
+        keyboardType='numeric'
           style={styles.input}
           placeholder="Enter your age"
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
+          secureTextEntry={false}
           textContentType="age"
           value={age}
-          onChangeText={(text) => setAge(text)}
+          onChangeText={(text) => setAge(parseInt(text))}
         />
         <TextInput
+        keyboardType='numeric'
           style={styles.input}
           placeholder="Enter your phone"
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
+          secureTextEntry={false}
           textContentType="phone"
           value={phone}
-          onChangeText={(text) => setPhone(text)}
+          onChangeText={(text) => setPhone(parseInt(text))}
+        />
+        <TextInput
+         keyboardType='numeric'
+          style={styles.input}
+          placeholder="Enter your Credit Card"
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={false}
+          textContentType="phone"
+          value={phone}
+          onChangeText={(text) => setCreditCart(parseInt(text))}
         />
       </SafeAreaView>
-      {/* <TouchableOpacity style={styles.button} onPress={onHandleSignup}>
-        <Text style={{fontWeight: 'bold', color: 'black', fontSize: 18}}> Sign Up</Text>
-      </TouchableOpacity> */}
       <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText} onPress={onHandleSignup} >
@@ -111,9 +145,9 @@ export default function Signup({ navigation }) {
         </Pressable>
       </View>
       <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
-        <Text style={{ color: 'gray', fontWeight: '600', fontSize: 14, marginTop: -20 }}>Don't have an account? </Text>
+        <Text style={{ color: 'gray', fontWeight: '600', fontSize: 14, marginTop: -20 ,marginLeft:30}}>Don't have an account? </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={{ color: '#f57c00', fontWeight: '600', fontSize: 14, marginTop: -20 }}> Log In</Text>
+          <Text style={{ color: '#f57c00', fontWeight: '600', fontSize: 16, marginTop: -20 }}> Log In</Text>
         </TouchableOpacity>
       </View>
 
@@ -173,7 +207,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "green",
     width: 127,
-    marginTop: -150
+    marginTop: -100
 
 
   },

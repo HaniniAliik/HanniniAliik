@@ -8,6 +8,8 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Chat from './screens/Chat';
 import Home from './screens/Home';
+
+import {Permissions,Notifications} from 'expo'; 
 import AddChild from './screens/AddChild';
 import UpdateChild from './screens/UpdateChild';
 import TabNavigator from './screens/TabNavigator';
@@ -24,6 +26,8 @@ import FrameScreen from "./screens/FrameScreen";
 const Stack = createStackNavigator();
 
 const AuthenticatedUserContext = createContext({});
+
+
 
 const AuthenticatedUserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -43,6 +47,7 @@ function ChatStack() {
       
       <Stack.Screen name='TabNavigator' component={TabNavigator} />
       <Stack.Screen name='Chat' component={Chat} />
+      {/* <Stack.Screen name='Notifications' component={Notification}/> */}
       <Stack.Screen name='AddChild' component={AddChild} />
       <Stack.Screen name='UpdateChild' component={UpdateChild} />
       <Stack.Screen name='HomeChild' component={HomeChild} />
@@ -100,10 +105,66 @@ function RootNavigator() {
 }
 
 export default function App() {
-  return (
+// const requestUserPermission = async ( )=>{
+//   const authStatus = await messaging().requestPermission();
+//   const enabled =
+//     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+//     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+//   if (enabled) {
+//     console.log('Authorization status:', authStatus);
+//   }
+// } 
+// useEffect(()=>{
+//   if(requestUserPermission()){
+//     //return fcm token for the device
+//     messaging().getToken().then(token=>{
+//       console.log(token);
+//     });
+//   }
+//   else{console.log("failed token status",authStatus);  
+//   }
+
+//   // Check whether an initial notification is available
+//   messaging()
+//   .getInitialNotification()
+//   .then(remoteMessage => {
+//     if (remoteMessage) {
+//       console.log(
+//         'Notification caused app to open from quit state:',
+//         remoteMessage.notification,
+//       );
+//     }
+//   });
+
+//    // Assume a message-notification contains a "type" property in the data payload of the screen to open
+
+//    messaging().onNotificationOpenedApp( async remoteMessage => {
+//     console.log(
+//       'Notification caused app to open from background state:',
+//       remoteMessage.notification,
+//     );
+//     // navigation.navigate(remoteMessage.data.type);
+//   });
+
+// // Register background handler
+// messaging().setBackgroundMessageHandler(async remoteMessage => {
+//   console.log('Message handled in the background!', remoteMessage);
+// });
+ 
+// const unsubscribe = messaging().onMessage(async remoteMessage => {
+//   Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+// });
+
+// return unsubscribe;
+
+
+// },[])
+return (
     <AuthenticatedUserProvider>
       <RootNavigator />
       
     </AuthenticatedUserProvider>
+
   );
 }

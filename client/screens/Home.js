@@ -1,7 +1,7 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NewChild from "./NewChild";
-import { FlatList } from "react-native-gesture-handler";
-import * as React from "react";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import NewChild from "./NewChild";
+// import { FlatList } from "react-native-gesture-handler";
+import  React from "react";
 import {
  Pressable,
  Text,
@@ -29,7 +29,7 @@ const Home = () => {
  ];
  const parent={name:"Parent"};
 
- const [editMode, setEditMode] = React.useState(false);
+ const [editMode, setEditMode] = useState(false);
  
  return (
    <View style={styles.home}>
@@ -72,7 +72,7 @@ const Home = () => {
          <View  style={[styles.iconAdd1, styles.iconLayout]}>
            <Pressable
              style={[styles.vector, styles.iconLayout]}
-             onPress={() => navigation.navigate("Games")}
+             onPress={() => navigation.navigate("NewChild")}
            >
              <Image 
                style={styles.icon}

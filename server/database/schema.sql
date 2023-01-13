@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`parent` (
   `password` VARCHAR(255) NOT NULL,
   `image` VARCHAR(255) NOT NULL,
   `phone` INT NOT NULL,
-  `creditCard` INT NOT NULL,
+  `codePin` INT NOT NULL,
   `role` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idparent`))
 ENGINE = InnoDB;
@@ -36,14 +36,13 @@ ENGINE = InnoDB;
 -- Table `mydb`.`child`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`child` (
-  `idchild` VARCHAR(255) NOT NULL,
+  `idchild` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `age` INT NOT NULL,
   `hobbies` VARCHAR(255) NOT NULL,
   `educationLevel` VARCHAR(255) NOT NULL,
   `phone` INT NOT NULL,
   `gendre` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
   `image` VARCHAR(255) NOT NULL,
   `school` VARCHAR(255) NOT NULL,
   `timeTable` VARCHAR(255) NOT NULL,

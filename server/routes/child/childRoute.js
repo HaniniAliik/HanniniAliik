@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const childGamesController = require("../controllers/childGamesController");
-const childTodoController = require("../controllers/childTodoController");
+const childGamesController = require("../../controller/child/childGamesController");
+const childTodoController = require("../../controller/child/childTodoController");
 
 router.get("/allGames",childGamesController.selectAll);
 router.post("/add",childGamesController.add);
