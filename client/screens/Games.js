@@ -23,7 +23,7 @@ export default function Games() {
   useEffect(() => {
 
     axios
-      .get("http://192.168.1.192:8000/api/allGames")
+      .get("http://172.20.10.2:8000/api/allGames")
 
       .then((response) => {
         setGames(response.data);
@@ -166,11 +166,12 @@ const styles = {
   },
 
   home: {
-    backgroundColor: Color.turquoise_100,
+    backgroundColor:"white" ,
     flex: 1,
     height: 844,
     overflow: "hidden",
     width: "100%",
+    paddingLeft:20
   },
 
 };

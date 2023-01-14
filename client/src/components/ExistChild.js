@@ -31,7 +31,7 @@ const ExistChild = (props) => {
        top: "31%",
         left: "43%"
        }}
-       onPress={() => navigation.navigate("EditChild")}  />
+       onPress={() => navigation.navigate("EditChild")}/>
     }
   
     <Text style={[styles.name, styles.namePosition, styles.nameTypo]}>

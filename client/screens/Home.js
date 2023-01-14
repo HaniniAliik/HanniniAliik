@@ -1,7 +1,7 @@
 // import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import NewChild from "./NewChild";
 // import { FlatList } from "react-native-gesture-handler";
-import  React from "react";
+import  React,{useState} from "react";
 import {
  Pressable,
  Text,
@@ -9,17 +9,37 @@ import {
  TouchableOpacity,
  View,
  Image,
+ SafeAreaView
 } from "react-native";
+import {  ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import ExistChild from "../src/components/ExistChild";
 import { FontFamily, Color, FontSize, Border } from "../HomeStyles";
-import { useState } from "react";
 import { FontAwesome5 } from 'react-native-vector-icons';
+import GlobalStyles from "../GlobalStyles";
+import { auth } from '../config/firebase';
+import { AntDesign } from '@expo/vector-icons';
+import { signOut } from 'firebase/auth';
+
+// import GetKid from "./GetKid";
+
+import Button from "../src/components/Button";
+
+  //frameScreen2 : AddChild
+  //frameScreen1 : UpdateChild
+
 
 
 const Home = () => {
  const navigation = useNavigation();
 
+ const colors = {
+  themeColor: "#00BFA6",
+  white: "#fff",
+  background: "#f4f6fc",
+  greyish: "#a4a4a4",
+  tint: "#2b49c3",
+};
  const children = [
    { name: "Child 1", id:1 },
    { name: "Child 2", id:2 },
@@ -30,8 +50,22 @@ const Home = () => {
  const parent={name:"Parent"};
 
  const [editMode, setEditMode] = useState(false);
- 
+ const onSignOut = () => {
+  signOut(auth).then(msg => console.log('logging out successfully', msg))
+  .catch(error => console.log('Error logging out: ', error));
+  navigation.navigate("Login")
+}
  return (
+  <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1
+          }}
+          style={{
+            backgroundColor: colors.background, flex: 1
+          }}
+
+        >
    <View style={styles.home}>
      <TouchableOpacity
        style={styles.edit}
@@ -44,7 +78,7 @@ const Home = () => {
        Who are you checking on?
      </Text>
 
-
+<Pressable onPress={()=>navigation.navigate("TasksParent")}>
 <View style={{top:-220, left:-55}}>
 <View style={{ alignItems: "center" }}>
   <Image style={[styles.image123x1Icon,styles.namePosition,{ opacity: editMode ? 0.5 : 1 }]}resizeMode="cover" source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" }} />
@@ -59,6 +93,7 @@ const Home = () => {
  
  </View>
 </View>
+</Pressable>
      
     
      <TouchableOpacity
@@ -90,12 +125,16 @@ const Home = () => {
      <View style={[styles.rowContainer, styles.container]}>
  {children.map(child => (
    <View style={[styles.elKaba1, { width: "50%", height: "40%" }]} key={child.id}>
+     <Pressable onPress={()=>navigation.navigate("HomeChild")}>
      <ExistChild name={child.name} editMode={editMode} />
+     </Pressable>
    </View>
    
  ))}
 </View>
    </View>
+   </ScrollView>
+   </SafeAreaView>
  );
 };
 

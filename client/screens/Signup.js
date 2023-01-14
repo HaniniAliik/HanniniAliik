@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert, Pressable } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView,TouchableWithoutFeedback, TouchableOpacity, StatusBar, Alert, Pressable } from "react-native";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 // const backImage = require("../assets/backImage.png");
 import axios from 'axios'
+
 
 export default function Signup({ navigation }) {
  
@@ -23,7 +24,7 @@ export default function Signup({ navigation }) {
           Alert.alert("user connected sucessfuly");
           const parentId=auth.currentUser.uid;
           console.log(parentId)
-          axios.post("http://192.168.1.192:8000/api/parent",{
+          axios.post("http://172.20.10.2:8000/api/parent",{
             idparent:parentId,
             name:name,
             email:email,
@@ -47,7 +48,7 @@ export default function Signup({ navigation }) {
   };
 
   return (
-
+    <TouchableWithoutFeedback> 
     <View style={styles.container}>
       {/* <Image source={backImage} style={styles.backImage} /> */}
       <View style={styles.whiteSheet} />
@@ -104,7 +105,7 @@ export default function Signup({ navigation }) {
           onChangeText={(text) => setAdress(text)}
         />
         <TextInput
-        keyboardType='numeric'
+      
           style={styles.input}
           placeholder="Enter your age"
           autoCapitalize="none"
@@ -115,7 +116,6 @@ export default function Signup({ navigation }) {
           onChangeText={(text) => setAge(parseInt(text))}
         />
         <TextInput
-        keyboardType='numeric'
           style={styles.input}
           placeholder="Enter your phone"
           autoCapitalize="none"
@@ -126,7 +126,7 @@ export default function Signup({ navigation }) {
           onChangeText={(text) => setPhone(parseInt(text))}
         />
         <TextInput
-         keyboardType='numeric'
+         keyboardType='text'
           style={styles.input}
           placeholder="Enter your Credit Card"
           autoCapitalize="none"
@@ -153,7 +153,7 @@ export default function Signup({ navigation }) {
 
       <StatusBar barStyle="light-content" />
     </View>
-
+    </TouchableWithoutFeedback>
   );
 }
 const styles = StyleSheet.create({

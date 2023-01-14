@@ -20,7 +20,7 @@ const TabNavigator = () => {
                 tabBarIcon: ({ focused, size, color, padding }) => {
                     
                     let Icon;
-                    if (route.name === "Home") {
+                    if (route.name === "HomeChild") {
                         Icon = focused ? "home" : "home-outline";
                         size = focused ? size + 15 : size + 5;
                     }
@@ -54,6 +54,7 @@ const TabNavigator = () => {
                                 style={{ paddingBottom: padding }}
                             />
                         </>
+                        
                     )
                 },
                 headerShown: true,
@@ -64,9 +65,9 @@ const TabNavigator = () => {
 
                 tabBarStyle: {
                     height: 50,
-                    left:0,
-                    right: 0,
-                    bottom: 0,
+                    left:7,
+                    right: 7,
+                    bottom:0,
                 
                     position: 'absolute',
                     borderRadius: 10,
@@ -75,10 +76,10 @@ const TabNavigator = () => {
                 },
             })}
         >
-            {/* <Tab.Screen
-                name="Home"
-                component={Home}
-            /> */}
+            <Tab.Screen
+                name="HomeChild"
+                component={HomeChild}
+            />
             <Tab.Screen
                 name="Chat"
                 component={Chat}
@@ -92,10 +93,10 @@ const TabNavigator = () => {
                 name="Games"
                 component={Games}
             />
-             <Tab.Screen
+             {/* <Tab.Screen
                 name="HomeChild"
                 component={HomeChild}
-            />
+            /> */}
             
         </Tab.Navigator>
     )
