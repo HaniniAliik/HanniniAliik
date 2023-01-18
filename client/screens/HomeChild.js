@@ -1,6 +1,6 @@
 import React from 'react'
 import { Pressable, View } from "react-native";
-import { TouchableOpacity,  Text, Image, StyleSheet } from "react-native";
+import { TouchableOpacity,  Text, Image, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {Color} from "../HomeStyles";
 import GlobalStyles from "../GlobalStyles";
@@ -9,6 +9,7 @@ import TabNavigator from './TabNavigator';
 function HomeChild() {
     const navigation = useNavigation();
     return (
+        <ScrollView>
         <View style={[styles.iconAddParent, styles.parentLayout,styles.container]}>
             <View style={styles.iconAdd}>
             <Pressable style={[styles.back,{top:-150,left:-57}]} onPress={() => navigation.navigate("Home")}>
@@ -34,7 +35,7 @@ function HomeChild() {
 
                 <Pressable
                     style={[styles.wrapper, styles.wrapperLayoutt]}
-                    onPress={() => navigation.navigate("Backround")}
+                    onPress={() => navigation.navigate("ChildTasks")}
                 >
                     
                     <Image
@@ -50,7 +51,7 @@ function HomeChild() {
             </View>
            
         </View>
-
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({

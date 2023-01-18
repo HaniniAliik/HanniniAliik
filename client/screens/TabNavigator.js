@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icons from "react-native-vector-icons/MaterialCommunityIcons"
-
+import { StyleSheet } from 'react-native';
 import Home from './Home';
 import Chat from './Chat';
 import Games from './Games';
 import Camera from './Camera'
 import HomeChild from './HomeChild';
-
+import Notification from './Notification';
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
-    
+    const [trifi,setTrifi]=useState(2)
     return (
         
         <Tab.Navigator
@@ -33,11 +33,12 @@ const TabNavigator = () => {
                    
                    
                     else if (route.name === "Camera") {
+
                         Icon = focused ? "camera" : "camera-outline";
                         size = focused ? size + 15 : size + 5;
                     }
-                    else if (route.name === "Games") {
-                        Icon = focused ? "gamepad-variant" : "gamepad-variant-outline";
+                    else if (route.name === "Notification") {
+                        Icon = focused ? "bell" : "bell-outline";
                         size = focused ? size + 15 : size + 5;
                     }
                     else if (route.name === "HomeChild") {
@@ -90,8 +91,11 @@ const TabNavigator = () => {
                 component={Camera}
             />
             <Tab.Screen
-                name="Games"
-                component={Games}
+            options={{tabBarBadge: trifi ? trifi : undefined}}
+            onPress={() =>{setTrifi(0)}}
+                name="Notification"
+                component={Notification}
+
             />
              {/* <Tab.Screen
                 name="HomeChild"
@@ -103,3 +107,4 @@ const TabNavigator = () => {
 }
 
 export default TabNavigator
+

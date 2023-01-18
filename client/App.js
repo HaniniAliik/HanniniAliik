@@ -50,7 +50,7 @@ const AuthenticatedUserProvider = ({ children }) => {
 function ChatStack() {
   return (
     <Stack.Navigator screenOptions={{
-      headerShown : true, headerTintColor:"white"
+      headerShown :false, headerTintColor:"white"
     }} defaultScreenOptions={TabNavigator}>
       
       <Stack.Screen name='TabNavigator' component={TabNavigator} />

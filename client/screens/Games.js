@@ -23,7 +23,7 @@ export default function Games() {
   useEffect(() => {
 
     axios
-      .get("http://172.20.10.2:8000/api/allGames")
+      .get("http://192.168.1.144:8000/api/allGames")
 
       .then((response) => {
         setGames(response.data);
@@ -171,7 +171,7 @@ const styles = {
     height: 844,
     overflow: "hidden",
     width: "100%",
-    paddingLeft:20
+    paddingLeft:0
   },
 
 };

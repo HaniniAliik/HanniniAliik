@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import { View, Text, StatusBar, style, Pressable } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
-import { firebase } from "../config/firebase.js";
+import firebase, {firestore} from "../config/firebase.js";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-
+// import 'firebase/compat/messaging';
+// import messaging from '@react-native-firebase/messaging';
 const colors = {
   themeColor: "#00BFA6",
   white: "#fff",
@@ -88,6 +89,16 @@ export default function List(props) {
   
     .catch(error=>alert('ee',error))
   };
+  const messaging = firebase.messaging();
+messaging.requestPermission().then(() => {
+  messaging.getToken().then((token) => {
+    console.log(token);
+  });
+});
+messaging.onMessage((payload) => {
+  console.log('Message received. ', payload);
+  alert(payload.notification.body);
+});
 
   // function linefalse
   const linefalse=(task)=>{
@@ -131,9 +142,10 @@ export default function List(props) {
             style={{ color: colors.white }}
           />  */}
       </View>
+      
       <View
         style={{
-          padding: 20,
+          padding: 0,
           flexDirection: "row",
           backgroundColor: colors.background,
           justifyContent: "space-between",
@@ -182,7 +194,7 @@ export default function List(props) {
                   size={25}
                   fillColor="#00BFA6"
                   unfillColor="rgba(0, 191, 166, 0.15)"
-                  style={{ marginLeft: 30 }}
+                  style={{ marginRight: -37 }}
                   iconStyle={{ borderColor: "red" }}
                   innerIconStyle={{ borderWidth: 1 }}
                   isChecked={task.check}

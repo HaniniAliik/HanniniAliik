@@ -42,6 +42,7 @@ export default function Login({ navigation }) {
    
 
 <View style={styles.container}>
+  <KeyboardAvoidingView>
   {/* invoke the bachround image */}
     {/* <BackgroundAnimation></BackgroundAnimation>   */}
   <Image style={{ marginTop: -70  }} source={require('../images/name.png') }/>
@@ -91,6 +92,7 @@ export default function Login({ navigation }) {
               <Text style={{ color: "black", fontWeight: '600', fontSize: 14 }}> Forget password ?</Text>
             </TouchableOpacity>
           </View>
+          </KeyboardAvoidingView>
   </View>
  
 );

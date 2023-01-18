@@ -1,12 +1,12 @@
-//ahlem
 
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { View, Text, StatusBar,Keyboard } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
-import { firebase } from "../config/firebase.js";
-
+import  firebase  from "../config/firebase.js";
+// import messaging from '@react-native-firebase/messaging';
+import 'firebase/messaging';
 const colors = {
   themeColor: "#00BFA6",
   white: "#fff",
@@ -123,6 +123,26 @@ export default function List(props) {
           alert(error);
         });
     }
+    const messaging = firebase.messaging();
+messaging.getToken().then((token) => {
+  const notification = {
+    title: 'New Task Added',
+    body: `${addData} has been added to your tasks`,
+    click_action: 'Notification',
+    icon: 'YOUR_ICON_URL',
+  };
+  fetch('https://fcm.googleapis.com/fcm/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `key=BDFystjm6VqCiyki1ZFaYFHnQLowkzYgE3oQRxzo6syvccsWh5QbIrR0LSEvlIrc7AzPyH62DAGLXJDRPmAkO8c`,
+    },
+    body: JSON.stringify({
+      notification,
+      to: token,
+    }),
+  });
+});
   };
  
 
@@ -237,15 +257,16 @@ export default function List(props) {
                 <View>
                   <Text style={{ fontSize: 19 }}>{task.task}</Text>
                   <Text style={{ cololr: colors.greyish }}>
+              
                     {task.stamp.toString()}
                   </Text>
                 </View>
               </View>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View style={{ flexDirection: "row", alignItems: "center"}}>
                 <MaterialCommunityIcons
                   name="pencil"
                   size={30}
-                  style={{ color: "rgba(0, 191, 166, 0.25)"}}
+                  style={{ color: "rgba(0, 191, 166, 0.25)", marginLeft:20, paddingRight:0}}
                 />
                 
                 <MaterialCommunityIcons
@@ -253,7 +274,7 @@ export default function List(props) {
                     return deleteTodo(task)}}
                   name="trash-can"
                   size={30}
-                  style={{ color:"#d81f1f", marginLeft: 5 }}
+                  style={{ color:"#d81f1f", marginLeft: 0 }}
                 />
               </View>
             </View>

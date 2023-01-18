@@ -10,7 +10,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import GlobalStyles from "../GlobalStyles";
 
-const FrameScreen2 = () => {
+const AddChild = () => {
   const navigation = useNavigation();
 
   return (
@@ -334,4 +334,4 @@ const styles = StyleSheet.create({
     height: 844,
   },
 });
-export default FrameScreen2;
+export default AddChild;
