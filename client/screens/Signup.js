@@ -24,7 +24,7 @@ export default function Signup({ navigation }) {
           Alert.alert("user connected sucessfuly");
           const parentId=auth.currentUser.uid;
           console.log(parentId)
-          axios.post("http://172.20.10.2:8000/api/parent",{
+          axios.post("http://192.168.1.174/api/parent",{
             idparent:parentId,
             name:name,
             email:email,

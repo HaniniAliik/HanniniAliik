@@ -11,6 +11,7 @@ import Notification from './Notification';
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
     const [trifi,setTrifi]=useState(2)
+    
     return (
         
         <Tab.Navigator
@@ -38,7 +39,7 @@ const TabNavigator = () => {
                         size = focused ? size + 15 : size + 5;
                     }
                     else if (route.name === "Notification") {
-                        Icon = focused ? "bell" : "bell-outline";
+                        Icon = focused ? "bell": "bell-outline" ;
                         size = focused ? size + 15 : size + 5;
                     }
                     else if (route.name === "HomeChild") {

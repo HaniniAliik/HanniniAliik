@@ -57,6 +57,7 @@ export default function Login({ navigation }) {
         autoCapitalize="none"
         backgroundColor="rgba(0, 191, 166, 0.15)"
         autoCorrect={false}
+       
       />
 
       <TextInput
@@ -80,7 +81,7 @@ export default function Login({ navigation }) {
       </Text>
     </Pressable>
     */}
-    <TouchableOpacity style={{ marginTop: 20 }}>
+    <TouchableOpacity style={{ marginTop: 10 }}>
      
       <Text style={{ fontSize: 16 }}>Do you have an account ? Register Now</Text>
     </TouchableOpacity>
@@ -107,14 +108,14 @@ const styles = StyleSheet.create({
   TextInput: {
     paddingTop: 10,
     paddingBottom: 10,
-
+    
     fontSize: 20,
    
     borderColor: "green",
     borderWidth: 1,
     borderRadius: 10,
     width: 370,
-    marginBottom: 10,
+    marginBottom: -10,
     textAlign: "center",
   }, 
 

@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { View, Text, StatusBar, style, Pressable } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
-import firebase, {firestore} from "../config/firebase.js";
+import { firebase } from "../config/firebase.js";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-// import 'firebase/compat/messaging';
-// import messaging from '@react-native-firebase/messaging';
+import { useNavigation } from "@react-navigation/native";
+
 const colors = {
   themeColor: "#00BFA6",
   white: "#fff",
@@ -48,6 +48,7 @@ export default function List(props) {
   // Declaring const where to save data
   //Delete from firestore
   //fetch data
+  const navigation = useNavigation();
   const [todos, setTodos] = useState([]);
 
   // collect collection tasks from firebase
@@ -84,21 +85,11 @@ export default function List(props) {
     todoRef.doc(task.id).update({
       check: !task.check,
     }).then(()=>{
-    console.log(task)
+    // console.log(task)
    })
   
     .catch(error=>alert('ee',error))
   };
-  const messaging = firebase.messaging();
-messaging.requestPermission().then(() => {
-  messaging.getToken().then((token) => {
-    console.log(token);
-  });
-});
-messaging.onMessage((payload) => {
-  console.log('Message received. ', payload);
-  alert(payload.notification.body);
-});
 
   // function linefalse
   const linefalse=(task)=>{
@@ -125,22 +116,23 @@ messaging.onMessage((payload) => {
             justifyContent: "space-between",
           }}
         >
-          <MaterialCommunityIcons
+          
+          <Pressable
+        
+        onPress={() => {
+          navigation.navigate("Notification")}}
+      >
+        <MaterialCommunityIcons
             name="bell-outline"
             size={30}
             style={{ color: colors.white }}
           />
+      </Pressable >
           <AntDesign name="user" size={30} style={{ color: colors.white }} />
         </View>
       </View>
       <View style={{ padding: 16 }}>
         <Text style={{ color: "black", fontSize: 30 }}>{"Tasks"}</Text>
-        {/* icone search */}
-        {/* <MaterialCommunityIcons
-            name="magnify"
-            size={30}
-            style={{ color: colors.white }}
-          />  */}
       </View>
       
       <View
@@ -194,7 +186,7 @@ messaging.onMessage((payload) => {
                   size={25}
                   fillColor="#00BFA6"
                   unfillColor="rgba(0, 191, 166, 0.15)"
-                  style={{ marginRight: -37 }}
+                  style={{ marginRight: -30 }}
                   iconStyle={{ borderColor: "red" }}
                   innerIconStyle={{ borderWidth: 1 }}
                   isChecked={task.check}
@@ -207,7 +199,8 @@ messaging.onMessage((payload) => {
           );
         })}
       </ScrollView>
-      {/* <Text> Lets get started</Text>     */}
+    
     </View>
   );
 }
+

@@ -11,7 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8mb3 ;
 USE `mydb` ;
 
 -- -----------------------------------------------------
@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`parent` (
   `creditCard` INT NOT NULL,
   `role` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idparent`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
@@ -52,29 +53,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`child` (
   INDEX `fk_child_parent_idx` (`parent_idparent` ASC) VISIBLE,
   CONSTRAINT `fk_child_parent`
     FOREIGN KEY (`parent_idparent`)
-    REFERENCES `mydb`.`parent` (`idparent`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`todoList`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`todoList` (
-  `idtodoList` INT NOT NULL AUTO_INCREMENT,
-  `task` VARCHAR(255) NOT NULL,
-  `done` TINYINT NOT NULL,
-  `child_idchild` VARCHAR(255) NOT NULL,
-  `child_parent_idparent` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`idtodoList`),
-  INDEX `fk_todoList_child1_idx` (`child_idchild` ASC, `child_parent_idparent` ASC) VISIBLE,
-  CONSTRAINT `fk_todoList_child1`
-    FOREIGN KEY (`child_idchild` , `child_parent_idparent`)
-    REFERENCES `mydb`.`child` (`idchild` , `parent_idparent`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `mydb`.`parent` (`idparent`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
@@ -84,14 +65,17 @@ CREATE TABLE IF NOT EXISTS `mydb`.`games` (
   `idgames` INT NOT NULL AUTO_INCREMENT,
   `image` VARCHAR(255) NOT NULL,
   `link` VARCHAR(255) NOT NULL,
+  `check` TINYINT NOT NULL DEFAULT '0',
   PRIMARY KEY (`idgames`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 14
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`childGames`
+-- Table `mydb`.`childgames`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`childGames` (
+CREATE TABLE IF NOT EXISTS `mydb`.`childgames` (
   `idchildGames` INT NOT NULL AUTO_INCREMENT,
   `child_idchild` VARCHAR(255) NOT NULL,
   `child_parent_idparent` VARCHAR(255) NOT NULL,
@@ -101,15 +85,30 @@ CREATE TABLE IF NOT EXISTS `mydb`.`childGames` (
   INDEX `fk_childGames_games1_idx` (`games_idgames` ASC) VISIBLE,
   CONSTRAINT `fk_childGames_child1`
     FOREIGN KEY (`child_idchild` , `child_parent_idparent`)
-    REFERENCES `mydb`.`child` (`idchild` , `parent_idparent`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `mydb`.`child` (`idchild` , `parent_idparent`),
   CONSTRAINT `fk_childGames_games1`
     FOREIGN KEY (`games_idgames`)
-    REFERENCES `mydb`.`games` (`idgames`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `mydb`.`games` (`idgames`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`todolist`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`todolist` (
+  `idtodoList` INT NOT NULL AUTO_INCREMENT,
+  `task` VARCHAR(255) NOT NULL,
+  `done` TINYINT NOT NULL,
+  `child_idchild` VARCHAR(255) NOT NULL,
+  `child_parent_idparent` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`idtodoList`),
+  INDEX `fk_todoList_child1_idx` (`child_idchild` ASC, `child_parent_idparent` ASC) VISIBLE,
+  CONSTRAINT `fk_todoList_child1`
+    FOREIGN KEY (`child_idchild` , `child_parent_idparent`)
+    REFERENCES `mydb`.`child` (`idchild` , `parent_idparent`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

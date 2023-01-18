@@ -22,17 +22,18 @@ const getAllChildren =(req,res)=>{
 const addChild = (req,res)=>{
     const {
         body: { 
+            idChild:idchild,
             name, age,
              hobbies, educationLevel, 
             phone, gendre, 
             password, image,
             school, timeTable,
-             parent_idparent }} = req
+            }} = req
       const query = `INSERT INTO child (idchild, name, age, hobbies, educationLevel,
          phone, gendre, password, image, school, timeTable, 
-         parent_idparent) VALUES ('${name}', ${age}, 
-         '${hobbies}', '${educationLevel}', ${phone}, '${gendre}',
-           '${image}', '${school}', '${timeTable}', '${parent_idparent}');`;
+         parent_idparent) VALUES ('${idchild}','${name}', '${age}', 
+         '${hobbies}', '${educationLevel}', '${phone}', '${password}','${gendre}',
+           '${image}', '${school}', '${timeTable}');`;
 
     db.query(query,(err,result)=>{
         

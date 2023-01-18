@@ -10,8 +10,9 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontSize, FontFamily, Border } from "../HomeStyles";
-import ImagePicker from 'react-native-image-picker';
 import axios from "axios";
+// import ImagePicker from 'expo-image-picker';
+// import * as Permissions from 'expo-permissions';
 
 
 
@@ -23,42 +24,70 @@ const NewChild = () => {
   const [gendre,setGendre]=useState("");
   const [educationLevel,setEducationLevel]=useState("");
    const [hobbies,setHobbies]=useState("");
- const [image,setImage]=useState("");
- 
-  const chooseImage = () => {
-    const options = {
-      title: 'Select Avatar',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-  
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-  
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        const source = { uri: response.uri };
-  
-    
-  
-        this.setState({
-          avatarSource: source,
-        });
-      }
-    });
-  };
-  const childAdded =() => {
+ const [image,setImage]=useState(null);
+ const [data,setData]=useState([]);
+ console.log(typeof image,"ggggg");
 
+
+ const randomChildId=()=>{
+  let id = "";
+  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (let i = 0; i < 10; i++) {
+    id += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return id;
+ }
+ const chooseImage = async () => {
+  let result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    allowsEditing: true,
+    aspect: [4, 3],
+    quality: 1,
+  });
+
+  if (!result.cancelled) {
+    setImage( result.uri );
+    // you can then use the URI to upload the image to a server or cloud storage
+  }
+};
+
+//  const chooseImage = () => {
+//   const options = {
+//     title: 'Select Avatar',
+//     storageOptions: {
+//       skipBackup: true,
+//       path: 'images',
+//     },
+//   };
+
+//   ImagePicker.showImagePicker(options, (response) => {
+//     console.log('Response = ', response);
+
+//     if (response.didCancel) {
+//       console.log('User cancelled image picker');
+//     } else if (response.error) {
+//       console.log('ImagePicker Error: ', response.error);
+//     } else {
+//       const source = { uri: response.uri };
+
+  
+
+//       setImage({
+//         avatarSource: source,
+//       });
+//     }
+//   });
+// };
+  const childAdded =() => {
+const childId=randomChildId()
     axios
-      .post("http://192.168.1.192:8000/api/children",{
+      .post("http://192.168.1.174:8000/api/children",{
+        idchild:childId,
 name:name,
 phone:phone,
 age:age,
+image:image,
 gendre:gendre,
 educationLevel:educationLevel,
 hobbies:hobbies,
@@ -67,7 +96,7 @@ timetable:"image1.png"
       })
 
       .then((response) => {
-        setGames(response.data);
+        setData(response.data);
 
       })
       .catch((error) => {

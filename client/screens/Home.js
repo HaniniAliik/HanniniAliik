@@ -78,7 +78,7 @@ const Home = () => {
        Who are you checking on?
      </Text>
 
-<Pressable onPress={()=>navigation.navigate("TasksParent")}>
+<Pressable onPress={()=>navigation.navigate("HomeParent")}>
 <View style={{top:-220, left:-55}}>
 <View style={{ alignItems: "center" }}>
   <Image style={[styles.image123x1Icon,styles.namePosition,{ opacity: editMode ? 0.5 : 1 }]}resizeMode="cover" source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" }} />

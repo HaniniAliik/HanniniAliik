@@ -17,13 +17,13 @@ const colors = {
   greyish: "#a4a4a4",
   tint: "#2b49c3",
 };
-export default function Games() {
+export default function GamesParents() {
   const navigation = useNavigation();
   const [games, setGames] = useState([])
   useEffect(() => {
 
     axios
-      .get("http://192.168.1.190:8000/api/allGamesC")
+      .get("http://192.168.1.190:8000/api/allGamesP")
 
       .then((response) => {
         setGames(response.data);
@@ -94,6 +94,17 @@ export default function Games() {
                         resizeMode="cover"
                         source={{ uri: e.image }}
                       />
+                       <BouncyCheckbox
+                  size={25}
+                  fillColor="#00BFA6"
+                  unfillColor="rgba(0, 191, 166, 0.15)"
+                  style={{ marginRight: -30 }}
+                  iconStyle={{ borderColor: "red" }}
+                  innerIconStyle={{ borderWidth: 1 }}
+                  isChecked={e.check}
+                  onPress={()=>updateCheck(e)}
+                  
+                />
                     </Pressable>
                   </View>
                 </View>
