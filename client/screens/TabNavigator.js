@@ -80,6 +80,10 @@ const TabNavigator = () => {
                 name="HomeChild"
                 component={HomeChild}
             />
+             <Tab.Screen
+                name="Home"
+                component={Home}
+            />
             <Tab.Screen
                 name="Chat"
                 component={Chat}

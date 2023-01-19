@@ -1,12 +1,15 @@
-//ahlem
-
-import * as React from "react";
-import { useEffect, useState } from "react";
-import { View, Text, StatusBar, style, Pressable } from "react-native";
+// ahlem
+ import * as React from "react";
+import {  Component, createRef ,useState,useEffect } from "react";
+import { View, Text, StatusBar, style, Pressable,Platform, StyleSheet, TouchableOpacity,Button } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import RewardsComponent from 'react-native-rewards';
+import { useNavigation } from "@react-navigation/native";
+
+const CornflowerBlue = '#6495ED';
 
 const colors = {
   themeColor: "#00BFA6",
@@ -44,6 +47,7 @@ const Lists = [
 ];
 
 export default function List(props) {
+  const navigation = useNavigation()
   // Declaring const where to save data
   //Delete from firestore
   //fetch data
@@ -53,14 +57,17 @@ export default function List(props) {
   const todoRef = firebase.firestore().collection("tasks");
 
   const [addData, setAddData] = useState("");
+  const [animationState,setAnimationState] =useState('rest')
 
   //Get data from firestore
   useEffect(() => {
-    todoRef.orderBy("stamp", "desc").onSnapshot((QuerySnapshot) => {
+      setAnimationState("reward")
+
+    todoRef.onSnapshot((QuerySnapshot) => {
       const todos = [];
       QuerySnapshot.forEach((doc) => {
         //  console.log(doc)
-        const { task, icon, theme, stamp,check,idChild,idParent} = doc.data();
+        const { task, icon, theme,check,idChild,idParent} = doc.data();
         // console.log(doc.data())
         // if (idChild==="222"){
         todos.push({
@@ -68,7 +75,7 @@ export default function List(props) {
           task,
           icon,
           theme,
-          stamp,
+          
           check,
           idChild,
           idParent,
@@ -77,7 +84,9 @@ export default function List(props) {
       });
       setTodos(todos);
     });
+   
   }, []);
+  
   // function to check true or false
   const updateCheck = (task) => {
     todoRef.doc(task.id).update({
@@ -96,7 +105,19 @@ export default function List(props) {
     }
     return "none"
   }
+  
 
+
+//function rewards
+const rewards = ()=> {
+    var res=true
+    for (var i =0 ;i<todos.length;i++){
+         if (todos[i].check===false){
+       res= false
+       }
+     }
+   console.log('all todos are done')
+     return  res   }
   return (
     <View
       style={{
@@ -105,8 +126,10 @@ export default function List(props) {
       }}
     >
       {/* display data from firebase */}
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-      <View style={{ backgroundColor: colors.themeColor }}>
+       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/> 
+     {rewards() === false ?(
+     <View>
+     {/* <View style={{ backgroundColor: colors.themeColor }}> */}
         <View
           style={{
             padding: 16,
@@ -114,14 +137,14 @@ export default function List(props) {
             justifyContent: "space-between",
           }}
         >
-          <MaterialCommunityIcons
+          {/* <MaterialCommunityIcons
             name="bell-outline"
             size={30}
             style={{ color: colors.white }}
-          />
-          <AntDesign name="user" size={30} style={{ color: colors.white }} />
+          /> */}
+          {/* <AntDesign name="user" size={30} style={{ color: colors.white }} /> */}
         </View>
-      </View>
+      {/* </View> */}
       <View style={{ padding: 16 }}>
         <Text style={{ color: "black", fontSize: 30 }}>{"Tasks"}</Text>
         {/* icone search */}
@@ -171,7 +194,7 @@ export default function List(props) {
                 <View>
                   <Text style={{ fontSize: 19, textDecorationLine:linefalse(task) }} >{task.task}</Text>
                   <Text style={{ cololr: colors.greyish }}>
-                    {task.stamp.toString()}
+                    {/* {task.stamp.toString()} */}
                   </Text>
                 </View>
               </View>
@@ -181,8 +204,9 @@ export default function List(props) {
                 <BouncyCheckbox
                   size={25}
                   fillColor="#00BFA6"
+                  
                   unfillColor="rgba(0, 191, 166, 0.15)"
-                  style={{ marginLeft: 30 }}
+                  style={{ marginLeft: 20 }}
                   iconStyle={{ borderColor: "red" }}
                   innerIconStyle={{ borderWidth: 1 }}
                   isChecked={task.check}
@@ -192,10 +216,108 @@ export default function List(props) {
                 
               </View>
             </View>
+           
           );
+          
         })}
+        
       </ScrollView>
+      </View>):
+      
+      (
+        <View style={styles.container}>
+            {/* <Text  >{todos[0]}</Text> */}
+          <RewardsComponent
+            animationType="confetti"
+            state={animationState}
+            onRest={() => setAnimationState('rest')
+        }
+          >
+               <RewardsComponent
+            animationType="confetti"
+            state={animationState}
+            onRest={() => setAnimationState('rest')}
+
+          >
+           
+          </RewardsComponent>
+          {/* button of rewards */}
+            
+            {/* <Text >congratulation Check your rewards </Text> */}
+            
+            <Button 
+        title="congratulation Check your rewards"
+        color="#00BFA6"
+        
+        
+       
+        onPress={() => navigation.navigate("Rewards")}
+      />
+          </RewardsComponent>
+
+        </View>
+        
+    )} 
+
       {/* <Text> Lets get started</Text>     */}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        
+    
+       
+      },
+      button: {
+        backgroundColor: CornflowerBlue,
+        height: 60,
+        width: 60,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+      },
+      buttonPunish: {
+        backgroundColor: '#f04',
+        height: 60,
+        width: 60,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        marginTop: 10,
+      },
+      buttonProps: {
+        backgroundColor: 'gray',
+        height: 60,
+        width: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+       
+        marginTop: 10,
+      },
+      buttonText: {
+        color: '#00BFA6',
+        fontSize: 24,
+      },
+    });

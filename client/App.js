@@ -15,8 +15,9 @@ import UpdateChild from './screens/UpdateChild';
 import TabNavigator from './screens/TabNavigator';
 import Login from "./screens/Login";
  import HomeChild from './screens/HomeChild';
+ import HomeParent from './screens/HomeParent';
  // Ahlem
- import TasksParent from './screens/ParentTasks';
+ import ParentTasks from './screens/ParentTasks';
 
 import Congratulation from "./screens/Congratulation"
   import GetKid from "./screens/GetKid"
@@ -30,7 +31,7 @@ import EditChild from "./screens/EditChild";
 import NewChild from "./screens/NewChild";
 import FrameScreen from "./screens/FrameScreen";
 import Games from './screens/Games';
-
+import Rewards from './screens/Rewards';
 const Stack = createStackNavigator();
 
 const AuthenticatedUserContext = createContext({});
@@ -59,16 +60,19 @@ function ChatStack() {
       <Stack.Screen name='Backround' component={Backround} />
       <Stack.Screen name='AddChild' component={AddChild} />
       <Stack.Screen name='ChildTasks' component={ChildTasks} />
-      <Stack.Screen name='TasksParent' component={TasksParent} />
+      <Stack.Screen name='ParentTasks' component={ParentTasks} />
       <Stack.Screen name='UpdateChild' component={UpdateChild} />
       <Stack.Screen name='HomeChild' component={HomeChild} />
       <Stack.Screen name='Camera' component={Camera} />
       <Stack.Screen name='Home' component={Home} />
+      <Stack.Screen name='HomeParent' component={HomeParent} />
+
       <Stack.Screen name='GetKid' component={GetKid} />
       <Stack.Screen name="EditChild" component={EditChild} options={{ headerShown: false }}/>
       <Stack.Screen name="NewChild" component={NewChild} options={{ headerShown: false }}  />
       <Stack.Screen name="Frame3" component={FrameScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Games' component={Games} />
+      <Stack.Screen name='Rewards' component={Rewards} />
     </Stack.Navigator>
   );
 }

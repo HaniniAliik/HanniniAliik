@@ -6,7 +6,7 @@ import { View, Text, StatusBar,Keyboard } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
-
+import { useNavigation } from "@react-navigation/native";
 const colors = {
   themeColor: "#00BFA6",
   white: "#fff",
@@ -44,6 +44,7 @@ const Lists = [
 
 // fel props must add id parent: props.idP
 export default function List(props) {
+  const navigation = useNavigation()
   // Declaring const where to save data
   //Delete from firestore
   //fetch data
@@ -237,7 +238,7 @@ export default function List(props) {
                 <View>
                   <Text style={{ fontSize: 19 }}>{task.task}</Text>
                   <Text style={{ cololr: colors.greyish }}>
-                    {task.stamp.toString()}
+                    {/* {task.stamp.toString()} */}
                   </Text>
                 </View>
               </View>
@@ -253,7 +254,7 @@ export default function List(props) {
                     return deleteTodo(task)}}
                   name="trash-can"
                   size={30}
-                  style={{ color:"#d81f1f", marginLeft: 5 }}
+                  style={{ color:"gray",opacity:0.5, marginLeft: 5 }}
                 />
               </View>
             </View>

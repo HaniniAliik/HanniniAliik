@@ -33,7 +33,7 @@ function HomeParent() {
 
                 <Pressable
                     style={[styles.wrapper, styles.wrapperLayoutt]}
-                    onPress={() => navigation.navigate("ChildTasks")}
+                    onPress={() => navigation.navigate("ParentTasks")}
                 >
                     
                     <Image

@@ -78,10 +78,10 @@ const Home = () => {
        Who are you checking on?
      </Text>
 
-<Pressable onPress={()=>navigation.navigate("TasksParent")}>
+<Pressable onPress={()=>navigation.navigate("HomeParent")}>
 <View style={{top:-220, left:-55}}>
 <View style={{ alignItems: "center" }}>
-  <Image style={[styles.image123x1Icon,styles.namePosition,{ opacity: editMode ? 0.5 : 1 }]}resizeMode="cover" source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" }} />
+  <Image style={[styles.image123x1Icon,styles.namePosition,{ opacity: editMode ? 0.5 : 1 }]}resizeMode="cover" source={{ uri: "https://cdn.dribbble.com/users/948184/screenshots/4270844/38_octopus2_db.gif" }} />
  
         {editMode && 
         <FontAwesome5 name="pen" size={24} color="#fff" style={{ position: "absolute",top: "31%",left: "43%"}} onPress={() => navigation.navigate("EditChild")}/>
