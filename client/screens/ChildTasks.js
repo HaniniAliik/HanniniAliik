@@ -1,11 +1,11 @@
 // ahlem
  import * as React from "react";
 import {  Component, createRef ,useState,useEffect } from "react";
-import { View, Text, StatusBar, style, Pressable,Platform, StyleSheet, TouchableOpacity,Button } from "react-native";
+import { View, Text, StatusBar,Image, style, Pressable,Platform, StyleSheet, TouchableOpacity,Button } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import BouncyCheckbox from "react-native-bouncy-checkbox";4
 import RewardsComponent from 'react-native-rewards';
 import { useNavigation } from "@react-navigation/native";
 
@@ -244,10 +244,13 @@ const rewards = ()=> {
           {/* button of rewards */}
             
             {/* <Text >congratulation Check your rewards </Text> */}
-            
+            {/* <View> */}
+            {/* <Image style={{ marginTop: -20,height:400,width:415  }} source={require('../images/jump.gif') }/> */}
+            {/* </View> */}
             <Button 
-        title="congratulation Check your rewards"
+        title=" 🎊🎈congratulation Check your rewards 🎉🏆 "
         color="#00BFA6"
+        marginVertical="200"
         
         
        

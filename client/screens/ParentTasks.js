@@ -86,8 +86,6 @@ export default function List(props) {
         .doc(todos.id)
         .delete()
         .then(() => {
-          alert('jawik a7la jaw')
-
             // show alert
             alert("Deleted successfully")
         })
@@ -136,23 +134,23 @@ export default function List(props) {
     >
       {/* display data from firebase */}
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-      <View style={{ backgroundColor: colors.themeColor }}>
-        <View
+      {/* <View style={{ backgroundColor: colors.themeColor }}> */}
+        {/* <View
           style={{
             padding: 16,
             flexDirection: "row",
             justifyContent: "space-between",
           }}
-        >
+        > */}
           {/* icon search */}
           {/* <MaterialCommunityIcons
             name="bell-outline"
             size={30}
             style={{ color: colors.white }}
           /> */}
-          <AntDesign name="user" size={30} style={{ color: colors.white }} />
-        </View>
-      </View>
+          {/* <AntDesign sr name="user" size={30} style={{ color: colors.white }} />
+        </View> */}
+      {/* </View> */}
       <View style={{ padding: 16 }}>
         <Text style={{ color: "black", fontSize: 30 }}>{"Tasks"}</Text>
 

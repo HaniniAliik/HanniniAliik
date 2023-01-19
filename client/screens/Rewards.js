@@ -45,38 +45,52 @@ export default function List(props) {
     });
   }, []);
  
+// function delete Tasks from firestore
 
-  // function add a tod
-  // hou
-//   const addTodo = () => {
-//     // check if we have a todo
-//     if (addData && addData.length > 0) {
-//       // get the timestamp
-//       const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-//       const data = {
-//         task: addData,
-//         icon: "child",
-//         theme: "#00BFA6",
+const deleteReward = (rewards) => {
+    todoRef
+        .doc(rewards.id)
+        .delete()
+        .then(() => {
+            // show alert
+            alert("Deleted successfully")
+        })
+        .catch(error => {
+            !
+            alert(error)
+        })
+    }
+//   function add a tod
+//   hou
+  const addReward = () => {
+    // check if we have a todo
+    if (addData && addData.length > 0) {
+      // get the timestamp
+    //   const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+      const data = {
+        description: addData,
+        // icon: "child",
+        // theme: "#00BFA6",
 
 
-//         stamp: timestamp,
-//         check:false,
-//         // add id parent child
-//         idParent:'111',
-//         idChild:'222',
-//       };
-//       todoRef
-//         .add(data)
-//         .then(() => {
-//           setAddData("");
-//           //  release keyboard
-//            Keyboard.dismiss();
-//         })
-//         .catch((error) => {
-//           alert(error);
-//         });
-//     }
-//   };
+        // stamp: timestamp,
+        // check:false,
+        // add id parent child
+        // idParent:'111',
+        // idChild:'222',
+      };
+      todoRef
+        .add(data)
+        .then(() => {
+          setAddData("");
+          //  release keyboard
+           Keyboard.dismiss();
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+  };
  
 
   return (
@@ -88,7 +102,7 @@ export default function List(props) {
     >
       {/* display data from firebase */}
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-      <View style={{ backgroundColor: colors.themeColor }}>
+      {/* <View style={{ backgroundColor: colors.themeColor }}> */}
         <View
           style={{
             padding: 16,
@@ -97,9 +111,9 @@ export default function List(props) {
           }}
         >
           
-          <AntDesign name="user" size={30} style={{ color: colors.white }} />
+          {/* <AntDesign name="user" size={30} style={{ color: colors.white }} /> */}
         </View>
-      </View>
+      {/* </View> */}
       <View style={{ padding: 16 }}>
         <Text style={{ color: "black", fontSize: 30 }}>{"Rewards"}</Text>
 
@@ -115,14 +129,14 @@ export default function List(props) {
           borderTopLeftRadius: 20,
         }}
       >
-        {/* <TextInput
+         <TextInput
           style={{ fontSize: 24 }}
           onChangeText={(task) => setAddData(task)}
-          placeholder="add new task"
-        /> */}
-        {/* <MaterialCommunityIcons
+          placeholder="add new reward"
+        />
+        <MaterialCommunityIcons
           name="plus"
-           onPress={addTodo}
+           onPress={addReward}
           size={40}
           style={{
             color: colors.themeColor,
@@ -130,7 +144,7 @@ export default function List(props) {
             borderRadius: 20,
             marginHorizontal: 8,
           }}
-        /> */}
+        /> 
       </View>
       <ScrollView
         style={{
@@ -161,6 +175,15 @@ export default function List(props) {
                   <Text style={{ fontSize: 19 }}>{rwd.description}</Text>
                   
                 </View>
+                {/* <View>
+                <MaterialCommunityIcons
+                  onPress={() =>{
+                    return deleteReward(rwd)}}
+                  name="trash-can"
+                  size={30}
+                  style={{ color:"gray",opacity:0.5,marginHorizontal:50}}
+                />
+                </View> */}
               </View>
               
             </View>

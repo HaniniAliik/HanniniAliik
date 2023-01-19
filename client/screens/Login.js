@@ -44,7 +44,7 @@ export default function Login({ navigation }) {
 <View style={styles.container}>
   {/* invoke the bachround image */}
     {/* <BackgroundAnimation></BackgroundAnimation>   */}
-  <Image style={{ marginTop: -70  }} source={require('../images/name.png') }/>
+  {/* <Image style={{ marginTop: -90  }} source={require('../images/logo.jpeg') }/> */}
      <Image style={{ marginTop: 5 }} source={require("../images/kids.png")} /> 
     {/* <Text style={{ fontWeight: "bold", fontSize: 26 }}>HANNINI </Text> */}
     <View style={{ marginTop: 0 }}>
