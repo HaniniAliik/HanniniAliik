@@ -18,6 +18,7 @@ import Login from "./screens/Login";
  import HomeParent from './screens/HomeParent';
  // Ahlem
  import ParentTasks from './screens/ParentTasks';
+ import Profile from './screens/Profile'
 
 import Congratulation from "./screens/Congratulation"
   import GetKid from "./screens/GetKid"
@@ -32,6 +33,7 @@ import NewChild from "./screens/NewChild";
 import FrameScreen from "./screens/FrameScreen";
 import Games from './screens/Games';
 import Rewards from './screens/Rewards';
+import Map from './screens/Map'
 const Stack = createStackNavigator();
 
 const AuthenticatedUserContext = createContext({});
@@ -66,13 +68,14 @@ function ChatStack() {
       <Stack.Screen name='Camera' component={Camera} />
       <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='HomeParent' component={HomeParent} />
-
+      <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name='GetKid' component={GetKid} />
       <Stack.Screen name="EditChild" component={EditChild} options={{ headerShown: false }}/>
       <Stack.Screen name="NewChild" component={NewChild} options={{ headerShown: false }}  />
       <Stack.Screen name="Frame3" component={FrameScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Games' component={Games} />
       <Stack.Screen name='Rewards' component={Rewards} />
+      <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
 }

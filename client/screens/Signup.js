@@ -80,7 +80,7 @@ export default function Signup({ navigation }) {
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={true}
-          textContentType="password"
+          textContentType="text"
           value={password}
           onChangeText={(text) => setPassword(text)}
         />

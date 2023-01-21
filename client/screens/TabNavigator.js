@@ -7,7 +7,8 @@ import Chat from './Chat';
 import Games from './Games';
 import Camera from './Camera'
 import HomeChild from './HomeChild';
-
+import Profile from './Profile'
+import Map from './Map'
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
     
@@ -24,14 +25,20 @@ const TabNavigator = () => {
                         Icon = focused ? "home" : "home-outline";
                         size = focused ? size + 15 : size + 5;
                     }
+                    else if (route.name === "Profile") {
+                        Icon = focused ? "account" : "account";
+                        size = focused ? size + 15 : size +5
+                    }
+                    else if (route.name === "Map") {
+                        Icon = focused ? "map" : "map";
+                        size = focused ? size + 15 : size +5
+                    }
+                    
                     else if (route.name === "Chat") {
-            
                         Icon = focused ? "message-reply-text" : "message-reply-text-outline";
                         size = focused ? size + 15 : size + 5;
                        
                     }
-                   
-                   
                     else if (route.name === "Camera") {
                         Icon = focused ? "camera" : "camera-outline";
                         size = focused ? size + 15 : size + 5;
@@ -44,6 +51,7 @@ const TabNavigator = () => {
                         Icon = focused ? "bell" : "bell-outline";
                         size = focused ? size + 15 : size + 5;
                     }
+                    
                     return (
                         <>
                             
@@ -97,6 +105,12 @@ const TabNavigator = () => {
                 name="Games"
                 component={Games}
             />
+            <Tab.Screen
+            name="Profile"
+            component={Profile}/>
+              <Tab.Screen
+            name="Map"
+            component={Map}/>
              {/* <Tab.Screen
                 name="HomeChild"
                 component={HomeChild}

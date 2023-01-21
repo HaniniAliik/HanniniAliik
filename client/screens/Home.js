@@ -41,10 +41,10 @@ const Home = () => {
   tint: "#2b49c3",
 };
  const children = [
-   { name: "Child 1", id:1 },
-   { name: "Child 2", id:2 },
-   { name: "Child 3", id:3 },
-   { name: "Child 4", id:4 }
+  { name: "yahya", id:1 },
+  //  { name: "Child 2", id:2 },
+  //  { name: "Child 3", id:3 },
+  // //  { name: "Child 4", id:4 }
   
  ];
  const parent={name:"Parent"};
