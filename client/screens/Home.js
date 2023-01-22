@@ -36,7 +36,7 @@ const Home = () => {
      <TouchableOpacity
        style={styles.edit}
        activeOpacity={0.2}
-       onPress={() => setEditMode(!editMode)} 
+       onPress={()=>navigation.navigate("HomeParent")}
      >
        <Text  style={styles.edit1}>Edit</Text>
      </TouchableOpacity>
