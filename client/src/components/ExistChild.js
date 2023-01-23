@@ -22,7 +22,7 @@ const ExistChild = (props) => {
     { opacity: props.editMode ? 0.5 : 1 }
   ]} 
   resizeMode="cover" 
-  source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" }} 
+  source={{ uri: "https://cdn.dribbble.com/users/948184/screenshots/4270844/38_octopus2_db.gif" }} 
 />
   
          {props.editMode && 
@@ -31,7 +31,7 @@ const ExistChild = (props) => {
        top: "31%",
         left: "43%"
        }}
-       onPress={() => navigation.navigate("EditChild")}  />
+       onPress={() => navigation.navigate("EditChild")}/>
     }
   
     <Text style={[styles.name, styles.namePosition, styles.nameTypo]}>

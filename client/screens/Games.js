@@ -23,7 +23,7 @@ export default function Games() {
   useEffect(() => {
 
     axios
-      .get("http://192.168.1.192:8000/api/allGames")
+      .get("http://192.168.104.13:8000/api/allGames")
 
       .then((response) => {
         setGames(response.data);
@@ -116,7 +116,9 @@ const styles = {
 
   elKaba1: {
     marginTop: 10,
+    marginLeft: 10,
     paddingLeft: 10,
+    right: 50,
     paddingRight: 100,
     paddingTop: 0,
     paddingBottom: -20,
@@ -166,11 +168,12 @@ const styles = {
   },
 
   home: {
-    backgroundColor: Color.turquoise_100,
+    backgroundColor:"white" ,
     flex: 1,
     height: 844,
     overflow: "hidden",
     width: "100%",
+    paddingLeft:20
   },
 
 };

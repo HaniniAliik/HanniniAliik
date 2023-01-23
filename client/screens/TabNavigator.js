@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icons from "react-native-vector-icons/MaterialCommunityIcons"
-
+import {firebase} from "../config/firebase"
 import Home from './Home';
 import Chat from './Chat';
 import Games from './Games';
@@ -9,10 +9,8 @@ import Camera from './Camera'
 import HomeChild from './HomeChild';
 import Profile from './Profile'
 import Map from './Map'
-import HomeParent from "./HomeParent";
-import Notification from "./Notification";
-import {firebase} from "../config/firebase";
-import {Alert, AsyncStorage} from "react-native";
+import Notification from "./Notification"
+import HomeParent from './HomeParent';
 const Tab = createBottomTabNavigator();
 var firstChanges1 = []
 var filtered = []
@@ -51,34 +49,33 @@ const TabNavigator = () => {
                 tabBarIcon: ({focused, size, color, padding}) => {
 
                     let Icon;
-                    if (route.name === "Home") {
+                    if (route.name === "HomeChild") {
                         Icon = focused ? "home" : "home-outline";
                         size = focused ? size + 15 : size + 5;
                     }
                     else if (route.name === "Profile") {
                         Icon = focused ? "account" : "account";
-                        size = focused ? size + 15 : size + 5
-                    } else if (route.name === "Map") {
+
+                        size = focused ? size + 15 : size +5
+                    }
+                    else if (route.name === "Map") {
                         Icon = focused ? "map" : "map";
-                        size = focused ? size + 15 : size + 5
-                    } else if (route.name === "Chat") {
+                        size = focused ? size + 15 : size +5
+                    }
+                    
+                    else if (route.name === "Chat") {
                         Icon = focused ? "message-reply-text" : "message-reply-text-outline";
                         size = focused ? size + 15 : size + 5;
-
-                    } else if (route.name === "Camera") {
+                       
+                    }
+                    else if (route.name === "Camera") {
                         Icon = focused ? "camera" : "camera-outline";
                         size = focused ? size + 15 : size + 5;
-                    } else if (route.name === "Games") {
-                        Icon = focused ? "gamepad-variant" : "gamepad-variant-outline";
-                        size = focused ? size + 15 : size + 5;
-                    } else if (route.name === "Notifications" && filtered.length>0) {
-                        Icon = focused ? "bell-badge" : "bell-badge-outline";
-                        size = focused ? size + 15 : size + 5;
-                    }else if (route.name === "Notifications" && !filtered.length>0) {
+                    } else if (route.name === "Notifications" && !filtered.length>0) {
                         Icon = focused ? "bell" : "bell-outline";
                         size = focused ? size + 15 : size + 5;
                     }
-
+                    
                     return (
                         <>
 
@@ -90,6 +87,7 @@ const TabNavigator = () => {
                             />
                         </>
 
+                        
                     )
                 },
                 headerShown: true,
@@ -98,8 +96,15 @@ const TabNavigator = () => {
                 tabBarShowLabel: false,
 
                 tabBarStyle: {
-                    borderRadius: 10,
-                    backgroundColor: '#00BFA6',
+
+                    height: 50,
+                    left:0,
+                    right: 0,
+                    bottom:0,
+                
+                    position: 'absolute',
+                    borderRadius: 0,
+                    backgroundColor: '#0E7E80',
                 },
             })}
         >
@@ -110,14 +115,8 @@ const TabNavigator = () => {
                 name="Notifications"
                 component={Notification}
             />
-            <Tab.Screen
-                name="Home"
-                component={Home}
-            />
-            <Tab.Screen
-                name="HomeParent"
-                component={HomeParent}
-            />
+            
+            
             <Tab.Screen
                 name="Chat"
                 component={Chat}
@@ -127,21 +126,19 @@ const TabNavigator = () => {
                 name="Camera"
                 component={Camera}
             />
+            
             <Tab.Screen
-                name="Games"
-                component={Games}
-            />
-            <Tab.Screen
-                name="Profile"
-                component={Profile}/>
-            <Tab.Screen
-                name="Map"
-                component={Map}/>
-            {/* <Tab.Screen
+
+            name="Profile"
+            component={Profile}/>
+              <Tab.Screen
+            name="Map"
+            component={Map}/>
+             {/* <Tab.Screen
                 name="HomeChild"
                 component={HomeChild}
             /> */}
-
+            
         </Tab.Navigator>
     )
 }

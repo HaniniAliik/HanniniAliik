@@ -1,7 +1,4 @@
-// import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import NewChild from "./NewChild";
-// import { FlatList } from "react-native-gesture-handler";
-import  React from "react";
+import  React,{useState} from "react";
 import {
  Pressable,
  Text,
@@ -9,96 +6,114 @@ import {
  TouchableOpacity,
  View,
  Image,
+ SafeAreaView
 } from "react-native";
+import {  ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import ExistChild from "../src/components/ExistChild";
 import { FontFamily, Color, FontSize, Border } from "../HomeStyles";
-import { useState } from "react";
 import { FontAwesome5 } from 'react-native-vector-icons';
-
-
+import GlobalStyles from "../GlobalStyles";
+import { auth } from '../config/firebase';
+import { AntDesign } from '@expo/vector-icons';
+import { signOut } from 'firebase/auth';
+// import GetKid from "./GetKid";
+import Button from "../src/components/Button";
+  //frameScreen2 : AddChild
+  //frameScreen1 : UpdateChild
 const Home = () => {
  const navigation = useNavigation();
-
+ const colors = {
+  themeColor: "#00BFA6",
+  white: "#fff",
+  background: "#F4F6FC",
+  greyish: "#A4A4A4",
+  tint: "#2B49C3",
+};
  const children = [
-   { name: "Child 1", id:1 },
-   { name: "Child 2", id:2 },
-   { name: "Child 3", id:3 },
+  { name: "yahya", id:1 },
+ { name: "Child 2", id:2 },
+{ name: "Child 3", id:3 },
    { name: "Child 4", id:4 }
-  
  ];
  const parent={name:"Parent"};
-
  const [editMode, setEditMode] = useState(false);
- 
+ const onSignOut = () => {
+  signOut(auth).then(msg => console.log('logging out successfully', msg))
+  .catch(error => console.log('Error logging out: ', error));
+  navigation.navigate("Login")
+}
  return (
+  <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1
+          }}
+          style={{
+            backgroundColor: colors.background, flex: 1
+          }}
+        >
    <View style={styles.home}>
      <TouchableOpacity
        style={styles.edit}
        activeOpacity={0.2}
-       onPress={()=>navigation.navigate("HomeParent")}
+       onPress={() => setEditMode(!editMode)}
      >
-       <Text  style={styles.edit1}>Edit</Text>
+       {/* <Text  style={styles.edit1}>Edit</Text> */}
+       <FontAwesome5 name="pen" size={24} color="#fff" style={{ top: "-180%",left: "270%"}} onPress={() => {setEditMode(!editMode)}}/>
      </TouchableOpacity>
      <Text style={[styles.whoAreYou, styles.nameTypo]}>
-       Who are you checking on?
+       Whom are you checking on
      </Text>
-
-
+<Pressable onPress={()=>navigation.navigate("HomeParent")}>
 <View style={{top:-220, left:-55}}>
 <View style={{ alignItems: "center" }}>
   <Image style={[styles.image123x1Icon,styles.namePosition,{ opacity: editMode ? 0.5 : 1 }]}resizeMode="cover" source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" }} />
- 
-        {editMode && 
+        {editMode &&
         <FontAwesome5 name="pen" size={24} color="#fff" style={{ position: "absolute",top: "31%",left: "43%"}} onPress={() => navigation.navigate("EditChild")}/>
          }
- 
-  <Text style={[styles.name, styles.namePosition, styles.nameTypo]}>
-     {parent.name} 
+  <Text style={[styles.name, styles.namePosition, styles.nameTypo,{color: "#0E7E80"}]}>
+     {parent.name}
   </Text>
- 
  </View>
 </View>
-     
-    
+</Pressable>
      <TouchableOpacity
        activeOpacity={0.2}
        onPress={() => navigation.navigate("NewChild")}
        style={[styles.mayssen, styles.groupChildLayout]}
      >
        <View style={[styles.groupChild, styles.groupChildLayout]} />
-       <Text style={[styles.addChild, styles. addKid]}>add child</Text>
+       <Text style={[styles.addChild, styles. addKid]}>Add child</Text>
        <View style={[styles.iconAdd, styles.iconLayout]}>
          <View  style={[styles.iconAdd1, styles.iconLayout]}>
            <Pressable
              style={[styles.vector, styles.iconLayout]}
              onPress={() => navigation.navigate("NewChild")}
            >
-             <Image 
+             <Image
                style={styles.icon}
                resizeMode="cover"
                source={require("../assets/vector.png")}
-              
              />
            </Pressable>
          </View>
        </View>
      </TouchableOpacity>
-   
-
-
      <View style={[styles.rowContainer, styles.container]}>
  {children.map(child => (
    <View style={[styles.elKaba1, { width: "50%", height: "40%" }]} key={child.id}>
+     <Pressable onPress={()=>navigation.navigate("HomeChild")}>
      <ExistChild name={child.name} editMode={editMode} />
+     </Pressable>
    </View>
-   
  ))}
 </View>
    </View>
+   </ScrollView>
+   </SafeAreaView>
  );
 };
-
 const styles = StyleSheet.create({
  container: {
    padding: 20,
@@ -111,7 +126,7 @@ const styles = StyleSheet.create({
    paddingRight:100,
    paddingTop:50,
    paddingBottom:20,
-   justifyContent:"space-between"    
+   justifyContent:"space-between"
    },
  mayssen:{
    paddingTop:130,
@@ -128,7 +143,7 @@ const styles = StyleSheet.create({
    marginLeft:139,
    fontFamily: FontFamily.ruda,
    fontWeight: "700",
-   color: Color.white
+   color: "#0E7E80"
  },
  nameTypo: {
    fontFamily: FontFamily.ruda,
@@ -166,18 +181,18 @@ const styles = StyleSheet.create({
    position: "absolute",
  },
  whoAreYou: {
-   top: 425,
-   left: 70,
-   fontSize: 20,
-   width: 251,
-   height: 23,
+   top: 430,
+   left: 26,
+   fontSize: 26,
+   width: 330,
+   height: 50,
    textAlign: "left",
    position: "absolute",
  },
  groupChild: {
    left: 0,
    borderRadius: Border.br_md,
-   backgroundColor: "#55eeda",
+   backgroundColor: "#55EEDA",
    shadowColor: "rgba(0, 0, 0, 0.25)",
    shadowOffset: {
      width: 0,
@@ -215,18 +230,15 @@ const styles = StyleSheet.create({
    top: 25,
    marginLeft: -25,
  },
-
  image123x1Icon: {
    top: 389,
    width: 99,
    height: 98,
  },
  name: {
-   
      alignSelf: "center",
      marginTop: 105,
-     marginLeft:25 
- 
+     marginLeft:25
    // top: 496,
    // fontSize: FontSize.size_lg,
    // width:103,
@@ -241,276 +253,4 @@ const styles = StyleSheet.create({
    width: "100%",
  },
 });
-
 export default Home;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect } from "react";
-// import { TouchableOpacity, Text, Image, StyleSheet } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
-// import { FontAwesome } from '@expo/vector-icons';
-// import { Entypo } from '@expo/vector-icons';
-// import Chat from "./Chat";
-// import * as React from "react";
-// import { Pressable, View } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
-// import GlobalStyles from "../GlobalStyles";
-// import { auth } from '../config/firebase';
-// import { AntDesign } from '@expo/vector-icons';
-// import { signOut } from 'firebase/auth';
-// import ChildTaBar from "./ChildTabBar";
-
-// import Button from "../src/components/Button";
-// const Home= () => {
-//   const navigation = useNavigation();
-//   const onSignOut = () => {
-//     signOut(auth).then(msg => console.log('logging out successfully', msg))
-//     .catch(error => console.log('Error logging out: ', error));
-//     navigation.navigate("Login")
-
-//   };
- //frameScreen2 : AddChild
- //frameScreen1 : UpdateChild
-
-
-
-//  useEffect(() => {
-//         navigation.setOptions({
-//             headerLeft: () => (
-//                 <FontAwesome name="search" size={24}  style={{marginLeft: 15}}/>
-//             ),
-//             headerRight: () => (
-//               <TouchableOpacity
-//                 style={{
-//                   marginRight: 10
-//                 }}
-//                 onPress={onSignOut}
-//               >
-//                 <AntDesign name="logout" size={24}  style={{marginRight: 10}}/>
-//               </TouchableOpacity>
-//             )
-//         });
-//     }, [navigation]);
-//   return (
-   
-//     <View style={[styles.iconAddParent, styles.parentLayout]}>
-//       <View style={styles.iconAdd}>
-     
-//         <Pressable
-//           style={[styles.vector, styles.iconLayout1]}
-//           onPress={() => navigation.navigate("AddChild")}
-//         >
-//           <View style={styles.Cameraa}>
-       
-//         </View>
-       
-//           <Image
-//             style={[styles.iconLayout, styles.iconLayout1]}
-//             resizeMode="cover"
-//             source={require("../assets/vector.png")}
-//           />
-//         </Pressable>
-//       </View>
-   
-//       <View style={[styles.vectorParent, styles.parentLayout]}>
-//         <Pressable
-//           style={[styles.wrapper, styles.wrapperLayout]}
-//           onPress={() => navigation.navigate("AddChild")}
-//         //frameScreen2 : addchild
-//         //frameScreen1 : updatechild
-//         >
-//           <Image
-//             style={styles.iconLayout1}
-//             resizeMode="cover"
-//             source={require("../assets/rectangle-23.png")}
-//           />
-//           <Text style={{left:20}}>AddChild</Text>
-//         </Pressable>
-//         <Pressable
-//           style={[styles.image12, styles.wrapperLayout]}
-//           onPress={() => navigation.navigate("ChildTabBar")}
-//         >
-//           <Image
-//             style={styles.iconLayout1}
-//             resizeMode="cover"
-//             source={require("../assets/image-12.png")}
-//           />
-        
-//           <Text style={{left:20}}>Ayso</Text>
-//         </Pressable>
-       
-//         <Pressable
-//           style={[styles.container, styles.wrapperLayout]}
-//           onLongPress={() => navigation.navigate("UpdateChild")}
-//         >
-//           <Image
-//             style={styles.iconLayout1}
-//             resizeMode="cover"
-//             source={require("../assets/rectangle-61.png")}
-//           />
-//           <Text style={{left:20}}>Lina</Text>
-//         </Pressable>
-     
-//       </View>
-//       <View style={styles.container}>
-//             <TouchableOpacity
-//                 onPress={() => navigation.navigate("Chat")}
-//                 style={styles.chatButton}
-//             >
-//                 <Entypo name="chat" size={24}  />
-//             </TouchableOpacity>
-//             {/* <View style={styles.Cameraa}>
-//             <Button title="Take a picture" onPress={() => navigation.navigate("Camera")} icon="camera" />
-//             </View> */}
-//         </View>
-//     </View>
-
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container1: {
-//     left: 271,
-//     position: 'absolute',
-//     top:0,
-   
-//     width: '100%',
-//   },
-//  Cameraa: {
-//   backgroundColor: 'black',
-//   top: 730,
-//   justifyContent: 'center',
-//   right: 145,
-//   borderRadius: 100,
-//   width: 170
-//  },
-//   parentLayout: {
-//     overflow: "hidden",
-//     height: 844,
-//   },
-//   iconLayout1: {
-//     height: "100%",
-//     width: "100%",
-//   },
-//   wrapperLayout: {
-//     height: 103,
-//     width: 103,
-//     top: 280,
-//     position: "absolute",
-//   },
-//   aysoIconLayout: {
-//     height: 10,
-//     width: 24,
-//     top: 391,
-//     position: "absolute",
-//   },
-//   iconLayout: {
-//     maxHeight: "100%",
-//     maxWidth: "100%",
-//     overflow: "hidden",
-//   },
-//   vector: {
-//     left: "0%",
-//     top: "0%",
-//     right: "0%",
-//     bottom: "0%",
-//     position: "absolute",
-//   },
-//   iconAdd: {
-//     height: "10.51%",
-//     width: "17%",
-//     top: "20.9%",
-//     right: "69.17%",
-//     bottom: "68.6%",
-//     left: "13.83%",
-//     position: "absolute",
-//   },
-//   wrapper: {
-//     left: 20,
-//   },
-//   container: {
-//     left: 271,
-//   },
-//   addChildIcon: {
-//     left: 46,
-//     width: 50,
-//     height: 9,
-//     top: 391,
-//     position: "absolute",
-//   },
-//   aysoIcon: {
-//     left: 183,
-//   },
-//   aysoIcon1: {
-//     left: 314,
-//   },
-//   frameChild: {
-//     top: 11,
-//     left: 328,
-//     width: 49,
-//     height: 43,
-//     position: "absolute",
-//   },
-//   iconEdit: {
-//     height: "3.93%",
-//     width: "6.96%",
-//     top: "1.82%",
-//     right: "6.38%",
-//     bottom: "94.26%",
-//     left: "86.67%",
-//     position: "absolute",
-//   },
-//   image12: {
-//     left: 144,
-//   },
-//   vectorParent: {
-//     top: 0,
-//     left: 0,
-//     width: 390,
-//     position: "absolute",
-//   },
-//   iconAddParent: {
-//     backgroundColor: GlobalStyles.Color.white,
-//     flex: 1,
-//     width: "100%",
-//     height: 844,
-//   },
-// });
-
-// export default Home;
-
-
-
-
-
-
