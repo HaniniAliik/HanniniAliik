@@ -6,9 +6,9 @@ import {onAuthStateChanged} from 'firebase/auth';
 import {auth, firebase} from './config/firebase';
 // import Login from './screens/Login';
 import Signup from './screens/Signup';
-import Chat from './screens/Chat';
-import Home from './screens/Home';
-import ChildTasks from "./screens/ChildTasks"
+// import Chat from './screens/Chat';
+// import Home from './screens/Home';
+// import ChildTasks from "./screens/ChildTasks"
 import AddChild from './screens/AddChild';
 import UpdateChild from './screens/UpdateChild';
 import TabNavigator from './screens/TabNavigator';
