@@ -6,7 +6,10 @@ import { AsyncStorage } from 'react-native';
 import { signOut } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
+import { auth, } from '../config/firebase';
+
 const ParentProfile = ({ name, email, phone, photo }) => {
+
     const [profileImage, setProfileImage] = useState(photo);
     const [editing, setEditing] = useState(false);
     const [newName, setNewName] = useState(name);
