@@ -64,7 +64,7 @@ const Notification =   () => {
         <View>
             {favoriteTeams.length > 0?
                 favoriteTeams.map((item) => {
-                return <Text>Task {item.type} : {item.task}</Text>})
+                    return (<Text>Task {item.type} : {item.task}</Text>) })
             :  null
             }
         </View>

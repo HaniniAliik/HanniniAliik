@@ -87,11 +87,9 @@ export default function List(props) {
         .delete()
         .then(() => {
             // show alert
-            alert("Deleted successfully")
         })
         .catch(error => {
-            !
-            alert(error)
+
         })
     }
   // function add a tod
