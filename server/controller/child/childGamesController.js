@@ -1,6 +1,6 @@
 var db = require("../../database/index");
 
-var selectAll = function (req, res) {
+var selectAllP = function (req, res) {
   console.log("test selectAll");
     db.query("SELECT * FROM games", (err, games, fields) => {
       if (err) {
@@ -10,9 +10,17 @@ var selectAll = function (req, res) {
       }
     });
   };
-  
+  var selectAllC = function (req, res) {
+    console.log("test selectAll");
+      db.query("SELECT * FROM games", (err, games, fields) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.status(200).send(games);
+        }
+      });
+    };
   var add =(req,res) => {
-  
     db.query(`INSERT INTO games (image,link) VALUES ( "${req.body.image}","${req.body.link}")`, (err, games, fields) => {
       if (err) {
         res.status(500).send(err);
@@ -21,4 +29,4 @@ var selectAll = function (req, res) {
       }
     })
   }
-  module.exports = { selectAll,add};
+  module.exports = { selectAllP,selectAllC,add};

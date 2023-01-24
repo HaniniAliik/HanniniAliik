@@ -5,7 +5,8 @@ import { View, Text, StatusBar,Image, style, Pressable,Platform, StyleSheet, Tou
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
-import BouncyCheckbox from "react-native-bouncy-checkbox";4
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import Rewards from "./Rewards.js"
 import RewardsComponent from 'react-native-rewards';
 import { useNavigation } from "@react-navigation/native";
 
@@ -13,10 +14,11 @@ const CornflowerBlue = '#6495ED';
 
 const colors = {
   themeColor: "#00BFA6",
-  white: "#fff",
+  white: "rgba(0, 191, 166, 0.15)",
+  //modify ha hallouma
   background: "#f4f6fc",
-  greyish: "#a4a4a4",
-  tint: "#2b49c3",
+  greyish: "#a4a4ar",
+  tint: "#2b49c3"
 };
 // dummy data
 const Lists = [
@@ -92,7 +94,7 @@ export default function List(props) {
     todoRef.doc(task.id).update({
       check: !task.check,
     }).then(()=>{
-    console.log(task)
+    // console.log(task)
    })
   
     .catch(error=>alert('ee',error))
@@ -116,23 +118,24 @@ const rewards = ()=> {
        res= false
        }
      }
-   console.log('all todos are done')
+  //  console.log('all todos are done')
      return  res   }
   return (
     <View
       style={{
         flex: 1,
-        background: colors.themeColor,
+        background: "colors.themeColor",
+        marginBottom:70,
       }}
     >
       {/* display data from firebase */}
-       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/> 
+        {/* <StatusBar barStyle="light-content" backgroundColor="{colors.themeColor}"/>    */}
      {rewards() === false ?(
      <View>
      {/* <View style={{ backgroundColor: colors.themeColor }}> */}
         <View
           style={{
-            padding: 16,
+            padding: 20,
             flexDirection: "row",
             justifyContent: "space-between",
           }}
@@ -142,17 +145,35 @@ const rewards = ()=> {
             size={30}
             style={{ color: colors.white }}
           /> */}
-          {/* <AntDesign name="user" size={30} style={{ color: colors.white }} /> */}
+           {/* <AntDesign name="user" size={30} style={{ color: colors.white }} />  */}
         </View>
       {/* </View> */}
-      <View style={{ padding: 16 }}>
-        <Text style={{ color: "black", fontSize: 30 }}>{"Tasks"}</Text>
-        {/* icone search */}
-        {/* <MaterialCommunityIcons
-            name="magnify"
-            size={30}
-            style={{ color: colors.white }}
-          />  */}
+      {/* <View style={{ padding: 10,backgroundColor:'white' }}>
+        
+        <Text style={{ color: "#0E7E80", fontSize: 30 }}>{"Tasks"}</Text>
+       
+      </View> */}
+       
+      <View style={{ padding: 16, backgroundColor:"#00BFA6" }}>
+      <Pressable
+          style={[styles.back, { top: 0, left: -57 }]}
+          onPress={() => navigation.navigate('Home')}
+        >
+          <Image
+            source={require('../assets/images/left.png')}
+            style={[styles.back1, styles.done2Typo]}
+          />
+        </Pressable>
+      {/* <Pressable style={[{ top: 10, left: -50}]} onPress={() => navigation.navigate("HomeChild")}>
+         <Image  source={require("../assets/images/left.png")}
+     style={[styles.back1, styles.done2Typo]}/>
+           </Pressable> */}
+        
+        <Text style={{top:-7, color: "white", fontSize: 30,left:140 }}>{"Tasks"}</Text>
+    {/* <Pressable style={[{ top: 10, left: -50}]} onPress={() => navigation.navigate("HomeChild")}>
+         <Image  source={require("../assets/images/left.png")} 
+     style={[styles.back1, styles.done2Typo]}/>
+           </Pressable> */}
       </View>
       <View
         style={{
@@ -161,7 +182,7 @@ const rewards = ()=> {
           backgroundColor: colors.background,
           justifyContent: "space-between",
           alignItems: "center",
-          borderTopLeftRadius: 20,
+          borderTopLeftRadius: 0,
         }}
       ></View>
       <ScrollView
@@ -171,7 +192,7 @@ const rewards = ()=> {
       >
         {todos.map((task) => {
           {
-            console.log(task);
+            // console.log(task);
           }
           return (
             <View
@@ -204,7 +225,6 @@ const rewards = ()=> {
                 <BouncyCheckbox
                   size={25}
                   fillColor="#00BFA6"
-                  
                   unfillColor="rgba(0, 191, 166, 0.15)"
                   style={{ marginLeft: 20 }}
                   iconStyle={{ borderColor: "red" }}
@@ -225,40 +245,41 @@ const rewards = ()=> {
       </View>):
       
       (
-        <View style={styles.container}>
-            {/* <Text  >{todos[0]}</Text> */}
-          <RewardsComponent
-            animationType="confetti"
-            state={animationState}
-            onRest={() => setAnimationState('rest')
-        }
-          >
-               <RewardsComponent
-            animationType="confetti"
-            state={animationState}
-            onRest={() => setAnimationState('rest')}
+        <Rewards/>
+      //   <View style={styles.container}>
+      //       {/* <Text  >{todos[0]}</Text> */}
+      //     <RewardsComponent
+      //       animationType="confetti"
+      //       state={animationState}
+      //       onRest={() => setAnimationState('rest')
+      //   }
+      //     >
+      //          <RewardsComponent
+      //       animationType="confetti"
+      //       state={animationState}
+      //       onRest={() => setAnimationState('rest')}
 
-          >
+      //     >
            
-          </RewardsComponent>
-          {/* button of rewards */}
+      //     </RewardsComponent>
+      //     {/* button of rewards */}
             
-            {/* <Text >congratulation Check your rewards </Text> */}
-            {/* <View> */}
-            {/* <Image style={{ marginTop: -20,height:400,width:415  }} source={require('../images/jump.gif') }/> */}
-            {/* </View> */}
-            <Button 
-        title=" 🎊🎈congratulation Check your rewards 🎉🏆 "
-        color="#00BFA6"
-        marginVertical="200"
+      //       {/* <Text >congratulation Check your rewards </Text> */}
+      //       {/* <View> */}
+      //       {/* <Image style={{ marginTop: -20,height:400,width:415  }} source={require('../images/jump.gif') }/> */}
+      //       {/* </View> */}
+      //       <Button 
+      //   title=" 🎊🎈congratulation Check your rewards 🎉🏆 "
+      //   color="#00BFA6"
+      //   marginVertical="200"
         
         
        
-        onPress={() => navigation.navigate("Rewards")}
-      />
-          </RewardsComponent>
+      //   onPress={() => navigation.navigate("Rewards")}
+      // />
+      //     </RewardsComponent>
 
-        </View>
+      //   </View>
         
     )} 
 
@@ -322,5 +343,20 @@ const styles = StyleSheet.create({
       buttonText: {
         color: '#00BFA6',
         fontSize: 24,
+      },
+      back1: {
+        width: 25,
+        height: 25,
+        left: 10,
+        top: -130,
+      },
+      iconAdd: {
+        height: '10.51%',
+        width: '17%',
+        top: '20.9%',
+        right: '69.17%',
+        bottom: '68.6%',
+        left: '16.83%',
+        position: 'absolute',
       },
     });
