@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth,sendPasswordResetEmail } from "../config/firebase";
 import { createStackNavigator } from "@react-navigation/stack";
 import { color } from "react-native-elements/dist/helpers";
+import MontserratBold from '../assets/fonts/MontserratAlternates-Bold.ttf';
 //  import BackgroundAnimation from "./Backround";
 //import Header from "../shared/header";
 export default function Login({ navigation }) {
@@ -63,7 +64,7 @@ export default function Login({ navigation }) {
       />
     </View>
     <Pressable style={styles.button} onPress={() => (onHandleLogin())}>
-      <Text style={styles.buttonText}>
+      <Text style={[styles.customFont,styles.buttonText]}>
         Login
       </Text>
     </Pressable>
@@ -74,14 +75,15 @@ export default function Login({ navigation }) {
     </Pressable>
     */}
     <TouchableOpacity style={{ marginTop: 20 }}>
-      <Text style={{ fontSize: 16}}>Do you have an account ? Register Now</Text>
+    
+      <Text style={styles.customFont}>Do you have an account ? Register Now</Text>
     </TouchableOpacity>
     < TouchableOpacity onPress={() => navigation.navigate("Signup")}>
             <Text style={{color: 'white', fontWeight: '600', fontSize: 14}}> Sign Up</Text>
         </TouchableOpacity>
         <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
             <TouchableOpacity onPress={() => resetPassword()}>
-              <Text style={{ color: "#0e7e80", fontWeight: '600', fontSize: 14 }}> Forget password ?</Text>
+              <Text style={[styles.customFont,{fontSize: 14 }]}> Forget password ?</Text>
             </TouchableOpacity>
           </View>
   </View>
@@ -126,4 +128,13 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     
   },
+    customFont: {
+      fontFamily: 'MontserratBold',
+      fontWeight: 'bold',
+      fontStyle: 'normal',
+      // fontSize: 16,
+      color: "#0e7e80"
+    },
+  
+  
 });

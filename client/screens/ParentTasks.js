@@ -132,52 +132,12 @@ export default function List(props) {
     >
       {/* display data from firebase */}
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-      {/* <View style={{ backgroundColor: colors.themeColor }}> */}
-        {/* <View
-          style={{
-            padding: 16,
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        > */}
-          {/* icon search */}
-          {/* <MaterialCommunityIcons
-            name="bell-outline"
-            size={30}
-            style={{ color: colors.white }}
-          /> */}
-          {/* <AntDesign sr name="user" size={30} style={{ color: colors.white }} />
-        </View> */}
-      {/* </View> */}
       <View style={{ padding: 16 }}>
-      <Pressable style={[styles.back,{top:170,left:-30}]} onPress={() => navigation.navigate("Home")}>
-         <Image  source={require("../assets/left.png")}
+      <Pressable style={[styles.back,{top:170,left:-30}]} onPress={() => navigation.navigate("HomeParent")}>
+         <Image  source={require("../assets/images/left.png")}
      style={[styles.back1, styles.done2Typo]}/>
            </Pressable>
         <Text style={{ color: "#0e7e80", fontSize: 30,left:110 }}>{"Tasks"}</Text>
-
-        {/* Search for task to verify it */}
-        {/* search */}
-        {/* <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 6,
-            flexDirection: "row",
-            justifyContent: "space-between",
-            backgroundColor: colors.tint,
-            borderRadius: 20,
-            marginVertical: 20,
-            alignItems: "center",
-          }}
-        >
-          <MaterialCommunityIcons
-            name="magnify"
-            size={30}
-            style={{ color: colors.white }}
-          /> */}
-        
-      
-        {/* </View> */}
       </View>
       <View
         style={{
@@ -255,7 +215,7 @@ export default function List(props) {
                     return deleteTodo(task)}}
                   name="trash-can"
                   size={30}
-                  style={{ color:"gray",opacity:0.5, marginLeft: 5 }}
+                  style={{ color:"#00BFA6",opacity:0.5, marginLeft: 5 }}
                 />
               </View>
             </View>

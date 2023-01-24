@@ -1,197 +1,199 @@
-
-import React from 'react'
-import { Pressable, View } from "react-native";
-import { TouchableOpacity, Text, Image, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import GlobalStyles from "../GlobalStyles";
+import React from 'react';
+import { Pressable, View } from 'react-native';
+import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import GlobalStyles from '../GlobalStyles';
 import TabNavigator from './TabNavigator';
 function HomeChild() {
-    const navigation = useNavigation();
-    return (
-        <View style={[styles.iconAddParent, styles.parentLayout,styles.container]}>
-             <Image
-                style={styles.backgroundImage}
-                source={require("../assets/untitled_design.png")}
-                resizeMode="cover"
-            />
-            <View style={styles.iconAdd}>
-            <Pressable style={[styles.back,{top:0,left:-57}]} onPress={() => navigation.navigate("Home")}>
-         <Image  source={require("../assets/left.png")}
-     style={[styles.back1, styles.done2Typo]}/>
-           </Pressable>
-               {/* <Pressable style={styles.back} onPress={() => navigation.goBack()}>
+  const navigation = useNavigation();
+  return (
+    <View style={[styles.iconAddParent, styles.parentLayout, styles.container]}>
+      <Image
+        style={styles.backgroundImage}
+        source={require('../assets/untitled_design.png')}
+        resizeMode="cover"
+      />
+      <View style={styles.iconAdd}>
+        <Pressable
+          style={[styles.back, { top: 0, left: -57 }]}
+          onPress={() => navigation.navigate('Home')}
+        >
+          <Image
+            source={require('../assets/images/left.png')}
+            style={[styles.back1, styles.done2Typo]}
+          />
+        </Pressable>
+        {/* <Pressable style={styles.back} onPress={() => navigation.goBack()}>
           <Text style={[{top:-150,left:-60},styles.back1, styles.done2Typo]}>Back</Text>
         </Pressable> */}
-                <Pressable
-                    style={[styles.wrapper, styles.wrapperLayoutc]}
-                    onPress={() => navigation.navigate("Games")}
-                >
-                    { <Image
-                        style={styles.iconLayout}
-                        resizeMode="cover"
-                        source={require("../assets/games1.png")}
-                    /> }
-                    <Text style={styles.game}>Games</Text>
-                </Pressable>
-            </View>
-            <View style={styles.iconAdd1}>
-                <Pressable
-                    style={[styles.wrapper, styles.wrapperLayoutt]}
-                    onPress={() => navigation.navigate("ChildTasks")}
-                >
-                    { <Image
-                        style={[styles.iconLayout1,styles.todo1]}
-                        resizeMode="cover"
-                        source={require("../assets/pngtree-task-complete-3d-icon-render-png-image_6172213-removebg-preview.png")}
-                    /> }
-                    <Text style={styles.todo}>Todo</Text>
-                </Pressable>
-            </View>
-        </View>
-    )
+        <Pressable
+          style={[styles.wrapper, styles.wrapperLayoutc]}
+          onPress={() => navigation.navigate('Games')}
+        >
+          {
+            <Image
+              style={styles.iconLayout}
+              resizeMode="cover"
+              source={require('../assets/games1.png')}
+            />
+          }
+          <Text style={styles.game}>Games</Text>
+        </Pressable>
+      </View>
+      <View style={styles.iconAdd1}>
+        <Pressable
+          style={[styles.wrapper, styles.wrapperLayoutt]}
+          onPress={() => navigation.navigate('ChildTasks')}
+        >
+          {
+            <Image
+              style={[styles.iconLayout1, styles.todo1]}
+              resizeMode="cover"
+              source={require('../assets/pngtree-task-complete-3d-icon-render-png-image_6172213-removebg-preview.png')}
+            />
+          }
+          <Text style={styles.todo}>Todo</Text>
+        </Pressable>
+      </View>
+    </View>
+  );
 }
 const styles = StyleSheet.create({
-    container: {
-        left: 271,
-        position: 'absolute',
-        top:100,
-        width: '100%',
-    },
-    parentLayout: {
-        overflow: "hidden",
-        height: 844,
-    },
-    iconLayout1: {
-        height: "35%",
-        width: "40%",
-        borderRadius:20,
-        right: -5,
-        top: -15
-    },
-    wrapperLayoutc: {
-        height: 200,
-        width: 200,
-        top: -130,
-        position: "absolute",
-    },
-    wrapperLayoutt: {
-        height: 300,
-        width: 250,
-        top: 120,
-        position: "absolute",
-    },
-    iconLayout: {
-        margin:5,
-        height: "55%",
-        width: "55%",
-        borderRadius:20,
-        right: -160,
-        top: 225
-    },
-    vector: {
-        left: "0%",
-        top: "0%",
-        right: "0%",
-        bottom: "0%",
-        position: "absolute",
-    },
-    iconAdd: {
-        height: "10.51%",
-        width: "17%",
-        top: "20.9%",
-        right: "69.17%",
-        bottom: "68.6%",
-        left: "16.83%",
-        position: "absolute",
-    },
-    iconAdd1: {
-        height: "10.51%",
-        width: "17%",
-        top: "20.9%",
-        right: "69.17%",
-        bottom: "68.6%",
-        left: "10.83%",
-        position: "absolute",
-    },
-    wrapper: {
-        left: 20,
-    },
-    container: {
-        top:0,
-    },
-    game: {
-        left: 176,
-        width: 90,
-        height: 30,
-        top:354,
-        position: "absolute",
-        fontSize:20,
-    },
-    todo: {
-        left: 30,
-        width: 90,
-        height: 30,
-        top:100,
-        fontSize:20,
-        position: "absolute",
-    },
-    todo1:{
-        borderRadius:20
-    },
-    frameChild: {
-        top: 11,
-        left: 328,
-        width: 49,
-        height: 43,
-        position: "absolute",
-    },
-    iconEdit: {
-        height: "3.93%",
-        width: "6.96%",
-        top: "1.82%",
-        right: "6.38%",
-        bottom: "94.26%",
-        left: "86.67%",
-        position: "absolute",
-    },
-    image12: {
-        left: 144,
-    },
-    vectorParent: {
-        top: 0,
-        left: 0,
-        width: 390,
-        position: "absolute",
-    },
-    iconAddParent: {
-        backgroundColor: GlobalStyles.Color.white,
-        flex: 1,
-        width: "100%",
-        height: 844,
-    },
-       backgroundImage: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        width: '100%',
-        height: '100%',
-    },
-    back1:{
-        width:50,
-        height:50,
-        left:10,
-        top:-130
-            },
+  container: {
+    left: 271,
+    position: 'absolute',
+    top: 100,
+    width: '100%',
+  },
+  parentLayout: {
+    overflow: 'hidden',
+    height: 844,
+  },
+  iconLayout1: {
+    height: '35%',
+    width: '40%',
+    borderRadius: 20,
+    right: -5,
+    top: -15,
+  },
+  wrapperLayoutc: {
+    height: 200,
+    width: 200,
+    top: -130,
+    position: 'absolute',
+  },
+  wrapperLayoutt: {
+    height: 300,
+    width: 250,
+    top: 120,
+    position: 'absolute',
+  },
+  iconLayout: {
+    margin: 5,
+    height: '55%',
+    width: '55%',
+    borderRadius: 20,
+    right: -160,
+    top: 225,
+  },
+  vector: {
+    left: '0%',
+    top: '0%',
+    right: '0%',
+    bottom: '0%',
+    position: 'absolute',
+  },
+  iconAdd: {
+    height: '10.51%',
+    width: '17%',
+    top: '20.9%',
+    right: '69.17%',
+    bottom: '68.6%',
+    left: '16.83%',
+    position: 'absolute',
+  },
+  iconAdd1: {
+    height: '10.51%',
+    width: '17%',
+    top: '20.9%',
+    right: '69.17%',
+    bottom: '68.6%',
+    left: '10.83%',
+    position: 'absolute',
+  },
+  wrapper: {
+    left: 20,
+  },
+  container: {
+    top: 0,
+  },
+  game: {
+    left: 176,
+    width: 90,
+    height: 30,
+    top: 354,
+    position: 'absolute',
+    fontSize: 20,
+  },
+  todo: {
+    left: 30,
+    width: 90,
+    height: 30,
+    top: 100,
+    fontSize: 20,
+    position: 'absolute',
+  },
+  todo1: {
+    borderRadius: 20,
+  },
+  frameChild: {
+    top: 11,
+    left: 328,
+    width: 49,
+    height: 43,
+    position: 'absolute',
+  },
+  iconEdit: {
+    height: '3.93%',
+    width: '6.96%',
+    top: '1.82%',
+    right: '6.38%',
+    bottom: '94.26%',
+    left: '86.67%',
+    position: 'absolute',
+  },
+  image12: {
+    left: 144,
+  },
+  vectorParent: {
+    top: 0,
+    left: 0,
+    width: 390,
+    position: 'absolute',
+  },
+  iconAddParent: {
+    backgroundColor: GlobalStyles.Color.white,
+    flex: 1,
+    width: '100%',
+    height: 844,
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: '100%',
+    height: '100%',
+  },
+  back1: {
+    width: 50,
+    height: 50,
+    left: 10,
+    top: -130,
+  },
 });
-export default HomeChild
-
-
-
-
-
-
+export default HomeChild;
 
 // // ////5idmet ahlem tasks child illi imiss no9tlouuuuuuuuuuu//////////////
 
@@ -204,7 +206,6 @@ export default HomeChild
 // // import BouncyCheckbox from "react-native-bouncy-checkbox";
 // // import RewardsComponent from 'react-native-rewards';
 // // import { useNavigation } from "@react-navigation/native";
-
 
 // // const CornflowerBlue = '#6495ED';
 
@@ -282,9 +283,9 @@ export default HomeChild
 // //       });
 // //       setTodos(todos);
 // //     });
-   
+
 // //   }, []);
-  
+
 // //   // function to check true or false
 // //   const updateCheck = (task) => {
 // //     todoRef.doc(task.id).update({
@@ -292,7 +293,7 @@ export default HomeChild
 // //     }).then(()=>{
 // //     console.log(task)
 // //    })
-  
+
 // //     .catch(error=>alert('ee',error))
 // //   };
 
@@ -303,8 +304,6 @@ export default HomeChild
 // //     }
 // //     return "none"
 // //   }
-  
-
 
 // // //function rewards
 // // const rewards = ()=> {
@@ -383,11 +382,11 @@ export default HomeChild
 // //                 paddingHorizontal: 24,
 // //                 alignItems: "center",
 // //                 justifyContent: "space-between",
-                
+
 // //               }}
-             
+
 // //             >
-                
+
 // //               <View style={{ flexDirection: "row" }}>
 // //                 <View>
 // //                   <Text style={{ fontSize: 19, textDecorationLine:linefalse(task) }} >{task.task}</Text>
@@ -398,7 +397,7 @@ export default HomeChild
 // //               </View>
 // //               <View style={{ flexDirection: "row", alignItems: "center" }}>
 // //                 {/* check icon */}
-                
+
 // //                 <BouncyCheckbox
 // //                   size={25}
 // //                   fillColor="#00BFA6"
@@ -408,19 +407,19 @@ export default HomeChild
 // //                   innerIconStyle={{ borderWidth: 1 }}
 // //                   isChecked={task.check}
 // //                   onPress={()=>updateCheck(task)}
-                  
+
 // //                 />
-                
+
 // //               </View>
 // //             </View>
-           
+
 // //           );
-          
+
 // //         })}
-        
+
 // //       </ScrollView>
 // //       </View>):
-      
+
 // //       (
 // //         <View style={styles.container}>
 // //             {/* <Text  >{todos[0]}</Text> */}
@@ -436,12 +435,12 @@ export default HomeChild
 // //             onRest={() => setAnimationState('rest')}
 
 // //           >
-           
+
 // //           </RewardsComponent>
 // //           {/* button of rewards */}
-            
+
 // //             {/* <Text >congratulation Check your rewards </Text> */}
-            
+
 // //             <Button
 // //         title="congratulation Check your rewards"
 // //         color="green"
@@ -450,8 +449,8 @@ export default HomeChild
 // //           </RewardsComponent>
 
 // //         </View>
-        
-// //     )} 
+
+// //     )}
 
 // //       {/* <Text> Lets get started</Text>     */}
 // //     </View>
@@ -506,7 +505,7 @@ export default HomeChild
 // //         width: 60,
 // //         alignItems: 'center',
 // //         justifyContent: 'center',
-       
+
 // //         marginTop: 10,
 // //       },
 // //       buttonText: {
@@ -514,8 +513,6 @@ export default HomeChild
 // //         fontSize: 24,
 // //       },
 // //     });
-
-
 
 // ///////////////Home child 5idmet lawled//////////////
 // import React from 'react'
@@ -546,11 +543,10 @@ export default HomeChild
 //                         resizeMode="cover"
 //                         source={require("../assets/game1.png")}
 //                     />
-                    
+
 //                     <Text style={styles.game}>Games</Text>
 //                 </Pressable>
-               
-                
+
 //             </View>
 //             <View style={styles.iconAdd1}>
 
@@ -559,7 +555,7 @@ export default HomeChild
 //                     //ahleeeeem : kenit childTasks
 //                     onPress={() => navigation.navigate("ChildTasks")}
 //                 >
-                    
+
 //                     <Image
 //                         style={[styles.iconLayout1,styles.todo1]}
 //                         resizeMode="cover"
@@ -568,10 +564,9 @@ export default HomeChild
 //                     <Text style={styles.todo}>Todo</Text>
 
 //                 </Pressable>
-               
-                
+
 //             </View>
-           
+
 //         </View>
 
 //     )
@@ -602,10 +597,10 @@ export default HomeChild
 //         height: 300,
 //         width: 250,
 //         top: 120,
-        
+
 //         position: "absolute",
 //     },
-    
+
 //     iconLayout: {
 //         maxHeight: "100%",
 //         maxWidth: "100%",
@@ -635,7 +630,7 @@ export default HomeChild
 //         bottom: "68.6%",
 //         left: "10.83%",
 //         position: "absolute",
-       
+
 //     },
 //     wrapper: {
 //         left: 20,
@@ -657,7 +652,7 @@ export default HomeChild
 //         height: 30,
 //         top:300,
 //         fontSize:20,
-        
+
 //         position: "absolute",
 //     },
 //     todo1:{
@@ -680,7 +675,7 @@ export default HomeChild
 //         position: "absolute",
 //     },
 //     back1: {
-        
+
 //             width:50,
 //             height:50,
 //             left:10,
@@ -710,19 +705,17 @@ export default HomeChild
 // });
 // export default HomeChild
 
-
 // /////// rewards ////////////////
-
 
 // // const CornflowerBlue = '#6495ED';
 
 // //  const Reward =()=>{
 
 // //   const [animationState,setAnimationState] =useState('rest')
-  
+
 // //     return (
 // //         <View style={styles.container}>
-      
+
 // //           <RewardsComponent
 // //             animationType="confetti"
 // //             state={animationState}
@@ -733,7 +726,7 @@ export default HomeChild
 // //             state={animationState}
 // //             onRest={() => setAnimationState('rest')}
 // //           >
-            
+
 // //           </RewardsComponent>
 // //           {/* button of rewards */}
 // //             <TouchableOpacity
@@ -744,8 +737,6 @@ export default HomeChild
 // //           </RewardsComponent>
 // //         </View>
 // //     );
-  
+
 // // }
 // // export default Reward
-
-
