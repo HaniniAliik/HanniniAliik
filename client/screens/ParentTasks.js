@@ -2,15 +2,15 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, StatusBar,Keyboard } from "react-native";
+import { View, Text, StatusBar,Keyboard,Pressable,Image, StyleSheet } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
-
+import { useNavigation } from "@react-navigation/native";
 const colors = {
   themeColor: "#00BFA6",
   white: "#fff",
-  background: "#f4f6fc",
+  background: "#0E7E80",
   greyish: "#a4a4a4",
   tint: "#2b49c3",
 };
@@ -44,6 +44,7 @@ const Lists = [
 
 // fel props must add id parent: props.idP
 export default function List(props) {
+  const navigation = useNavigation()
   // Declaring const where to save data
   //Delete from firestore
   //fetch data
@@ -85,14 +86,10 @@ export default function List(props) {
         .doc(todos.id)
         .delete()
         .then(() => {
-          alert('jawik a7la jaw')
-
             // show alert
-            alert("Deleted successfully")
         })
         .catch(error => {
-            !
-            alert(error)
+
         })
     }
   // function add a tod
@@ -135,48 +132,12 @@ export default function List(props) {
     >
       {/* display data from firebase */}
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-      <View style={{ backgroundColor: colors.themeColor }}>
-        <View
-          style={{
-            padding: 16,
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          {/* icon search */}
-          {/* <MaterialCommunityIcons
-            name="bell-outline"
-            size={30}
-            style={{ color: colors.white }}
-          /> */}
-          <AntDesign name="user" size={30} style={{ color: colors.white }} />
-        </View>
-      </View>
       <View style={{ padding: 16 }}>
-        <Text style={{ color: "black", fontSize: 30 }}>{"Tasks"}</Text>
-
-        {/* Search for task to verify it */}
-        {/* search */}
-        {/* <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 6,
-            flexDirection: "row",
-            justifyContent: "space-between",
-            backgroundColor: colors.tint,
-            borderRadius: 20,
-            marginVertical: 20,
-            alignItems: "center",
-          }}
-        >
-          <MaterialCommunityIcons
-            name="magnify"
-            size={30}
-            style={{ color: colors.white }}
-          /> */}
-        
-      
-        {/* </View> */}
+      <Pressable style={[styles.back,{top:170,left:-30}]} onPress={() => navigation.navigate("HomeParent")}>
+         <Image  source={require("../assets/images/left.png")}
+     style={[styles.back1, styles.done2Typo]}/>
+           </Pressable>
+        <Text style={{ color: "#0e7e80", fontSize: 30,left:110 }}>{"Tasks"}</Text>
       </View>
       <View
         style={{
@@ -185,13 +146,14 @@ export default function List(props) {
           backgroundColor: colors.background,
           justifyContent: "space-between",
           alignItems: "center",
-          borderTopLeftRadius: 20,
+          borderTopLeftRadius: 0,
         }}
       >
         <TextInput
           style={{ fontSize: 24 }}
           onChangeText={(task) => setAddData(task)}
           placeholder="add new task"
+          placeholderTextColor="white"
         />
         <MaterialCommunityIcons
           name="plus"
@@ -237,7 +199,7 @@ export default function List(props) {
                 <View>
                   <Text style={{ fontSize: 19 }}>{task.task}</Text>
                   <Text style={{ cololr: colors.greyish }}>
-                    {task.stamp.toString()}
+                    {/* {task.stamp.toString()} */}
                   </Text>
                 </View>
               </View>
@@ -253,7 +215,7 @@ export default function List(props) {
                     return deleteTodo(task)}}
                   name="trash-can"
                   size={30}
-                  style={{ color:"#d81f1f", marginLeft: 5 }}
+                  style={{ color:"#00BFA6",opacity:0.5, marginLeft: 5 }}
                 />
               </View>
             </View>
@@ -263,4 +225,13 @@ export default function List(props) {
       {/* <Text> Lets get started</Text>     */}
     </View>
   );
+  
 }
+const styles = StyleSheet.create({
+  back1:{
+    width:50,
+    height:50,
+    left:10,
+    top:-130
+        },
+})

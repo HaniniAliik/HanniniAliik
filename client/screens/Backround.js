@@ -10,7 +10,7 @@ import {
   OUTPUT_RANGE_END,
   ANIMATION_TO_VALUE,
   ANIMATION_DURATION,
-} from '../screens/Constants';
+} from './Constants';
 
 
 export default function BackgroundAnimation() {
