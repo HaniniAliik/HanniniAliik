@@ -147,14 +147,17 @@ const rewards = ()=> {
           {/* <AntDesign name="user" size={30} style={{ color: colors.white }} /> */}
         </View>
       {/* </View> */}
-      <View style={{ padding: 10,backgroundColor:'white' }}>
+      {/* <View style={{ padding: 10,backgroundColor:'white' }}>
+        
         <Text style={{ color: "#0E7E80", fontSize: 30 }}>{"Tasks"}</Text>
-        {/* icone search */}
-        {/* <MaterialCommunityIcons
-            name="magnify"
-            size={30}
-            style={{ color: colors.white }}
-          />  */}
+       
+      </View> */}
+      <View style={{ padding: 16 }}>
+      <Pressable style={[styles.back,{top:10,left:-30}]} onPress={() => navigation.navigate("HomeChild")}>
+         <Image  source={require("../assets/images/left.png")}
+     style={[styles.back1, styles.done2Typo]}/>
+           </Pressable>
+        <Text style={{top:-10, color: "#0e7e80", fontSize: 30,left:110 }}>{"Tasks"}</Text>
       </View>
       <View
         style={{

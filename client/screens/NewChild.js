@@ -183,9 +183,11 @@ timetable:"image1.png"
           />
         </TouchableOpacity>
         <Text style={[styles.addPicture, styles.ageTypo]}>Add picture</Text>
-        <Pressable style={styles.back} onPress={() => navigation.goBack()}>
-          <Text style={[styles.back1, styles.done2Typo]}>Back</Text>
-        </Pressable>
+        <Pressable style={[styles.back,{top:0,left:-57}]} onPress={() => navigation.navigate("Home")}>
+         <Image  source={require("../assets/images/left.png")}
+     style={[styles.back1, styles.done2Typo]}/>
+           </Pressable>
+        
       </View>
     </View>
   );
@@ -367,16 +369,17 @@ const styles = StyleSheet.create({
     color: Color.white,
     fontFamily: FontFamily.rubikOne,
   },
-  back1: {
-    color: Color.turquoise_100,
-    width: 51,
-    height: 21,
-  },
   back: {
     left: 6,
     top: 47,
-    position: "absolute",
+    position: "relative",
   },
+  back1:{
+    width:50,
+        height:50,
+        left:10,
+        top:-130
+        },
   phoneParent: {
     top: 0,
     left: 0,

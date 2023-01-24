@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 // const backImage = require("../assets/backImage.png");
 import axios from 'axios'
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function Signup({ navigation }) {
@@ -50,13 +51,16 @@ export default function Signup({ navigation }) {
   return (
     <TouchableWithoutFeedback> 
     <View style={styles.container}>
+    
       {/* <Image source={backImage} style={styles.backImage} /> */}
       <View style={styles.whiteSheet} />
       <SafeAreaView style={styles.form}>
         <Text style={styles.title}>SignUp</Text>
+        <ScrollView >
         <TextInput
           style={styles.input}
           placeholder="Enter your name"
+          placeholderTextColor="white"
           autoCapitalize="none"
           keyboardType="name-address"
           textContentType="nameAddress"
@@ -67,6 +71,7 @@ export default function Signup({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Enter your email"
+          placeholderTextColor="white"
           autoCapitalize="none"
           keyboardType="email-address"
           textContentType="emailAddress"
@@ -77,6 +82,7 @@ export default function Signup({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Enter your password"
+          placeholderTextColor="white"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={true}
@@ -87,6 +93,7 @@ export default function Signup({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Confirm your password"
+          placeholderTextColor="white"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={true}
@@ -97,6 +104,7 @@ export default function Signup({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Enter your adress"
+          placeholderTextColor="white"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={false}
@@ -108,6 +116,7 @@ export default function Signup({ navigation }) {
       
           style={styles.input}
           placeholder="Enter your age"
+          placeholderTextColor="white"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={false}
@@ -118,6 +127,7 @@ export default function Signup({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Enter your phone"
+          placeholderTextColor="white"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={false}
@@ -129,6 +139,7 @@ export default function Signup({ navigation }) {
          keyboardType='text'
           style={styles.input}
           placeholder="Enter your Credit Card"
+          placeholderTextColor="white"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={false}
@@ -136,6 +147,7 @@ export default function Signup({ navigation }) {
           value={phone}
           onChangeText={(text) => setCreditCart(parseInt(text))}
         />
+        </ScrollView>
       </SafeAreaView>
       <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
         <Pressable style={styles.button}>
@@ -143,15 +155,17 @@ export default function Signup({ navigation }) {
             SignUp
           </Text>
         </Pressable>
+        
       </View>
       <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
-        <Text style={{ color: 'gray', fontWeight: '600', fontSize: 14, marginTop: -20 ,marginLeft:30}}>Don't have an account? </Text>
+        <Text style={{ color: '#0e7e80', fontWeight: '600', fontSize: 14, marginTop: -20 ,marginLeft:30}}>Don't have an account? </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={{ color: '#f57c00', fontWeight: '600', fontSize: 16, marginTop: -20 }}> Log In</Text>
+          <Text style={{ color: 'white', fontWeight: '600', fontSize: 16, marginTop: -20 }}> Log In</Text>
         </TouchableOpacity>
       </View>
 
       <StatusBar barStyle="light-content" />
+      
     </View>
     </TouchableWithoutFeedback>
   );
@@ -159,22 +173,27 @@ export default function Signup({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#55EEDA",
   },
   title: {
-    fontSize: 36,
+    marginTop:30,
+    fontSize: 32,
     fontWeight: 'bold',
-    color: "grey",
+    color: "#0e7e80",
     alignSelf: "center",
     paddingBottom: 24,
   },
   input: {
-    backgroundColor: "rgb(204, 242, 237)",
-    height: 58,
-    marginBottom: 20,
-    fontSize: 16,
+    placeholderTextColor :"white",
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontSize: 20,
+    borderColor: "white",
+    borderWidth: 1,
     borderRadius: 10,
-    padding: 12,
+    width: 300,
+    marginBottom: 10,
+    textAlign: "center",
   },
   backImage: {
     width: "100%",
@@ -188,7 +207,7 @@ const styles = StyleSheet.create({
     height: '75%',
     position: "absolute",
     bottom: 0,
-    backgroundColor: '#fff',
+    backgroundColor: '#55EEDA',
     borderTopLeftRadius: 60,
   },
   form: {
@@ -202,10 +221,12 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 10,
+    marginbottom:80,
+    position: "relative",
     elevation: 3,
-    backgroundColor: "white",
+    backgroundColor: "#55EEDA",
     borderWidth: 1,
-    borderColor: "green",
+    borderColor: "white",
     width: 127,
     marginTop: -100
 
@@ -217,7 +238,8 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    borderColor: "#fff",
+    borderColor: "green",
+    color:"#0e7e80",
     textShadowColor: "red"
 
   },
