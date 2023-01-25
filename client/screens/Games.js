@@ -23,7 +23,8 @@ export default function Games() {
   useEffect(() => {
 
     axios
-      .get("http://192.168.104.13:8000/api/allGames")
+
+      .get("http://192.168.104.7:8000/api/allGamesC")
 
       .then((response) => {
         setGames(response.data);
@@ -35,7 +36,7 @@ export default function Games() {
       })
 
   }, []);
-
+console.log(games, "games222222");
   return (
 
     <View style={styles.home}>
@@ -73,17 +74,6 @@ export default function Games() {
                   style={[styles.elKaba1, { width: "30%", height: "30%" }]} key={i}
                 >
                   <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    {/* <View style={{ flexDirection: "column", alignItems: "center" }}>
-                    <Image style={[styles.image123x1Icon,styles.groupChild,
-                    styles.namePosition
-                    ]} resizeMode="cover" source={{ uri: e.image }} />
-                    <TouchableOpacity
-                      onPress={() => {
-                        navigation.navigate(e.link), e.id;
-                      }}
-                    >
-                    </TouchableOpacity>
-                  </View> */}
                     <Pressable
                       style={{ flexDirection: "column", alignItems: "center" }}
                       
@@ -117,10 +107,10 @@ const styles = {
   elKaba1: {
     marginTop: 10,
     marginLeft: 10,
-    paddingLeft: 10,
-    right: 50,
-    paddingRight: 100,
-    paddingTop: 0,
+    paddingLeft: -20,
+    right: 60,
+    paddingRight: 20,
+    paddingTop: 20,
     paddingBottom: -20,
     justifyContent: "space-between",
 
@@ -168,12 +158,13 @@ const styles = {
   },
 
   home: {
-    backgroundColor:"white" ,
+    backgroundColor: "rgba(0, 191, 166, 0.15)",
+    // backgroundColor:"white" ,
     flex: 1,
     height: 844,
     overflow: "hidden",
     width: "100%",
-    paddingLeft:20
+    paddingLeft:0
   },
 
 };

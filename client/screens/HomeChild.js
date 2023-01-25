@@ -1,10 +1,33 @@
-import React from 'react';
-import { Pressable, View } from 'react-native';
-import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
+import React,{useLayoutEffect} from 'react';
+import {TouchableOpacity , Pressable , View ,Text, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import GlobalStyles from '../GlobalStyles';
-import TabNavigator from './TabNavigator';
+import { signOut } from 'firebase/auth';
+import { auth, database } from '../config/firebase';
+import { AntDesign } from '@expo/vector-icons';
+
 function HomeChild() {
+  const onSignOut = () => {
+    signOut(auth).then(msg => console.log('logging out successfully', msg))
+    .catch(error => console.log('Error logging out: ', error));
+    navigation.navigate("Login")
+  }
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          style={{
+            marginRight: 10,
+            
+          }}
+          onPress={onSignOut}
+        >
+          <AntDesign name="logout" size={24}  style={{marginRight: 10,color:"#0E7E80"}}/>
+        </TouchableOpacity>
+      )
+      
+    });
+  }, [navigation]);
   const navigation = useNavigation();
   return (
     <View style={[styles.iconAddParent, styles.parentLayout, styles.container]}>
@@ -23,20 +46,23 @@ function HomeChild() {
             style={[styles.back1, styles.done2Typo]}
           />
         </Pressable>
+        </View>
         {/* <Pressable style={styles.back} onPress={() => navigation.goBack()}>
           <Text style={[{top:-150,left:-60},styles.back1, styles.done2Typo]}>Back</Text>
         </Pressable> */}
+        <View style={styles.iconAdd2}>
         <Pressable
           style={[styles.wrapper, styles.wrapperLayoutc]}
           onPress={() => navigation.navigate('Games')}
         >
-          {
+          
             <Image
               style={styles.iconLayout}
               resizeMode="cover"
               source={require('../assets/games1.png')}
+              onPress={() => navigation.navigate('Games')}
             />
-          }
+          
           <Text style={styles.game}>Games</Text>
         </Pressable>
       </View>
@@ -45,14 +71,14 @@ function HomeChild() {
           style={[styles.wrapper, styles.wrapperLayoutt]}
           onPress={() => navigation.navigate('ChildTasks')}
         >
-          {
+          
             <Image
               style={[styles.iconLayout1, styles.todo1]}
               resizeMode="cover"
               source={require('../assets/pngtree-task-complete-3d-icon-render-png-image_6172213-removebg-preview.png')}
             />
-          }
-          <Text style={styles.todo}>Todo</Text>
+          
+          <Text style={styles.todo}>Tasks</Text>
         </Pressable>
       </View>
     </View>
@@ -70,11 +96,13 @@ const styles = StyleSheet.create({
     height: 844,
   },
   iconLayout1: {
-    height: '35%',
-    width: '40%',
+    height: '47%',
+    width: '53%',
     borderRadius: 20,
-    right: -5,
-    top: -15,
+    right: 35,
+    top: -35,
+  },
+  back:{
   },
   wrapperLayoutc: {
     height: 200,
@@ -93,7 +121,7 @@ const styles = StyleSheet.create({
     height: '55%',
     width: '55%',
     borderRadius: 20,
-    right: -160,
+    right: -155,
     top: 225,
   },
   vector: {
@@ -104,6 +132,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   iconAdd: {
+    height: '10.51%',
+    width: '17%',
+    top: '20.9%',
+    right: '69.17%',
+    bottom: '68.6%',
+    left: '16.83%',
+    position: 'absolute',
+  },
+  iconAdd2: {
     height: '10.51%',
     width: '17%',
     top: '20.9%',
@@ -128,19 +165,21 @@ const styles = StyleSheet.create({
     top: 0,
   },
   game: {
-    left: 176,
+    left: 165,
     width: 90,
     height: 30,
     top: 354,
     position: 'absolute',
-    fontSize: 20,
+    fontSize: 25,
+    color:"white"
   },
   todo: {
-    left: 30,
+    left: -2,
     width: 90,
     height: 30,
     top: 100,
-    fontSize: 20,
+    fontSize: 25,
+    color: "white",
     position: 'absolute',
   },
   todo1: {

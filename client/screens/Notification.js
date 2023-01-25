@@ -1,9 +1,32 @@
-import {StyleSheet, View, Text, AsyncStorage} from 'react-native'
-import React, {useEffect, useState} from 'react'
+import {StyleSheet, View, TouchableOpacity,Text} from 'react-native'
+import React, {useEffect, useState, useLayoutEffect} from 'react'
+import { useNavigation } from '@react-navigation/native';
+import { signOut } from 'firebase/auth';
 import {firebase} from "../config/firebase";
-
+import { AntDesign } from '@expo/vector-icons';
 
 const Notification =   () => {
+    const onSignOut = () => {
+        signOut(auth).catch(error => console.log('Error logging out: ', error));
+        navigation.navigate("Login")
+      };
+      useLayoutEffect(() => {
+        navigation.setOptions({
+          headerRight: () => (
+            <TouchableOpacity
+              style={{
+                marginRight: 10,
+                
+              }}
+              onPress={onSignOut}
+            >
+              <AntDesign name="logout" size={24}  style={{marginRight: 10,color:"#0E7E80"}}/>
+            </TouchableOpacity>
+          )
+          
+        });
+      }, [navigation]);
+      const navigation = useNavigation();
     const [favoriteTeams, setFavoriteTeams] = useState([]);
     const setStorage = async (team) => {
         let teams ;

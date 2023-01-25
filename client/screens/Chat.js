@@ -56,7 +56,7 @@ export default function Chat() {
             }}
             onPress={onSignOut}
           >
-            <AntDesign name="logout" size={24}  style={{marginRight: 10}}/>
+            <AntDesign name="logout" size={24}  style={{marginRight: 10,color:"#0E7E80"}}/>
           </TouchableOpacity>
         )
         

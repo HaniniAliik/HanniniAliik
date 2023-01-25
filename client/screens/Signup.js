@@ -53,10 +53,11 @@ export default function Signup({ navigation }) {
     <View style={styles.container}>
     
       {/* <Image source={backImage} style={styles.backImage} /> */}
+      <ScrollView >
       <View style={styles.whiteSheet} />
       <SafeAreaView style={styles.form}>
         <Text style={styles.title}>SignUp</Text>
-        <ScrollView >
+        
         <TextInput
           style={styles.input}
           placeholder="Enter your name"
@@ -147,7 +148,7 @@ export default function Signup({ navigation }) {
           value={phone}
           onChangeText={(text) => setCreditCart(parseInt(text))}
         />
-        </ScrollView>
+        
       </SafeAreaView>
       <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
         <Pressable style={styles.button}>
@@ -157,13 +158,13 @@ export default function Signup({ navigation }) {
         </Pressable>
         
       </View>
-      <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
+      <View style={{ marginTop: 60, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
         <Text style={{ color: '#0e7e80', fontWeight: '600', fontSize: 14, marginTop: -20 ,marginLeft:30}}>Don't have an account? </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text style={{ color: 'white', fontWeight: '600', fontSize: 16, marginTop: -20 }}> Log In</Text>
         </TouchableOpacity>
       </View>
-
+      </ScrollView>
       <StatusBar barStyle="light-content" />
       
     </View>
@@ -213,7 +214,8 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
     justifyContent: 'center',
-    marginHorizontal: 30,
+    marginHorizontal: 50,
+    marginRight:60,
   },
   button: {
     alignItems: "center",
@@ -228,7 +230,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "white",
     width: 127,
-    marginTop: -100
+    marginTop: 20
 
 
   },

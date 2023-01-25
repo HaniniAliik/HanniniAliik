@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, StatusBar,Keyboard } from "react-native";
+import { View, Text, StatusBar,Keyboard,Image } from "react-native";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebase } from "../config/firebase.js";
@@ -30,12 +30,12 @@ export default function List(props) {
       const rwd = [];
       QuerySnapshot.forEach((doc) => {
         //  console.log(doc)
-        const { description, idChild } = doc.data();
+        const { description } = doc.data();
         // console.log(doc.data())
         // condition to verify the child id
         // if (idChild==="222"){
         rwd.push({
-          id: doc.id,
+        id: doc.id,
           description,
           
         });
@@ -114,8 +114,9 @@ const deleteReward = (rewards) => {
           {/* <AntDesign name="user" size={30} style={{ color: colors.white }} /> */}
         </View>
       {/* </View> */}
-      <View style={{ padding: 16 }}>
-        <Text style={{ color: "black", fontSize: 30 }}>{"Rewards"}</Text>
+      <View style={{ padding: 0}} >
+       <Image style={{height:150,width:420, marginLeft:-20,marginTop:-50}} source={require('../images/congra.gif')}/>  
+        {/* <Text style={{ color: "black", fontSize: 30 }}>{"Rewards 🎉🏆 🎊🎈"}</Text> */}
 
     
       </View>
@@ -132,7 +133,7 @@ const deleteReward = (rewards) => {
          <TextInput
           style={{ fontSize: 24 }}
           onChangeText={(task) => setAddData(task)}
-          placeholder="add new reward"
+          placeholder="Add new reward"
         />
         <MaterialCommunityIcons
           name="plus"
@@ -158,7 +159,7 @@ const deleteReward = (rewards) => {
           return (
             <View
               style={{
-                backgroundColor: colors.white,
+                backgroundColor: "rgba(0, 191, 166, 0.15)",
                 flexDirection: "row",
                 marginHorizontal: 16,
                 marginVertical: 4,
@@ -171,7 +172,7 @@ const deleteReward = (rewards) => {
             >
               <View style={{ flexDirection: "row" }}>
                 
-                <View>
+                <View >
                   <Text style={{ fontSize: 19 }}>{rwd.description}</Text>
                   
                 </View>

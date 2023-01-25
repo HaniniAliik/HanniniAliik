@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {View, ActivityIndicator, SafeAreaView, Button, StyleSheet} from 'react-native';
 import { onAuthStateChanged } from 'firebase/auth';
+
 import {auth, firebase} from './config/firebase';
 // import Login from './screens/Login';
 import Signup from './screens/Signup';
@@ -10,8 +11,6 @@ import Chat from './screens/Chat';
 import Home from './screens/Home';
 import ChildTasks from "./screens/ChildTasks"
 import {Permissions,Notifications} from 'expo'; 
-import AddChild from './screens/AddChild';
-import UpdateChild from './screens/UpdateChild';
 import TabNavigator from './screens/TabNavigator';
 import Login from "./screens/Login";
  import HomeChild from './screens/HomeChild';
@@ -23,10 +22,9 @@ import Congratulation from "./screens/Congratulation"
 import Test from './screens/Test'
 import Backround from './screens/Backround.js';
 import Camera from './screens/Camera';
-
+import Notification from './screens/Notification';
 import EditChild from "./screens/EditChild";
 import NewChild from "./screens/NewChild";
-import FrameScreen from "./screens/FrameScreen";
 import Games from './screens/Games';
 import Rewards from './screens/Rewards';
 import Map from './screens/Map'
@@ -55,12 +53,10 @@ function ChatStack() {
 
       <Stack.Screen name='TabNavigator' component={TabNavigator} />
       <Stack.Screen name='Chat' component={Chat} />
-      {/* <Stack.Screen name='Notifications' component={Notification}/> */}
+      <Stack.Screen name='Notification' component={Notification}/>
       <Stack.Screen name='Backround' component={Backround} />
-      <Stack.Screen name='AddChild' component={AddChild} />
       <Stack.Screen name='ChildTasks' component={ChildTasks} />
       <Stack.Screen name='ParentTasks' component={ParentTasks} />
-      <Stack.Screen name='UpdateChild' component={UpdateChild} />
       <Stack.Screen name='HomeChild' component={HomeChild} />
       <Stack.Screen name='Camera' component={Camera} />
       <Stack.Screen name='Home' component={Home} />
@@ -69,7 +65,6 @@ function ChatStack() {
       <Stack.Screen name='GetKid' component={GetKid} />
       <Stack.Screen name="EditChild" component={EditChild} options={{ headerShown: false }}/>
       <Stack.Screen name="NewChild" component={NewChild} options={{ headerShown: false }}  />
-      <Stack.Screen name="Frame3" component={FrameScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Games' component={Games} />
       <Stack.Screen name='Rewards' component={Rewards} />
       <Stack.Screen name="Map" component={Map} />

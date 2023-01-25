@@ -1,5 +1,4 @@
 //ahlem
-
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { View, Text, StatusBar,Keyboard,Pressable,Image, StyleSheet } from "react-native";
@@ -10,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 const colors = {
   themeColor: "#00BFA6",
   white: "#fff",
-  background: "#0E7E80",
+  background: "#gray",
   greyish: "#a4a4a4",
   tint: "#2b49c3",
 };
@@ -50,7 +49,7 @@ export default function List(props) {
   //fetch data
   const [todos, setTodos] = useState([]);
   const todoRef = firebase.firestore().collection("tasks");
- 
+  const [isIconVisible, setIsIconVisible] = useState(false);
   const [addData, setAddData] = useState("");
 
   //Get data from firestore
@@ -120,6 +119,7 @@ export default function List(props) {
           alert(error);
         });
     }
+    
   };
  
 
@@ -153,11 +153,14 @@ export default function List(props) {
           style={{ fontSize: 24 }}
           onChangeText={(task) => setAddData(task)}
           placeholder="add new task"
-          placeholderTextColor="white"
-        />
+          placeholderTextColor="#00BFA6"
+          onFocus={() => setIsIconVisible(true)}
+          onBlur={() => setIsIconVisible(false)}
+        />{isIconVisible &&
         <MaterialCommunityIcons
           name="plus"
            onPress={addTodo}
+           
           size={40}
           style={{
             color: colors.themeColor,
@@ -165,7 +168,7 @@ export default function List(props) {
             borderRadius: 20,
             marginHorizontal: 8,
           }}
-        />
+        />}
       </View>
       <ScrollView
         style={{
@@ -179,7 +182,7 @@ export default function List(props) {
           return (
             <View
               style={{
-                backgroundColor: colors.white,
+                backgroundColor: "rgba(0, 191, 166, 0.15)",
                 flexDirection: "row",
                 marginHorizontal: 16,
                 marginVertical: 4,
@@ -207,7 +210,7 @@ export default function List(props) {
                 <MaterialCommunityIcons
                   name="pencil"
                   size={30}
-                  style={{ color: "rgba(0, 191, 166, 0.25)"}}
+                  style={{ color: "#00BFA6"}}
                 />
                 
                 <MaterialCommunityIcons
@@ -215,7 +218,7 @@ export default function List(props) {
                     return deleteTodo(task)}}
                   name="trash-can"
                   size={30}
-                  style={{ color:"#00BFA6",opacity:0.5, marginLeft: 5 }}
+                  style={{ color:"rgba(0, 191, 166, 0.55)",opacity:0.5, marginLeft: 5 }}
                 />
               </View>
             </View>
